@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Roostersysteem.Controllers
 {
-    public class HomeController : Controller
+    public class InlogpaginaController : Controller
     {
         public ActionResult Index()
         {
