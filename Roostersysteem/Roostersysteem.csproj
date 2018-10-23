@@ -151,16 +151,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Authenticator.cs" />
-    <Compile Include="Models\Docent.cs" />
-    <Compile Include="Models\iBeschikbaarheid.cs" />
-    <Compile Include="Models\iLokaalReserveren.cs" />
-    <Compile Include="Models\iVakgegevens.cs" />
-    <Compile Include="Models\Klas.cs" />
-    <Compile Include="Models\Opleidingscoördinator.cs" />
-    <Compile Include="Models\Persoon.cs" />
-    <Compile Include="Models\Rooster.cs" />
-    <Compile Include="Models\Vak.cs" />
+    <Compile Include="Models\Classes\Authenticator.cs" />
+    <Compile Include="Models\Classes\Docent.cs" />
+    <Compile Include="Models\Interfaces\iBeschikbaarheid.cs" />
+    <Compile Include="Models\Interfaces\iLokaalReserveren.cs" />
+    <Compile Include="Models\Interfaces\iVakgegevens.cs" />
+    <Compile Include="Models\Classes\Klas.cs" />
+    <Compile Include="Models\Classes\Opleidingscoördinator.cs" />
+    <Compile Include="Models\Classes\Persoon.cs" />
+    <Compile Include="Models\Classes\Rooster.cs" />
+    <Compile Include="Models\Classes\Vak.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\Hoofdpagina.Master.cs">
       <DependentUpon>Hoofdpagina.Master</DependentUpon>
@@ -175,6 +175,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Styles.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -206,13 +207,21 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Inlogpagina\About.cshtml" />
+    <Content Include="Views\Inlogpagina\Contact.cshtml" />
+    <Content Include="Views\Inlogpagina\Index.cshtml" />
     <Content Include="Views\Hoofdpagina.Master" />
+    <Content Include="Views\Uren\UrenDocent.cshtml" />
+    <Content Include="Views\Uren\UrenRoosteraar.cshtml" />
+    <Content Include="Views\Rooster\Rooster.cshtml" />
+    <Content Include="Views\Vakgegevens\Contacturen.cshtml" />
+    <Content Include="Views\Vakgegevens\VakkenKoppelen.cshtml" />
+    <Content Include="Views\Profiel\MijnGegevens.cshtml" />
+    <Content Include="Views\Home\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
