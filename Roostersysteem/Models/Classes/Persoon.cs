@@ -9,10 +9,12 @@ namespace Roostersysteem.Models
     {
         //----------------------------Private variables------------------------------------------------
         private int _persoonId;
-            
+
         private string _persoonNaam;
 
         private string _persoonEmail;
+
+        private string _persoonGbn;
 
         private string _persoonWw;
 
@@ -44,6 +46,12 @@ namespace Roostersysteem.Models
         {
             get { return _persoonEmail; }
             set { _persoonEmail = persoonEmail; }
+        }
+
+        public string persoonGbn;
+        {
+            get { return _persoonGbn; }
+            set { _persoonGbn = persoonGbn; }
         }
 
         public string persoonWw
