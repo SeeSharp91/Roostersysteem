@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace Roostersysteem.Controllers
 {
-    public class RoosterController : Controller
+    public class ProfielController : Controller
     {
-        // GET: Rooster
-        public ActionResult Rooster()
+        // GET: Profiel
+        public ActionResult MijnGegevens()
         {
             ViewBag.Message = "";
             return View();

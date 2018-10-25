@@ -6,10 +6,16 @@ using System.Web.Mvc;
 
 namespace Roostersysteem.Controllers
 {
-    public class RoosterController : Controller
+    public class UrenController : Controller
     {
-        // GET: Rooster
-        public ActionResult Rooster()
+        // GET: Uren
+        public ActionResult UrenDocent()
+        {
+            ViewBag.Message = "";
+            return View();
+        }
+
+        public ActionResult UrenRoosteraar()
         {
             ViewBag.Message = "";
             return View();

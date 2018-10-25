@@ -20,16 +20,11 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <!--loginpagina (wachtwoord vergeten)-->
-                    <!--loginpagina (wachtwoord vergeten)-->
-                    <!--Home-->
-                    <!--profiel-->
-                    <!--vakgegevens(contacturen ( doorgeven - wijzigen)  - vakken koppelen - vakken wijzigen)-->
-                    <!--uren (uren opvragen ingezette uren - uren registratie - beschikbaarheid docenten)-->
-                    <!--rooster (weergeven conflicten - rooster genereren)-->
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>                     <!--Home-->
+                    <li>@Html.ActionLink("Profiel", "MijnGegevens", "Profiel")</li>        <!--profiel-->
+                    <li>@Html.ActionLink("Vakgegevens", "Contacturen", "Vakgegevens")</li> <!--vakgegevens(contacturen ( doorgeven - wijzigen)  - vakken koppelen - vakken wijzigen)-->
+                    <li>@Html.ActionLink("Uren", "UrenDocent", "Uren")</li>                <!--uren (uren opvragen ingezette uren - uren registratie - beschikbaarheid docenten)-->
+                    <li>@Html.ActionLink("Rooster", "Rooster", "Rooster")</li>             <!--rooster (weergeven conflicten - rooster genereren)-->
                 </ul>
                 </div>
             </div>
