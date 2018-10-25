@@ -27,7 +27,7 @@ namespace Roostersysteem.Models
         private string _postcode;
 
         //----------------------------Public variables-----------------------------------------------
-        //Dit zijn geen variabelen maar properties. Mede mogelijk gemaakt door Micha ©
+        //Dit zijn geen variabelen maar properties. Mede mogelijk gemaakt door Micha corp. ©
 
         public int persoonId
         {
