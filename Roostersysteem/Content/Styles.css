@@ -21,3 +21,17 @@
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
     color: red !important;
 }
+
+.glyphicon {
+    color:red !important;
+}
+
+.btn-default {
+    border-color: red !important;
+}
+
+#Zoekbalk:focus {
+    border-color: red !important;
+    outline: none;
+    box-shadow:none;
+}
