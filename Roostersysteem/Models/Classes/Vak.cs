@@ -10,8 +10,6 @@ namespace Roostersysteem.Models
     //Door:    Natasja Pisters
     //Project: Caus Bureau Onderwijs
     //
-    //test
-    //TEStIK
     public class Vak
     {
         //Attributen
