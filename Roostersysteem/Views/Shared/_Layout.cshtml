@@ -18,7 +18,13 @@
     <div class="navbar-wrapper">
         <div class="container-fluid">
             <nav class="navbar navbar-fixed-top">
-                <div class="container">
+                <div class="col-lg-1"> @* Button voor menu linkerzijde *@
+                    <button class="buttonLinksMenu" style="font-size:30px;cursor:pointer" data-toggle="collapse" href="#navigatieLinks" role="button" >
+                        &#9776; 
+                    </button>
+                </div>
+
+                <div class="container-fluid col-lg-10" style="border-bottom-style: solid; border-width:1px; border-bottom-color: grey !important;">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                             <span class="sr-only"></span>
@@ -28,6 +34,7 @@
                         </button>
                         <a class="navbar-brand" href="#">Roostersysteem</a>
                     </div>
+
 
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
@@ -80,28 +87,45 @@
         </div>
     </div>
 
-    <div>
+    @* dit moet het menu worden aan de linkerzijde, dropdown moet aangepast worden*@
+
+    <div class="col-lg-1">
+        <div id="navigatieLinksButton" >
+            <div id="navigatieLinks" class="collapse">
+                <ul class="navigatieLinksMenu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Test</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Test item</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">test</a></li>
+                            <li><a href="#">test1</a></li>
+                            <li><a href="#">test2</a></li>
+                            <li><a href="#">test3</a></li>
+                            <li><a href="#">test4</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="container body-content col-lg-10">
         @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Roostersysteem HSZ - Casusgroep 2.1</p>
+        </footer>
+
     </div>
-    
-    <div class="footer navbar-fixed-bottom">
-        <div class="col-lg-2">
-
-        </div>
-
-        <div class="col-lg-8">
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - Roostersysteem HSZ - Casusgroep 2.1</p>
-            </footer>
-
-        </div>
-    </div>
-
-
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
-    </html>
+</html>

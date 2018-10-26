@@ -2,27 +2,28 @@
 }
 
 .navbar-nav > li > a {
-    color:black !important;
+    color: black !important;
+
 }
 
-.navbar-nav > li > a:hover{
-    color:red !important;
-}
+    .navbar-nav > li > a:hover {
+        color: red !important;
+    }
 
 .navbar-brand {
-    color:black !important;
+    color: black !important;
 }
 
-.navbar-brand:hover {
-    color: red !important;
-}
+    .navbar-brand:hover {
+        color: red !important;
+    }
 
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
     color: red !important;
 }
 
 .glyphicon {
-    color:red !important;
+    color: red !important;
 }
 
 .btn-default {
@@ -32,16 +33,53 @@
 #Zoekbalk:focus {
     border-color: red !important;
     outline: none;
-    box-shadow:none;
+    box-shadow: none;
 }
 
 .footer {
     vertical-align: bottom;
 }
 
-.aside {
-    top: 0px;
-    bottom: 0px;
-    position: relative;
-    float: left;
+.buttonLinksMenu {
+    padding-bottom:2px;
+    padding-top:2px;
 }
+
+.navigatieLinksMenu {
+    height: 100%;
+    width: 170px; /* breedte tot aan kolom 2 */
+    position: fixed;
+    z-index: 1; /* positioneert het op de voorgrond ongeacht wat */
+    top: 50px;
+    left: 0;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+    border-style: solid;
+    border-width:1px;
+    border-color: grey!important;
+}
+
+    .navigatieLinksMenu a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 16px;
+        color: black !important;
+        display: block;
+        transition: 0.2s;
+    }
+
+        .navigatieLinksMenu a:hover {
+            color: red !important;
+        }
+
+/* voor de telefoon evt ? dient nog gecheckt te worden */
+/*@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+}*/
