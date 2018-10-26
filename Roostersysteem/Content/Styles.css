@@ -18,7 +18,6 @@
     color: red !important;
 }
 
-
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
     color: red !important;
 }
@@ -35,4 +34,15 @@
     border-color: red !important;
     outline: none;
     box-shadow:none;
+}
+
+.footer {
+    vertical-align: bottom;
+}
+
+.aside {
+    top: 0px;
+    bottom: 0px;
+    position: relative;
+    float: left;
 }
