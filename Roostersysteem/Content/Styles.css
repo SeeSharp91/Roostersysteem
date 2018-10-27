@@ -38,6 +38,8 @@
 
 .footer {
     vertical-align: bottom;
+    color: red;
+    background-color: red;
 }
 
 .buttonLinksMenu {
