@@ -19,13 +19,12 @@
         <div class="container-fluid">
             <nav class="navbar navbar-fixed-top">
                 <div class="col-lg-1"> @* Button voor menu linkerzijde *@
-                    <button class="buttonLinksMenu" style="font-size:30px;cursor:pointer" data-toggle="collapse" href="#navigatieLinks" role="button" >
+                    <button class="buttonLinksMenu" data-toggle="collapse" href="#navigatieLinks" role="button" >
                         &#9776; 
                     </button>
                 </div>
 
-                @*Container voor het menu boven aan de pagina*@
-                <div class="container-fluid col-lg-10" style="border-bottom-style: solid; border-width:1px; border-bottom-color: grey !important;">
+                <div class="container-fluid col-lg-11">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                             <span class="sr-only"></span>
@@ -36,7 +35,7 @@
                         <a class="navbar-brand" href="#">Roostersysteem</a>
                     </div>
 
-                    @*'Dropdown' voor het menu boven aan de pagina*@
+
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="#" class="">Home</a></li>
@@ -72,7 +71,6 @@
                             <li class=""><a href="#">Uitloggen</a></li>
                         </ul>
 
-                        @* Zoekfunctie voor het menu boven aan de pagina*@
                         <div class="col-sm-3 col-md-3" style="float:right;">
                             <form class="navbar-form" role="search">
                                 <div class="input-group">
@@ -90,6 +88,7 @@
     </div>
 
     @* dit moet het menu worden aan de linkerzijde, dropdown moet aangepast worden*@
+
     <div class="col-lg-1">
         <div id="navigatieLinksButton" >
             <div id="navigatieLinks" class="collapse">
@@ -116,13 +115,19 @@
         </div>
     </div>
 
-    <div class="container body-content col-lg-10">
+    <div class="container body-content col-lg-11">
+        <div class="row" id="bodyStandaard">
+        
+        </div>
+        
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Roostersysteem HSZ - Casusgroep 2.1</p>
-        </footer>
+    </div>
 
+    <div>
+        <hr />
+            <footer class="col-lg-offset-1 col-lg-11">
+                <p>&copy; @DateTime.Now.Year - Roostersysteem HSZ - Casusgroep 2.1</p>
+            </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
