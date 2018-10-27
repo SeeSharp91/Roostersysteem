@@ -59,6 +59,8 @@
     cursor: pointer;
     margin-left: 48px;
     margin-top: 10px;
+    background-color: #ED1B34 !important;
+    color: #FFF !important;
 }
 
 .navigatieLinksMenu {
@@ -69,7 +71,6 @@
     top: 50px;
     left: 0;
     overflow-x: hidden;
-    transition: 0.3s;
     padding-top: 60px;
     background-color: grey !important;
 }
@@ -80,7 +81,6 @@
         font-size: 16px;
         color: black !important;
         display: block;
-        transition: 0.2s;
     }
 
         .navigatieLinksMenu a:hover {
@@ -97,3 +97,16 @@
             font-size: 18px;
         }
 }*/
+
+.btn-default {
+    color: #fff !important;
+    background: #000 !important;
+    border-color: transparent !important;
+    outline: none !important;
+    border-radius: unset;
+}
+
+#opslaanContacturen {
+    margin-left: 44px;
+    margin-top: 40px;
+}

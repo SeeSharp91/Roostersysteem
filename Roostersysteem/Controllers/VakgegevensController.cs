@@ -20,5 +20,11 @@ namespace Roostersysteem.Controllers
             ViewBag.Message = "";
             return View();
         }
+
+        public ActionResult contactUrenDoorgeven()
+        {
+            ViewBag.Message = "";
+            return View();
+        }
     }
 }
