@@ -1,17 +1,80 @@
 ﻿@{
-    Layout = null;
+    ViewBag.Title= "Mijn gegevens";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-    
-    </div>
-</body>
-</html>
+
+
+<div class="col-lg-11">
+    @* personalia*@
+    <fieldset>
+        
+        <div class="col-lg-12">
+
+
+            <fieldset>
+                <legend>
+                    Personalia
+                </legend>
+                <label class="labelsGegevens">Naam:</label>  <input type="text" style="width:235px;" maxlength="20" name="naam" /><br />
+                <label class="labelsGegevens">Achternaam:</label> <input type="text" style="width:235px;" maxlength="20" name="achternaam" /><br />
+                <label class="labelsGegevens">E-mailadres:</label> <input type="email" style="width:235px;" maxlength="40" name="email" /><br />
+                <label class="labelsGegevens">Telefoonnummer:</label> <input type="text" maxlength="13" style="width:235px;" name="telefoonnr" /><br />
+                <label class="labelsGegevens">Mobiel telefoonnummer:</label> <input type="text" maxlength="13" style="width:235px;" name="mobielnr" /><br />
+                <label class="labelsGegevens">Straat:</label> <input type="text" style="width:235px;" maxlength="30" name="straat" /><br />
+                <label class="labelsGegevens">Huisnummer + toevoeging (optioneel):</label> <input type="text" style="width:235px;" maxlength="4" name="huisnr" /> <input type="text" maxlength="1" style="width:40px; padding-left:10px;" name="toevoeging" /><br />
+                <label class="labelsGegevens">Plaats:</label>  <input type="text" style="width:235px;" maxlength="25" name="plaats" /><br />
+                <label class="labelsGegevens">Postcode:</label> <input type="text" style="width:235px;" maxlength="4" name="postcodeGetallen" /> <input type="text" style="width:40px;" maxlength="2" name="postcodeLetters" /><br />
+                <label class="labelsGegevens">Regio:</label> <input type="text" style="width:235px;" maxlength="15" name="regio" /><br />
+                <label class="labelsGegevens">Land:</label> <input type="text" style="width:235px;" maxlength="25" name="land" /><br />
+                <label class="labelsGegevens">Geslacht:</label> <label><input type="radio" value="Man" name="geslacht" />Man</label><label><input style="margin-left:55px;" type="radio" value="Vrouw" name="geslacht" />Vrouw</label><br />
+            </fieldset>
+        </div>
+    </fieldset>
+
+    <br />
+    @* Wijzigen van wachtwoord*@
+
+    <fieldset>
+        <div class="col-lg-6">
+            <fieldset>
+                <legend>
+                    Accountgegevens
+                </legend>
+                <label class="labelsGegevens">Gebruikersnaam: </label><input type="text" name="gebruikersnaam" size="15" maxlength="30" />
+                <label class="labelsGegevens">Wachtwoord: </label><input type="password" name="wachtwoord" size="15" maxlength="30" />
+                <label class="labelsGegevens">Hehaal wachtwoord: </label><input type="password" name="herhaalWw" size="15" maxlength="30" />
+            </fieldset>
+        </div>
+    </fieldset>
+    <br />
+
+    @* Img uploaden*@
+    <fieldset>
+        <div class="col-lg-3">
+            <label>Upload je profielfoto:</label>
+        </div>
+        <div class="col-lg-6" style="padding-left:26px;">
+            <input type="file" name="profielFoto" />
+        </div>
+        
+    </fieldset>
+
+
+
+    @* opslaan *@
+
+    <br />
+    <fieldset>
+        <div id="borderDefaultTop" >
+            <div class="col-lg-offset-5">
+                <br />
+                <input class="btn-default" id="opslaanGegevens" type="submit" value="Opslaan" />
+                <input class="btn-default" id="annuleren" type="submit" value="Annuleren" />
+            </div>
+            
+        </div>
+        
+    </fieldset>
+
+</div>
