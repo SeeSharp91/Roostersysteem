@@ -19,12 +19,12 @@
         <div class="container-fluid">
             <nav class="navbar navbar-fixed-top">
                 <div class="col-lg-1"> @* Button voor menu linkerzijde *@
-                    <button class="buttonLinksMenu" style="font-size:30px;cursor:pointer" data-toggle="collapse" href="#navigatieLinks" role="button" >
+                    <button class="buttonLinksMenu" data-toggle="collapse" href="#navigatieLinks" role="button" >
                         &#9776; 
                     </button>
                 </div>
 
-                <div class="container-fluid col-lg-10" style="border-bottom-style: solid; border-width:1px; border-bottom-color: grey !important;">
+                <div class="container-fluid col-lg-11">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                             <span class="sr-only"></span>
@@ -115,13 +115,19 @@
         </div>
     </div>
 
-    <div class="container body-content col-lg-10">
+    <div class="container body-content col-lg-11">
+        <div class="row" id="bodyStandaard">
+        
+        </div>
+        
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Roostersysteem HSZ - Casusgroep 2.1</p>
-        </footer>
+    </div>
 
+    <div>
+        <hr />
+            <footer class="col-lg-offset-1 col-lg-11">
+                <p>&copy; @DateTime.Now.Year - Roostersysteem HSZ - Casusgroep 2.1</p>
+            </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")

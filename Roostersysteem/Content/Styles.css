@@ -36,13 +36,29 @@
     box-shadow: none;
 }
 
-.footer {
-    vertical-align: bottom;
+#footer {
+
 }
 
+#bodyStandaard {
+    border-top-style: solid;
+    border-top-color: black;
+    border-width: 1px;
+    border-spacing: 10px 0px;
+    margin: 0 auto;
+    padding-top: 20px;
+
+}
+
+
+
 .buttonLinksMenu {
-    padding-bottom:2px;
-    padding-top:2px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 48px;
+    margin-top: 10px;
 }
 
 .navigatieLinksMenu {
@@ -55,9 +71,7 @@
     overflow-x: hidden;
     transition: 0.3s;
     padding-top: 60px;
-    border-style: solid;
-    border-width:1px;
-    border-color: grey!important;
+    background-color: grey !important;
 }
 
     .navigatieLinksMenu a {
