@@ -1,35 +1,39 @@
-﻿body {
+﻿/* default waarde voor de site */
+body {
     background-color: lightgrey !important;
 }
 
+/* de layout van de tekst van de links in de navbar */
 .navbar-nav > li > a {
     color: black !important;
 }
 
+    /* De kleur van de highlight in de navbar topside */
     .navbar-nav > li > a:hover {
         color: red !important;
     }
 
+/* de layout van het merk in de navbar */
 .navbar-brand {
     color: black !important;    
 }
 
+    /* de highlight van het merk */
     .navbar-brand:hover {
         color: red !important;
     }
 
+/* layout voorhet dropdownmenu */
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
     color: red !important;
 }
 
+/* vergrootglas layout bij de zoekbalk */
 .glyphicon {
     color: red !important;
 }
 
-.btn-default {
-    border-color: red !important;
-}
-
+/* layout voor het zoekboxje */
 #Zoekbalk:focus {
     border-color: red !important;
     outline: none;
@@ -40,6 +44,8 @@
     
 }
 
+/* standaard layout voor de body */
+
 #bodyStandaard {
     border-top-style: solid;
     border-top-color: black;
@@ -49,7 +55,7 @@
     padding-top: 20px;
 
 }
-
+/* Layout voor het knopje dat het linkermenu weergeeft */
 .buttonLinksMenu {
     padding-bottom: 2px;
     padding-top: 2px;
@@ -61,6 +67,7 @@
     color: #FFF !important;
 }
 
+/*  layout voor het linker nav menu */
 .navigatieLinksMenu {
     height: 100%;
     width: 170px; /* breedte tot aan kolom 2 */
@@ -73,6 +80,7 @@
     background-color: grey !important;
 }
 
+    /* layout voor items in het linkermenu */
     .navigatieLinksMenu a {
         padding: 8px 8px 8px 32px;
         text-decoration: none;
@@ -81,12 +89,13 @@
         display: block;
     }
 
+    /* als je over een item beweegt, wordt het gehighlight */
         .navigatieLinksMenu a:hover {
             color: red !important;
         }
 
-/* voor de telefoon evt ? dient nog gecheckt te worden */
-/*@media screen and (max-height: 450px) {
+/* voor de telefoon evt ? dient nog gecheckt te worden
+*@media screen and (max-height: 450px) {
     .sidenav {
         padding-top: 15px;
     }
@@ -96,6 +105,8 @@
         }
 }*/
 
+
+/* standaard button voor bv opslaan/annuleren */
 .btn-default {
     color: #fff !important;
     background: #000 !important;
@@ -104,16 +115,19 @@
     border-radius: unset;
 }
 
+/* uitlijning voor de button */
 #opslaanContacturen {
     margin-left: 44px;
     margin-top: 40px;
 }
 
+/* Zorgt voor de juiste spacing en uitlijning op het formulier (geeft een vaste wijdte aan elk label) */
 .labelsGegevens {
     max-width: 514px;
     width: 100%;
 }
 
+/* Alle borderDefault.. zijn hier gedefinieerd, op onze layout aangepast.  */
 #borderDefaultTop {
     border-top: solid;
     border-top-width: 1px;
