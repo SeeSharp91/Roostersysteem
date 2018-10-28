@@ -33,7 +33,7 @@
 #Zoekbalk:focus {
     border-color: red !important;
     outline: none;
-    box-shadow: none;
+    box-shadow: none;    
 }
 
 #footer {
@@ -117,27 +117,43 @@
 #borderDefaultTop {
     border-top: solid;
     border-top-width: 1px;
-    border-color: black !important
+    border-color: black !important;
 }
 
 #borderDefaultBottom
 {
     border-bottom: solid;
     border-bottom-width: 1px;
-    border-color: black !important
+    border-color: black !important;
 }
 #borderDefaultRight {
     border-right: solid;
     border-right-width: 1px;
-    border-color: black !important
+    border-color: black !important;
 }
 #borderDefaultLeft {
     border-left: solid;
     border-left-width: 1px;
-    border-color: black !important
+    border-color: black !important;
 }
 
 #borderDefault {
     border: solid;
     border-width: 1px;
-    border-color: black !important
+    border-color: black !important;
+}
+
+/*Style voor VakkenKoppelen.cshtml*/
+#form-checkbox-item {
+    display: inline-block;
+    width: 100px;
+}
+
+/*OpslaanVakken is voor de btn opslaan*/
+#opslaanVakken {
+    margin-top: 10px;
+    
+    
+}
+
+

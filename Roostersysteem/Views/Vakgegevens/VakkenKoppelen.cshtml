@@ -8,21 +8,44 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title></title>
 </head>
 <body>
     <div class="row">
         <div class="col-lg-12">
-            <div class="form-group">
-                @Html.LabelFor(model => model._typeVak, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    Scripting
-                    @Html.RadioButtonFor(model => model._typeVak, "Scripting")
-                    Modelleren
-                    @Html.RadioButtonFor(model => model._typeVak, "Modelleren")
-                </div>
+            <h1>
+                Selectie vakken
+            </h1>
+            <p>Selecteer de mogelijke vakken om te geven:</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">
+            <div class="checkbox" id="form-checkbox-item">
+                <label><input type="checkbox"> Scripting</label>
+                <label><input type="checkbox"> Professioneel handelen</label>
+                <label><input type="checkbox"> Inleiding ICT</label>
+                <label><input type="checkbox"> Requirements engineering</label>
+                <label><input type="checkbox"> Teamvaardigheden</label>
+                <label><input type="checkbox"> Testen</label>
+            </div>
+        </div>
+        <div class=" col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">Mijn Vakken</div>
+                <div class="panel-body">Hier vakken weergeven</div>
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-lg-2">
+
+        </div>
+        <div class="col-lg-4">
+            <div align="right">
+                <input class="btn-default" id="opslaanVakken" type="submit" name="opslaanVakkenKoppelen" value="Opslaan">
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
