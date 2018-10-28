@@ -117,28 +117,29 @@
 #borderDefaultTop {
     border-top: solid;
     border-top-width: 1px;
-    border-color: black !important
+    border-color: black !important;
 }
 
 #borderDefaultBottom
 {
     border-bottom: solid;
     border-bottom-width: 1px;
-    border-color: black !important
+    border-color: black !important;
 }
+
 #borderDefaultRight {
     border-right: solid;
     border-right-width: 1px;
-    border-color: black !important
+    border-color: black !important;
 }
 #borderDefaultLeft {
     border-left: solid;
     border-left-width: 1px;
-    border-color: black !important
+    border-color: black !important;
 }
 
 #borderDefault {
     border: solid;
     border-width: 1px;
-    border-color: black !important
+    border-color: black !important;
 }
