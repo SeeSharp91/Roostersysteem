@@ -110,7 +110,7 @@
 }
 
 .labelsGegevens {
-    max-width: 400px;
+    max-width: 514px;
     width: 100%;
 }
 
@@ -141,3 +141,4 @@
     border: solid;
     border-width: 1px;
     border-color: black !important
+}

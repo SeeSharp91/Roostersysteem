@@ -5,17 +5,16 @@
 
 
 
-<div class="col-lg-11">
+<div class="col-lg-6">
     @* personalia*@
     <fieldset>
         
-        <div class="col-lg-12">
-
-
+        <div id="borderDefaultTop">
+            <h4>
+                Personalia:
+            </h4>
             <fieldset>
-                <legend>
-                    Personalia
-                </legend>
+
                 <label class="labelsGegevens">Naam:</label>  <input type="text" style="width:235px;" maxlength="20" name="naam" /><br />
                 <label class="labelsGegevens">Achternaam:</label> <input type="text" style="width:235px;" maxlength="20" name="achternaam" /><br />
                 <label class="labelsGegevens">E-mailadres:</label> <input type="email" style="width:235px;" maxlength="40" name="email" /><br />
@@ -27,7 +26,7 @@
                 <label class="labelsGegevens">Postcode:</label> <input type="text" style="width:235px;" maxlength="4" name="postcodeGetallen" /> <input type="text" style="width:40px;" maxlength="2" name="postcodeLetters" /><br />
                 <label class="labelsGegevens">Regio:</label> <input type="text" style="width:235px;" maxlength="15" name="regio" /><br />
                 <label class="labelsGegevens">Land:</label> <input type="text" style="width:235px;" maxlength="25" name="land" /><br />
-                <label class="labelsGegevens">Geslacht:</label> <label><input type="radio" value="Man" name="geslacht" />Man</label><label><input style="margin-left:55px;" type="radio" value="Vrouw" name="geslacht" />Vrouw</label><br />
+                <label class="labelsGegevens">Geslacht:</label> <label><input type="radio" value="Man" name="geslacht" />     Man</label><label><input style="margin-left:55px;" type="radio" value="Vrouw" name="geslacht" />     Vrouw</label><br />
             </fieldset>
         </div>
     </fieldset>
@@ -36,14 +35,14 @@
     @* Wijzigen van wachtwoord*@
 
     <fieldset>
-        <div class="col-lg-6">
+        <div id="borderDefaultTop">
             <fieldset>
-                <legend>
-                    Accountgegevens
-                </legend>
-                <label class="labelsGegevens">Gebruikersnaam: </label><input type="text" name="gebruikersnaam" size="15" maxlength="30" />
-                <label class="labelsGegevens">Wachtwoord: </label><input type="password" name="wachtwoord" size="15" maxlength="30" />
-                <label class="labelsGegevens">Hehaal wachtwoord: </label><input type="password" name="herhaalWw" size="15" maxlength="30" />
+                <h4>
+                    Accountgegevens:
+                </h4>
+                <label class="labelsGegevens">Gebruikersnaam: </label><input type="text" name="gebruikersnaam" style="width:235px; margin-left:4px;" maxlength="30" />
+                <label class="labelsGegevens">Wachtwoord: </label><input type="password" name="wachtwoord" style="width:235px; margin-left:4px;" maxlength="30" />
+                <label class="labelsGegevens">Hehaal wachtwoord: </label><input type="password" name="herhaalWw" style="width:235px; margin-left:4px;" maxlength="30" />
             </fieldset>
         </div>
     </fieldset>
@@ -51,11 +50,18 @@
 
     @* Img uploaden*@
     <fieldset>
-        <div class="col-lg-3">
-            <label>Upload je profielfoto:</label>
-        </div>
-        <div class="col-lg-6" style="padding-left:26px;">
-            <input type="file" name="profielFoto" />
+        <div id="borderDefaultTop">
+            <div class="col-lg-7" style="margin-left:0px; padding-left:0px;">
+                <h4>Upload je profielfoto:</h4>
+                <label>Upload hier je profielfoto voor je profiel:</label>
+            </div>
+            <div class="col-lg-5" style="padding-left:32px;">
+                <br />
+                <br />
+                <input style="margin-top:-2px; padding-left:4px;" type="file" name="profielFoto" />
+                <br />
+            </div>
+
         </div>
         
     </fieldset>
@@ -66,15 +72,18 @@
 
     <br />
     <fieldset>
-        <div id="borderDefaultTop" >
-            <div class="col-lg-offset-5">
+        <div id="borderDefaultTop">
+            
+            <div class="col-lg-offset-5" style="margin-left:40%;">
                 <br />
-                <input class="btn-default" id="opslaanGegevens" type="submit" value="Opslaan" />
-                <input class="btn-default" id="annuleren" type="submit" value="Annuleren" />
+                <div>
+                    <input class="btn-default" id="opslaanGegevens" type="submit" value="Opslaan" />
+                    <input class="btn-default" id="annuleren" type="submit" value="Annuleren" />
+                </div>
             </div>
             
         </div>
         
     </fieldset>
-
+    <br />
 </div>
