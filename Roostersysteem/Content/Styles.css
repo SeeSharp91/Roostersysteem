@@ -143,3 +143,8 @@
     border-width: 1px;
     border-color: black !important;
 }
+/*Styles voor VakkenKoppelen*/
+#labelsVakken {
+    max-width: 296px;
+    width: 100%;
+}
