@@ -57,6 +57,8 @@
     cursor: pointer;
     margin-left: 48px;
     margin-top: 10px;
+    background-color: #ED1B34 !important;
+    color: #FFF !important;
 }
 
 .navigatieLinksMenu {
@@ -67,7 +69,6 @@
     top: 50px;
     left: 0;
     overflow-x: hidden;
-    transition: 0.3s;
     padding-top: 60px;
     background-color: grey !important;
 }
@@ -78,7 +79,6 @@
         font-size: 16px;
         color: black !important;
         display: block;
-        transition: 0.2s;
     }
 
         .navigatieLinksMenu a:hover {
@@ -95,3 +95,49 @@
             font-size: 18px;
         }
 }*/
+
+.btn-default {
+    color: #fff !important;
+    background: #000 !important;
+    border-color: transparent !important;
+    outline: none !important;
+    border-radius: unset;
+}
+
+#opslaanContacturen {
+    margin-left: 44px;
+    margin-top: 40px;
+}
+
+.labelsGegevens {
+    max-width: 400px;
+    width: 100%;
+}
+
+#borderDefaultTop {
+    border-top: solid;
+    border-top-width: 1px;
+    border-color: black !important
+}
+
+#borderDefaultBottom
+{
+    border-bottom: solid;
+    border-bottom-width: 1px;
+    border-color: black !important
+}
+#borderDefaultRight {
+    border-right: solid;
+    border-right-width: 1px;
+    border-color: black !important
+}
+#borderDefaultLeft {
+    border-left: solid;
+    border-left-width: 1px;
+    border-color: black !important
+}
+
+#borderDefault {
+    border: solid;
+    border-width: 1px;
+    border-color: black !important
