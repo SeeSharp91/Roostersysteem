@@ -1,17 +1,90 @@
 ﻿@{
-    Layout = null;
+    ViewBag.Title= "Mijn gegevens";
 }
 
-<!DOCTYPE html>
+@* Gemaakt door: Mitchell; op 26-10: layout gemaakt
+    bijgewerkt op: 27-10 en 28-10 layout bijgewerkt*@
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-    
-    </div>
-</body>
-</html>
+
+<div class="col-lg-6">
+    @* personalia*@
+    <fieldset>
+        
+        <div>
+            <h4>
+                Personalia:
+            </h4>
+            <fieldset>
+
+                <label class="labelsGegevens">Naam:</label>  <input type="text" style="width:235px;" maxlength="20" name="naam" /><br />
+                <label class="labelsGegevens">Achternaam:</label> <input type="text" style="width:235px;" maxlength="20" name="achternaam" /><br />
+                <label class="labelsGegevens">E-mailadres:</label> <input type="email" style="width:235px;" maxlength="40" name="email" /><br />
+                <label class="labelsGegevens">Telefoonnummer:</label> <input type="text" maxlength="13" style="width:235px;" name="telefoonnr" /><br />
+                <label class="labelsGegevens">Mobiel telefoonnummer:</label> <input type="text" maxlength="13" style="width:235px;" name="mobielnr" /><br />
+                <label class="labelsGegevens">Straat:</label> <input type="text" style="width:235px;" maxlength="30" name="straat" /><br />
+                <label class="labelsGegevens">Huisnummer + toevoeging (optioneel):</label> <input type="text" style="width:235px;" maxlength="4" name="huisnr" /> <input type="text" maxlength="1" style="width:40px; padding-left:10px;" name="toevoeging" /><br />
+                <label class="labelsGegevens">Plaats:</label>  <input type="text" style="width:235px;" maxlength="25" name="plaats" /><br />
+                <label class="labelsGegevens">Postcode:</label> <input type="text" style="width:235px;" maxlength="4" name="postcodeGetallen" /> <input type="text" style="width:40px;" maxlength="2" name="postcodeLetters" /><br />
+                <label class="labelsGegevens">Regio:</label> <input type="text" style="width:235px;" maxlength="15" name="regio" /><br />
+                <label class="labelsGegevens">Land:</label> <input type="text" style="width:235px;" maxlength="25" name="land" /><br />
+                <label class="labelsGegevens">Geslacht:</label> <label><input type="radio" value="Man" name="geslacht" />     Man</label><label><input style="margin-left:55px;" type="radio" value="Vrouw" name="geslacht" />     Vrouw</label><br />
+            </fieldset>
+        </div>
+    </fieldset>
+
+    <br />
+    @* Wijzigen van wachtwoord*@
+
+    <fieldset>
+        <div id="borderDefaultTop">
+            <fieldset>
+                <h4>
+                    Accountgegevens:
+                </h4>
+                <label class="labelsGegevens">Gebruikersnaam: </label><input type="text" name="gebruikersnaam" style="width:235px; margin-left:4px;" maxlength="30" /><br />
+                <label class="labelsGegevens">Wachtwoord: </label><input type="password" name="wachtwoord" style="width:235px; margin-left:4px;" maxlength="30" /><br />
+                <label class="labelsGegevens">Hehaal wachtwoord: </label><input type="password" name="herhaalWw" style="width:235px; margin-left:4px;" maxlength="30" /><br />
+            </fieldset>
+        </div>
+    </fieldset>
+    <br />
+
+    @* Img uploaden*@
+    <fieldset>
+        <div id="borderDefaultTop">
+            <div class="col-lg-7" style="margin-left:0px; padding-left:0px;">
+                <h4>Upload je profielfoto:</h4>
+                <label>Upload hier je profielfoto voor je profiel:</label>
+            </div>
+            <div class="col-lg-5" style="padding-left:32px;">
+                <br />
+                <br />
+                <input style="margin-top:-2px; padding-left:4px;" type="file" name="profielFoto" />
+                <br />
+            </div>
+
+        </div>
+        
+    </fieldset>
+
+
+
+    @* opslaan *@
+
+    <br />
+    <fieldset>
+        <div id="borderDefaultTop">
+            
+            <div class="col-lg-offset-5" style="margin-left:40%;">
+                <br />
+                <div>
+                    <input class="btn-default" id="opslaanGegevens" type="submit" value="Opslaan" />
+                    <input class="btn-default" id="annuleren" type="submit" value="Annuleren" />
+                </div>
+            </div>
+            
+        </div>
+        
+    </fieldset>
+    <br />
+</div>

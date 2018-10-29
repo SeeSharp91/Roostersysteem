@@ -10,18 +10,19 @@ namespace Roostersysteem.Models
     //Door:    Natasja Pisters
     //Project: Caus Bureau Onderwijs
     //
-    //test
-    //TEStIK
     public class Vak
     {
         //Attributen
         private int _vakNr;
         private enum TypeLokaal { Collegezaal, Practicumlokaal, Leslokaal };
         private enum TypeCollege { Hoorcollege, Discussiecollege, Werkcollege };
-        private enum TypeVak {};//Enum's nog verwerken in DB
+        //enum TypeVak even op 'public'gezet om te kunnen testen voor de radiobuttons met het view 'VakkenKoppelen'
+        public enum TypeVak {};//Enum's nog verwerken in DB
         private DateTime _totaalTijd;
 
-        
+        //Properties
+        public TypeVak _typeVak
+        { get; set; }
         public DateTime TotaalTijd
         {
             get { return _totaalTijd; }
