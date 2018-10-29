@@ -49,7 +49,7 @@ namespace Roostersysteem.Models
             set { _persoonEmail = persoonEmail; }
         }
 
-        public string persoonGbn;
+        public string persoonGbn
         {
             get { return _persoonGbn; }
             set { _persoonGbn = persoonGbn; }
