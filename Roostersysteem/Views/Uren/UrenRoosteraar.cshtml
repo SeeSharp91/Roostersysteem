@@ -1,6 +1,8 @@
 ﻿@{
-    Layout = null;
+    ViewBag.Title = "Uren roosteraar";
 }
+
+
 
 <!DOCTYPE html>
 
@@ -10,8 +12,11 @@
     <title></title>
 </head>
 <body>
-    <div>
-    
-    </div>
+    <ol class="breadcrumb">
+        <h1>Roostersysteem Zuyd</h1>
+        <li>@Html.ActionLink("Home", "Home", "Home")</li>
+        <li>Uren</li>
+        <li class="active">Uren Roosteraar</li>
+    </ol>
 </body>
 </html>

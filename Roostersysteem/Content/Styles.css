@@ -9,6 +9,13 @@ h1 {
 }
 
 /*Navbar styling*/
+
+.navbar-brand > img:nth-child(1) {
+    display: inline-block;
+    float: left;
+    padding-right: 15px;
+}
+
 a.navbar-brand:nth-child(2) > img:nth-child(1) {
     margin-top: -5px !important;
 }
@@ -39,9 +46,6 @@ body > nav:nth-child(1) {
     border-radius: unset;
 }
 
-.submenu {
-    border: unset !important;
-}
 
 /*Zoekbalk*/
 .form-control {
@@ -68,23 +72,6 @@ input[type=text] {
         width: 100%;
     }
 
-
-
-/*Sidebar styling*/
-div.col-lg-1:nth-child(2) {
-    padding-left: unset;
-    padding-right: unset
-}
-
-div.col-lg-1:nth-child(1) {
-    padding-left: unset;
-    padding-right: unset;
-}
-
-.submenu > div:nth-child(2) {
-    padding-left: unset;
-    padding-right: unset;
-}
 
 /*Breadcrumbs styling (weergave van het pad dat afgelegd is)*/
 .breadcrumb {

@@ -1,37 +1,41 @@
 ﻿@{
     ViewBag.Title = "Rooster Overzicht";
 }
-<link href="~/Content/Styles.css" rel="stylesheet" type="text/css" />
+
 <html>
-
 <body>
-    <div class="row">
-        <div class="col-lg-12">
-            <h1>
-                Test voor functionaliteit
-            </h1>
-            <h2>
-                Test nogmaals
-            </h2>
-            <p>
-                Lorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen. Lorem Ipsum is de standaard proeftekst in deze bedrijfstak sinds de 16e eeuw, toen een onbekende drukker een zethaak met letters nam en ze door elkaar husselde om een font-catalogus te maken. Het heeft niet alleen vijf eeuwen overleefd maar is ook, vrijwel onveranderd, overgenomen in elektronische letterzetting. Het is in de jaren '60 populair geworden met de introductie van Letraset vellen met Lorem Ipsum passages en meer recentelijk door desktop publishing software zoals Aldus PageMaker die versies van Lorem Ipsum bevatten.
-            </p>
-        </div>
-    </div>
-</body>
+    <ol class="breadcrumb">
+    <h1>Roostersysteem Zuyd</h1>
+    <li>@Html.ActionLink("Home", "Home", "Home")</li>
+    <li>Rooster</a></li>
+    <li class="active">Rooster</li>
+</ol>
 
-</html> 
-@*<div class="col-lg-2">
+<div class="jumbotron">
+    <p>ASP.NET</p>
+    <h1>ASP.NET</h1>
 </div>
-<div class="col-lg-1">
-    <aside>
-        <nav class="navbar">
-                <ul class="dropdown-menu">
-                    <li>@Html.ActionLink("Uren Docent", "UrenDocent", "Uren")</li>
-                    <li>@Html.ActionLink("Uren Roosteraar", "UrenRoosteraar", "Uren")</li>
-                </ul>
-            </nav>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Getting started</h2>
         <p>
-            test aside
+            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+            enables a clean separation of concerns and gives you full control over markup
+            for enjoyable, agile development.
         </p>
-    </aside>*@
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Get more libraries</h2>
+        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Web Hosting</h2>
+        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    </div>
+</div>
+</body>
+</html> 

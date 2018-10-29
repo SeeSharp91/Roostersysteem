@@ -4,502 +4,514 @@
 
 @* Gemaakt door: Mitchell; op 28-10: layout gemaakt/ bijbehorende styles aangemaakt*@
 
+<html>
+<body>
+    <ol class="breadcrumb">
+        <h1>Roostersysteem Zuyd</h1>
+        <li>@Html.ActionLink("Home", "Home", "Home")</li>
+        <li>Uren</li>
+        <li class="active">Uren Docent</li>
+    </ol>
 
-<div>
-    @* Selecteren van dag(en)*@
     <div>
-        <fieldset>
-            <legend>
-                Beschikbaarheid doorgeven
-            </legend>
-            <div class="col-lg-11" style="margin-left:-16px;">
-                <p>Selecteer een lesblok uit het dropdown menu hieronder:</p>
-                <select name="Lesblok" style="max-width:100px; width:100%">
-                    <option value="blok1">Blok 1</option>
-                    <option value="blok2">Blok 2</option>
-                    <option value="blok3">Blok 3</option>
-                    <option value="blok4">Blok 4</option>
-                </select>
-                <br />
-                <p>Selecteer een lesweek uit het dropdown menu hieronder:</p>
-                <select name="Lesblok" style="max-width:100px; width:100%">
-                    <option value="lesweek1">Lesweek 1</option>
-                    <option value="lesweek2">Lesweek 2</option>
-                    <option value="lesweek3">Lesweek 3</option>
-                    <option value="lesweek4">Lesweek 4</option>
+        @* Selecteren van dag(en)*@
+        <div>
+            <fieldset>
+                <legend>
+                    Beschikbaarheid doorgeven
+                </legend>
+                <div class="col-lg-11" style="margin-left:-16px;">
+                    <p>Selecteer een lesblok uit het dropdown menu hieronder:</p>
+                    <select name="Lesblok" style="max-width:100px; width:100%">
+                        <option value="blok1">Blok 1</option>
+                        <option value="blok2">Blok 2</option>
+                        <option value="blok3">Blok 3</option>
+                        <option value="blok4">Blok 4</option>
+                    </select>
+                    <br />
+                    <p>Selecteer een lesweek uit het dropdown menu hieronder:</p>
+                    <select name="Lesblok" style="max-width:100px; width:100%">
+                        <option value="lesweek1">Lesweek 1</option>
+                        <option value="lesweek2">Lesweek 2</option>
+                        <option value="lesweek3">Lesweek 3</option>
+                        <option value="lesweek4">Lesweek 4</option>
 
-                </select>
-                <br />
-                <p>Selecteer een of meerdere dag(en) hieronder:</p>
-                <div class="checkbox" style="margin-left: 20px;">
-                    @* event (call naar het script) voor het aanroepen van de boxen*@
-                    <input type="checkbox" value="maandag" onclick="document.getElementById('idMaandag').style.display='block'"> Maandag <br />
-                    <input type="checkbox" value="dinsdag" onclick="document.getElementById('idDinsdag').style.display='block'"> Dinsdag <br />
-                    <input type="checkbox" value="woensdag" onclick="document.getElementById('idWoensdag').style.display='block'"> Woensdag <br />
-                    <input type="checkbox" value="donderdag" onclick="document.getElementById('idDonderdag').style.display='block'"> Donderdag <br />
-                    <input type="checkbox" value="vrijdag" onclick="document.getElementById('idVrijdag').style.display='block'"> Vrijdag <br />
+                    </select>
+                    <br />
+                    <p>Selecteer een of meerdere dag(en) hieronder:</p>
+                    <div class="checkbox" style="margin-left: 20px;">
+                        @* event (call naar het script) voor het aanroepen van de boxen*@
+                        <input type="checkbox" value="maandag" onclick="document.getElementById('idMaandag').style.display='block'"> Maandag <br />
+                        <input type="checkbox" value="dinsdag" onclick="document.getElementById('idDinsdag').style.display='block'"> Dinsdag <br />
+                        <input type="checkbox" value="woensdag" onclick="document.getElementById('idWoensdag').style.display='block'"> Woensdag <br />
+                        <input type="checkbox" value="donderdag" onclick="document.getElementById('idDonderdag').style.display='block'"> Donderdag <br />
+                        <input type="checkbox" value="vrijdag" onclick="document.getElementById('idVrijdag').style.display='block'"> Vrijdag <br />
 
+                    </div>
                 </div>
-            </div>
-        </fieldset>
-    </div>
-
-    @* form beschikbaarheid maandag / update alleen de aangekruiste dagen *@
-    <div id="idMaandag" class="invulformBeschikbaarheid1">
-
-        @* pop up invulling*@
-        <form class="invulformBeschikbaarheid1-content animate">
-
-
-            <div class="col-lg-offset-1">
-                <br />
-                <label style="font-size:12px; max-width:160px;">
-                    Geef hieronder aan welke tijden u beschikbaar bent voor schoolse activiteiten:
-                </label>
-                <br />
-            </div>
-
-            <div class="col-lg-offset-3" style="margin-left:22%">
-
-                <label>
-                    <input type="checkbox" name="1"> 09:00 - 09:30
-                </label>
-                <label>
-                    <input type="checkbox" name="2"> 09:30 - 10:00
-                </label>
-                <label>
-                    <input type="checkbox" name="3"> 10:00 - 10:30
-                </label>
-                <label>
-                    <input type="checkbox" name="4"> 10:30 - 11:00
-                </label>
-                <label>
-                    <input type="checkbox" name="5"> 11:00 - 11:30
-                </label>
-                <label>
-                    <input type="checkbox" name="6"> 11:30 - 12:00
-                </label>
-                <label>
-                    <input type="checkbox" name="7"> 12:00 - 12:30
-                </label>
-                <label>
-                    <input type="checkbox" name="8"> 12:30 - 13:00
-                </label>
-                <label>
-                    <input type="checkbox" name="9"> 13:00 - 13:30
-                </label>
-                <label>
-                    <input type="checkbox" name="10"> 13:30 - 14:00
-                </label>
-                <label>
-                    <input type="checkbox" name="11"> 14:00 - 14:30
-                </label>
-                <label>
-                    <input type="checkbox" name="12"> 14:30 - 15:00
-                </label>
-                <label>
-                    <input type="checkbox" name="13"> 15:00 - 15:30
-                </label>
-                <label>
-                    <input type="checkbox" name="14"> 15:30 - 16:00
-                </label>
-                <label>
-                    <input type="checkbox" name="15"> 16:00 - 16:30
-                </label>
-                <label>
-                    <input type="checkbox" name="16"> 16:30 - 17:00
-                </label>
-                <label>
-                    <input type="checkbox" name="17"> 17:00 - 17:30
-                </label>
-                <br />
-            </div>
-
-            @* Terug button *@
-            <div class="col-lg-offset-2" style="margin-left: 21.667%;">
-                <button type="button" onclick="document.getElementById('idMaandag').style.display='none'" class="btn-default">Terug</button>
-                <br />
-            </div>
-
-            <div><br /></div>
-
-        </form>
-    </div>
-
-    @* form beschikbaarheid dinsdag / update alleen de aangekruiste dagen *@
-    <div id="idDinsdag" class="invulformBeschikbaarheid2">
-
-        @* pop up invulling*@
-        <form class="invulformBeschikbaarheid2-content animate">
-
-
-            <div class="col-lg-offset-1">
-                <br />
-                <label style="font-size:12px; max-width:160px;">
-                    Geef hieronder aan welke tijden u beschikbaar bent voor schoolse activiteiten:
-                </label>
-                <br />
-            </div>
-
-            <div class="col-lg-offset-3" style="margin-left:22%">
-
-                <label>
-                    <input type="checkbox" name="1"> 09:00 - 09:30
-                </label>
-                <label>
-                    <input type="checkbox" name="2"> 09:30 - 10:00
-                </label>
-                <label>
-                    <input type="checkbox" name="3"> 10:00 - 10:30
-                </label>
-                <label>
-                    <input type="checkbox" name="4"> 10:30 - 11:00
-                </label>
-                <label>
-                    <input type="checkbox" name="5"> 11:00 - 11:30
-                </label>
-                <label>
-                    <input type="checkbox" name="6"> 11:30 - 12:00
-                </label>
-                <label>
-                    <input type="checkbox" name="7"> 12:00 - 12:30
-                </label>
-                <label>
-                    <input type="checkbox" name="8"> 12:30 - 13:00
-                </label>
-                <label>
-                    <input type="checkbox" name="9"> 13:00 - 13:30
-                </label>
-                <label>
-                    <input type="checkbox" name="10"> 13:30 - 14:00
-                </label>
-                <label>
-                    <input type="checkbox" name="11"> 14:00 - 14:30
-                </label>
-                <label>
-                    <input type="checkbox" name="12"> 14:30 - 15:00
-                </label>
-                <label>
-                    <input type="checkbox" name="13"> 15:00 - 15:30
-                </label>
-                <label>
-                    <input type="checkbox" name="14"> 15:30 - 16:00
-                </label>
-                <label>
-                    <input type="checkbox" name="15"> 16:00 - 16:30
-                </label>
-                <label>
-                    <input type="checkbox" name="16"> 16:30 - 17:00
-                </label>
-                <label>
-                    <input type="checkbox" name="17"> 17:00 - 17:30
-                </label>
-                <br />
-            </div>
-
-            @* terug button *@
-            <div class="col-lg-offset-2" style="margin-left: 21.667%;">
-                <button type="button" onclick="document.getElementById('idDinsdag').style.display='none'" class="btn-default">Terug</button>
-                <br />
-            </div>
-
-            <div><br /></div>
-
-        </form>
-    </div>
-
-    @* form beschikbaarheid woensdag / update alleen de aangekruiste dagen *@
-    <div id="idWoensdag" class="invulformBeschikbaarheid3">
-
-        @* pop up invulling*@
-        <form class="invulformBeschikbaarheid3-content animate">
-
-
-            <div class="col-lg-offset-1">
-                <br />
-                <label style="font-size:12px; max-width:160px;">
-                    Geef hieronder aan welke tijden u beschikbaar bent voor schoolse activiteiten:
-                </label>
-                <br />
-            </div>
-
-            <div class="col-lg-offset-3" style="margin-left:22%">
-
-                <label>
-                    <input type="checkbox" name="1"> 09:00 - 09:30
-                </label>
-                <label>
-                    <input type="checkbox" name="2"> 09:30 - 10:00
-                </label>
-                <label>
-                    <input type="checkbox" name="3"> 10:00 - 10:30
-                </label>
-                <label>
-                    <input type="checkbox" name="4"> 10:30 - 11:00
-                </label>
-                <label>
-                    <input type="checkbox" name="5"> 11:00 - 11:30
-                </label>
-                <label>
-                    <input type="checkbox" name="6"> 11:30 - 12:00
-                </label>
-                <label>
-                    <input type="checkbox" name="7"> 12:00 - 12:30
-                </label>
-                <label>
-                    <input type="checkbox" name="8"> 12:30 - 13:00
-                </label>
-                <label>
-                    <input type="checkbox" name="9"> 13:00 - 13:30
-                </label>
-                <label>
-                    <input type="checkbox" name="10"> 13:30 - 14:00
-                </label>
-                <label>
-                    <input type="checkbox" name="11"> 14:00 - 14:30
-                </label>
-                <label>
-                    <input type="checkbox" name="12"> 14:30 - 15:00
-                </label>
-                <label>
-                    <input type="checkbox" name="13"> 15:00 - 15:30
-                </label>
-                <label>
-                    <input type="checkbox" name="14"> 15:30 - 16:00
-                </label>
-                <label>
-                    <input type="checkbox" name="15"> 16:00 - 16:30
-                </label>
-                <label>
-                    <input type="checkbox" name="16"> 16:30 - 17:00
-                </label>
-                <label>
-                    <input type="checkbox" name="17"> 17:00 - 17:30
-                </label>
-                <br />
-            </div>
-
-            @*@* Terug button *@
-            <div class="col-lg-offset-2" style="margin-left: 21.667%;">
-                <button type="button" onclick="document.getElementById('idWoensdag').style.display='none'" class="btn-default">Terug</button>
-                <br />
-            </div>
-
-            <div><br /></div>
-
-        </form>
-    </div>
-
-    @* form beschikbaarheid donderdag / update alleen de aangekruiste dagen *@
-    <div id="idDonderdag" class="invulformBeschikbaarheid4">
-
-        @* pop up invulling*@
-        <form class="invulformBeschikbaarheid4-content animate">
-
-
-            <div class="col-lg-offset-1">
-                <br />
-                <label style="font-size:12px; max-width:160px;">
-                    Geef hieronder aan welke tijden u beschikbaar bent voor schoolse activiteiten:
-                </label>
-                <br />
-            </div>
-
-            <div class="col-lg-offset-3" style="margin-left:22%">
-
-                <label>
-                    <input type="checkbox" name="1"> 09:00 - 09:30
-                </label>
-                <label>
-                    <input type="checkbox" name="2"> 09:30 - 10:00
-                </label>
-                <label>
-                    <input type="checkbox" name="3"> 10:00 - 10:30
-                </label>
-                <label>
-                    <input type="checkbox" name="4"> 10:30 - 11:00
-                </label>
-                <label>
-                    <input type="checkbox" name="5"> 11:00 - 11:30
-                </label>
-                <label>
-                    <input type="checkbox" name="6"> 11:30 - 12:00
-                </label>
-                <label>
-                    <input type="checkbox" name="7"> 12:00 - 12:30
-                </label>
-                <label>
-                    <input type="checkbox" name="8"> 12:30 - 13:00
-                </label>
-                <label>
-                    <input type="checkbox" name="9"> 13:00 - 13:30
-                </label>
-                <label>
-                    <input type="checkbox" name="10"> 13:30 - 14:00
-                </label>
-                <label>
-                    <input type="checkbox" name="11"> 14:00 - 14:30
-                </label>
-                <label>
-                    <input type="checkbox" name="12"> 14:30 - 15:00
-                </label>
-                <label>
-                    <input type="checkbox" name="13"> 15:00 - 15:30
-                </label>
-                <label>
-                    <input type="checkbox" name="14"> 15:30 - 16:00
-                </label>
-                <label>
-                    <input type="checkbox" name="15"> 16:00 - 16:30
-                </label>
-                <label>
-                    <input type="checkbox" name="16"> 16:30 - 17:00
-                </label>
-                <label>
-                    <input type="checkbox" name="17"> 17:00 - 17:30
-                </label>
-                <br />
-            </div>
-
-            @* Terug button *@
-            <div class="col-lg-offset-2" style="margin-left: 21.667%;">
-                <button type="button" onclick="document.getElementById('idDonderdag').style.display='none'" class="btn-default">Terug</button>
-                <br />
-            </div>
-
-            <div><br /></div>
-
-        </form>
-    </div>
-
-    @* form beschikbaarheid vrijdag / update alleen de aangekruiste dagen *@
-    <div id="idVrijdag" class="invulformBeschikbaarheid5">
-
-        @* pop up invulling*@
-        <form class="invulformBeschikbaarheid5-content animate">
-
-
-            <div class="col-lg-offset-1">
-                <br />
-                <label style="font-size:12px; max-width:160px;">
-                    Geef hieronder aan welke tijden u beschikbaar bent voor schoolse activiteiten:
-                </label>
-                <br />
-            </div>
-
-            <div class="col-lg-offset-3" style="margin-left:22%">
-
-                <label>
-                    <input type="checkbox" name="1"> 09:00 - 09:30
-                </label>
-                <label>
-                    <input type="checkbox" name="2"> 09:30 - 10:00
-                </label>
-                <label>
-                    <input type="checkbox" name="3"> 10:00 - 10:30
-                </label>
-                <label>
-                    <input type="checkbox" name="4"> 10:30 - 11:00
-                </label>
-                <label>
-                    <input type="checkbox" name="5"> 11:00 - 11:30
-                </label>
-                <label>
-                    <input type="checkbox" name="6"> 11:30 - 12:00
-                </label>
-                <label>
-                    <input type="checkbox" name="7"> 12:00 - 12:30
-                </label>
-                <label>
-                    <input type="checkbox" name="8"> 12:30 - 13:00
-                </label>
-                <label>
-                    <input type="checkbox" name="9"> 13:00 - 13:30
-                </label>
-                <label>
-                    <input type="checkbox" name="10"> 13:30 - 14:00
-                </label>
-                <label>
-                    <input type="checkbox" name="11"> 14:00 - 14:30
-                </label>
-                <label>
-                    <input type="checkbox" name="12"> 14:30 - 15:00
-                </label>
-                <label>
-                    <input type="checkbox" name="13"> 15:00 - 15:30
-                </label>
-                <label>
-                    <input type="checkbox" name="14"> 15:30 - 16:00
-                </label>
-                <label>
-                    <input type="checkbox" name="15"> 16:00 - 16:30
-                </label>
-                <label>
-                    <input type="checkbox" name="16"> 16:30 - 17:00
-                </label>
-                <label>
-                    <input type="checkbox" name="17"> 17:00 - 17:30
-                </label>
-                <br />
-            </div>
-
-            @* Terug button *@
-            <div class="col-lg-offset-2" style="margin-left: 21.667%;">
-                <button type="button" onclick="document.getElementById('idVrijdag').style.display='none'" class="btn-default">Terug</button>
-                <br />
-            </div>
-
-            <div><br /></div>
-
-        </form>
-    </div>
-
-    @* opslaan  *@
-    <br />
-    <fieldset>
-        <div id="borderDefaultTop">
-
-            <div class="col-lg-offset-5" style="margin-left:40%;">
-                <br />
-                <div>
-                    <input class="btn-default" id="opslaanGegevens" type="submit" value="Opslaan" />
-                    <input class="btn-default" id="annuleren" type="submit" value="Annuleren" />
-                </div>
-            </div>
+            </fieldset>
         </div>
 
-    </fieldset>
-    <br /> 
-</div>
+        @* form beschikbaarheid maandag / update alleen de aangekruiste dagen *@
+        <div id="idMaandag" class="invulformBeschikbaarheid1">
+
+            @* pop up invulling*@
+            <form class="invulformBeschikbaarheid1-content animate">
 
 
-@* Script voor het ophalen van de checkboxjes *@
-<script>
-    var invulformBeschikbaarheid1 = document.getElementById('idMaandag');
-    var invulformBeschikbaarheid2 = document.getElementById('idDinsdag');
-    var invulformBeschikbaarheid3 = document.getElementById('idWoensdag');
-    var invulformBeschikbaarheid4 = document.getElementById('idDonderdag');
-    var invulformBeschikbaarheid5 = document.getElementById('idVrijdag');
+                <div class="col-lg-offset-1">
+                    <br />
+                    <label style="font-size:12px; max-width:160px;">
+                        Geef hieronder aan welke tijden u beschikbaar bent voor schoolse activiteiten:
+                    </label>
+                    <br />
+                </div>
 
-    // als je buiten de box klikt, wordt het scherm gesloten / herstelt NIET de ingevoerde data
-    window.onclick = function (event) {
-        if (event.target == invulformBeschikbaarheid1) {
-            invulformBeschikbaarheid1.style.display = "none";
+                <div class="col-lg-offset-3" style="margin-left:22%">
+
+                    <label>
+                        <input type="checkbox" name="1"> 09:00 - 09:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="2"> 09:30 - 10:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="3"> 10:00 - 10:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="4"> 10:30 - 11:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="5"> 11:00 - 11:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="6"> 11:30 - 12:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="7"> 12:00 - 12:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="8"> 12:30 - 13:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="9"> 13:00 - 13:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="10"> 13:30 - 14:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="11"> 14:00 - 14:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="12"> 14:30 - 15:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="13"> 15:00 - 15:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="14"> 15:30 - 16:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="15"> 16:00 - 16:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="16"> 16:30 - 17:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="17"> 17:00 - 17:30
+                    </label>
+                    <br />
+                </div>
+
+                @* Terug button *@
+                <div class="col-lg-offset-2" style="margin-left: 21.667%;">
+                    <button type="button" onclick="document.getElementById('idMaandag').style.display='none'" class="btn-default">Terug</button>
+                    <br />
+                </div>
+
+                <div><br /></div>
+
+            </form>
+        </div>
+
+        @* form beschikbaarheid dinsdag / update alleen de aangekruiste dagen *@
+        <div id="idDinsdag" class="invulformBeschikbaarheid2">
+
+            @* pop up invulling*@
+            <form class="invulformBeschikbaarheid2-content animate">
+
+
+                <div class="col-lg-offset-1">
+                    <br />
+                    <label style="font-size:12px; max-width:160px;">
+                        Geef hieronder aan welke tijden u beschikbaar bent voor schoolse activiteiten:
+                    </label>
+                    <br />
+                </div>
+
+                <div class="col-lg-offset-3" style="margin-left:22%">
+
+                    <label>
+                        <input type="checkbox" name="1"> 09:00 - 09:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="2"> 09:30 - 10:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="3"> 10:00 - 10:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="4"> 10:30 - 11:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="5"> 11:00 - 11:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="6"> 11:30 - 12:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="7"> 12:00 - 12:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="8"> 12:30 - 13:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="9"> 13:00 - 13:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="10"> 13:30 - 14:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="11"> 14:00 - 14:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="12"> 14:30 - 15:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="13"> 15:00 - 15:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="14"> 15:30 - 16:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="15"> 16:00 - 16:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="16"> 16:30 - 17:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="17"> 17:00 - 17:30
+                    </label>
+                    <br />
+                </div>
+
+                @* terug button *@
+                <div class="col-lg-offset-2" style="margin-left: 21.667%;">
+                    <button type="button" onclick="document.getElementById('idDinsdag').style.display='none'" class="btn-default">Terug</button>
+                    <br />
+                </div>
+
+                <div><br /></div>
+
+            </form>
+        </div>
+
+        @* form beschikbaarheid woensdag / update alleen de aangekruiste dagen *@
+        <div id="idWoensdag" class="invulformBeschikbaarheid3">
+
+            @* pop up invulling*@
+            <form class="invulformBeschikbaarheid3-content animate">
+
+
+                <div class="col-lg-offset-1">
+                    <br />
+                    <label style="font-size:12px; max-width:160px;">
+                        Geef hieronder aan welke tijden u beschikbaar bent voor schoolse activiteiten:
+                    </label>
+                    <br />
+                </div>
+
+                <div class="col-lg-offset-3" style="margin-left:22%">
+
+                    <label>
+                        <input type="checkbox" name="1"> 09:00 - 09:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="2"> 09:30 - 10:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="3"> 10:00 - 10:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="4"> 10:30 - 11:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="5"> 11:00 - 11:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="6"> 11:30 - 12:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="7"> 12:00 - 12:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="8"> 12:30 - 13:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="9"> 13:00 - 13:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="10"> 13:30 - 14:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="11"> 14:00 - 14:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="12"> 14:30 - 15:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="13"> 15:00 - 15:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="14"> 15:30 - 16:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="15"> 16:00 - 16:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="16"> 16:30 - 17:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="17"> 17:00 - 17:30
+                    </label>
+                    <br />
+                </div>
+
+                @*@* Terug button *@
+                <div class="col-lg-offset-2" style="margin-left: 21.667%;">
+                    <button type="button" onclick="document.getElementById('idWoensdag').style.display='none'" class="btn-default">Terug</button>
+                    <br />
+                </div>
+
+                <div><br /></div>
+
+            </form>
+        </div>
+
+        @* form beschikbaarheid donderdag / update alleen de aangekruiste dagen *@
+        <div id="idDonderdag" class="invulformBeschikbaarheid4">
+
+            @* pop up invulling*@
+            <form class="invulformBeschikbaarheid4-content animate">
+
+
+                <div class="col-lg-offset-1">
+                    <br />
+                    <label style="font-size:12px; max-width:160px;">
+                        Geef hieronder aan welke tijden u beschikbaar bent voor schoolse activiteiten:
+                    </label>
+                    <br />
+                </div>
+
+                <div class="col-lg-offset-3" style="margin-left:22%">
+
+                    <label>
+                        <input type="checkbox" name="1"> 09:00 - 09:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="2"> 09:30 - 10:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="3"> 10:00 - 10:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="4"> 10:30 - 11:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="5"> 11:00 - 11:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="6"> 11:30 - 12:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="7"> 12:00 - 12:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="8"> 12:30 - 13:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="9"> 13:00 - 13:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="10"> 13:30 - 14:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="11"> 14:00 - 14:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="12"> 14:30 - 15:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="13"> 15:00 - 15:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="14"> 15:30 - 16:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="15"> 16:00 - 16:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="16"> 16:30 - 17:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="17"> 17:00 - 17:30
+                    </label>
+                    <br />
+                </div>
+
+                @* Terug button *@
+                <div class="col-lg-offset-2" style="margin-left: 21.667%;">
+                    <button type="button" onclick="document.getElementById('idDonderdag').style.display='none'" class="btn-default">Terug</button>
+                    <br />
+                </div>
+
+                <div><br /></div>
+
+            </form>
+        </div>
+
+        @* form beschikbaarheid vrijdag / update alleen de aangekruiste dagen *@
+        <div id="idVrijdag" class="invulformBeschikbaarheid5">
+
+            @* pop up invulling*@
+            <form class="invulformBeschikbaarheid5-content animate">
+
+
+                <div class="col-lg-offset-1">
+                    <br />
+                    <label style="font-size:12px; max-width:160px;">
+                        Geef hieronder aan welke tijden u beschikbaar bent voor schoolse activiteiten:
+                    </label>
+                    <br />
+                </div>
+
+                <div class="col-lg-offset-3" style="margin-left:22%">
+
+                    <label>
+                        <input type="checkbox" name="1"> 09:00 - 09:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="2"> 09:30 - 10:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="3"> 10:00 - 10:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="4"> 10:30 - 11:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="5"> 11:00 - 11:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="6"> 11:30 - 12:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="7"> 12:00 - 12:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="8"> 12:30 - 13:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="9"> 13:00 - 13:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="10"> 13:30 - 14:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="11"> 14:00 - 14:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="12"> 14:30 - 15:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="13"> 15:00 - 15:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="14"> 15:30 - 16:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="15"> 16:00 - 16:30
+                    </label>
+                    <label>
+                        <input type="checkbox" name="16"> 16:30 - 17:00
+                    </label>
+                    <label>
+                        <input type="checkbox" name="17"> 17:00 - 17:30
+                    </label>
+                    <br />
+                </div>
+
+                @* Terug button *@
+                <div class="col-lg-offset-2" style="margin-left: 21.667%;">
+                    <button type="button" onclick="document.getElementById('idVrijdag').style.display='none'" class="btn-default">Terug</button>
+                    <br />
+                </div>
+
+                <div><br /></div>
+
+            </form>
+        </div>
+
+        @* opslaan  *@
+        <br />
+        <fieldset>
+            <div id="borderDefaultTop">
+
+                <div class="col-lg-offset-5" style="margin-left:40%;">
+                    <br />
+                    <div>
+                        <input class="btn-default" id="opslaanGegevens" type="submit" value="Opslaan" />
+                        <input class="btn-default" id="annuleren" type="submit" value="Annuleren" />
+                    </div>
+                </div>
+            </div>
+
+        </fieldset>
+        <br />
+    </div>
+
+
+    @* Script voor het ophalen van de checkboxjes *@
+    <script>
+        var invulformBeschikbaarheid1 = document.getElementById('idMaandag');
+        var invulformBeschikbaarheid2 = document.getElementById('idDinsdag');
+        var invulformBeschikbaarheid3 = document.getElementById('idWoensdag');
+        var invulformBeschikbaarheid4 = document.getElementById('idDonderdag');
+        var invulformBeschikbaarheid5 = document.getElementById('idVrijdag');
+
+        // als je buiten de box klikt, wordt het scherm gesloten / herstelt NIET de ingevoerde data
+        window.onclick = function (event) {
+            if (event.target == invulformBeschikbaarheid1) {
+                invulformBeschikbaarheid1.style.display = "none";
+            }
+            if (event.target == invulformBeschikbaarheid2) {
+                invulformBeschikbaarheid2.style.display = "none";
+            }
+            if (event.target == invulformBeschikbaarheid3) {
+                invulformBeschikbaarheid3.style.display = "none";
+            }
+            if (event.target == invulformBeschikbaarheid4) {
+                invulformBeschikbaarheid4.style.display = "none";
+            }
+            if (event.target == invulformBeschikbaarheid5) {
+                invulformBeschikbaarheid5.style.display = "none";
+            }
         }
-        if (event.target == invulformBeschikbaarheid2) {
-            invulformBeschikbaarheid2.style.display = "none";
-        }
-        if (event.target == invulformBeschikbaarheid3) {
-            invulformBeschikbaarheid3.style.display = "none";
-        }
-        if (event.target == invulformBeschikbaarheid4) {
-            invulformBeschikbaarheid4.style.display = "none";
-        }
-        if (event.target == invulformBeschikbaarheid5) {
-            invulformBeschikbaarheid5.style.display = "none";
-        }
-    }
-</script>
+    </script>
+</body>
+</html>
+
+
 
 
 
