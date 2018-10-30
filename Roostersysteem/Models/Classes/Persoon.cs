@@ -98,7 +98,9 @@ namespace Roostersysteem.Models
         {
             // te verplaatsen naar database connectie
             // link is verkeerd moet fixen
-            SqlConnection conn = new SqlConnection("Server=.\\SQLEXPRESS;Database=RoosterDB");
+
+            bool Flag = false;
+            SqlConnection conn = new SqlConnection("Server=MAX-PC;DataBase=RoosterDB;Trusted_Connection=True");          
             conn.Open();
 
             SqlCommand cmd = new SqlCommand();
@@ -106,23 +108,25 @@ namespace Roostersysteem.Models
             cmd.Connection = conn;
 
             SqlDataReader rd = cmd.ExecuteReader();
+            
+            while (rd.Read())
+            {
+                if (rd[1].ToString() == gebruikersnaam && rd[2].ToString() == wachtwoord)
+                {
+                    Flag = true;
+                    persoonId = Convert.ToInt32(rd[0]);
+                }
+
+
+            }
             conn.Close();
 
 
 
-            bool Flag = false;
 
-            persoonId = Convert.ToInt32(rd[0]);
+            
 
-            while (rd.Read())
-            {
-                if(rd[1].ToString()==gebruikersnaam && rd[2].ToString()==wachtwoord)
-                {
-                    Flag = true;
-                }
-                
-
-            }
+            
             return Flag;
             
                 
