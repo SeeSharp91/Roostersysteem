@@ -9,7 +9,6 @@ h1 {
 }
 
 /*Navbar styling*/
-
 .navbar-brand > img:nth-child(1) {
     display: inline-block;
     float: left;
@@ -30,6 +29,11 @@ a.navbar-brand:nth-child(3) {
     color: black !important;
 }
 
+    /* layout voorhet dropdownmenu */
+    .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+        color: red !important;
+    }
+
 /* de layout voor elk list item in de navbar*/
 .navbar-left > li:nth-child(-n+10) > a:nth-child(-n+10) {
     color: black !important;
@@ -45,7 +49,6 @@ body > nav:nth-child(1) {
     border-bottom: 1px black solid;
     border-radius: unset;
 }
-
 
 /*Zoekbalk*/
 .form-control {
@@ -109,10 +112,23 @@ div.container:nth-child(3) {
 /*Zoekbalk styling*/
 .zoekbalk {
     max-width: 200px;
+    border-color: red !important;
+}
+
+/*Button styling*/
+#buttonStyle {
+    color: white;
+    background-color: red;
 }
 
 .col-sm-2 .zoekbalk {
     max-width: 200px;
+    border-color: red !important;
+}
+
+/* vergrootglas layout bij de zoekbalk */
+.glyphicon {
+    color: red !important;    
 }
 
 /*navbar bovenin*/
@@ -197,4 +213,5 @@ div.container:nth-child(3) {
     max-width: 100px;
     width: 100%;
 }
+
 
