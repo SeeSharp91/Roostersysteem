@@ -18,7 +18,7 @@
             <div class="col-md-4 col-sm-4 col-xs-12"></div>
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <!--form start-->
-                <form class="login-form-container" action="/Inlogpagina/Autherize" method="post" data->
+                <form class="login-form-container" action="/Inlogpagina/Autherize" method="post">
                     <!--Titel en logo-->
                     <div class="row">
                         <div class="col-lg-6">
@@ -33,22 +33,22 @@
                     <!--gebruikersnaam-->
                     <div class="form-group">
                         <label for="InputGebruiker">Gebruikersnaam:</label>
-                        <input type="text" class="form-control" id="InputGebruiker" placeholder="Gebruikersnaam" />
+                        <input type="text" class="form-control" id="persoonGbn" name="persoonGbn" placeholder="Gebruikersnaam" required/>
                     </div>
                     <!--wachtwoord-->
                     <div class="form-group">
                         <label for="InputWachtwoord">Wachtwoord:</label>
-                        <input type="password" class="form-control" id="InputWachtwoord" placeholder="Wachtwoord" />
+                        <input type="password" class="form-control" id="persoonWw" name="persoonWw" placeholder="Wachtwoord" required />
                     </div>
                     <!--check referentie behouden-->
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" /> Onthoud mijn gebruikersnaam
+                            <input type="checkbox" name="remember" /> Onthoud mijn gebruikersnaam
                         </label>
                     </div>
 
                     <!--knop voor te inloggen-->
-                    <input type="submit" class="btn btn-danger btn-block" name="Button1" value="Inloggen"></input>
+                    <button type="submit" class="btn btn-danger btn-block" id="Button1" name="Button1" value="Inloggen">Inloggen</button>
 
                     <!--Link voor herstellen wachtwoord-->
                     <div class="container">

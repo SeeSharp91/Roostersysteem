@@ -94,9 +94,10 @@ namespace Roostersysteem.Models
 
         //-------------------------------METHODS------------------------------------------------------
 
-        public bool Inloggen(string persoonNaam, string persoonWw)
+        public bool Inloggen(string gebruikersnaam, string wachtwoord)
         {
             // te verplaatsen naar database connectie
+            // link is verkeerd moet fixen
             SqlConnection conn = new SqlConnection("Server=.\\SQLEXPRESS;Database=RoosterDB");
             conn.Open();
 
@@ -107,21 +108,24 @@ namespace Roostersysteem.Models
             SqlDataReader rd = cmd.ExecuteReader();
             conn.Close();
 
+
+
             bool Flag = false;
+
+            persoonId = Convert.ToInt32(rd[0]);
 
             while (rd.Read())
             {
-                if(rd[1].ToString()==persoonNaam && rd[2].ToString()==persoonWw)
+                if(rd[1].ToString()==gebruikersnaam && rd[2].ToString()==wachtwoord)
                 {
                     Flag = true;
-                    break;
                 }
                 
+
             }
-            if (Flag == true)
-                return true;
-            else
-                return false;          
+            return Flag;
+            
+                
 
         }
 
