@@ -93,9 +93,48 @@ namespace Roostersysteem.Models
 
         //-------------------------------METHODS------------------------------------------------------
 
-        public void Inloggen(string persoonNaam, string persoonWw, string verificatie, bool check)
+        public bool Inloggen(string persoonNaam, string persoonWw)
         {
-            //to do
+            // te verplaatsen naar database connectie
+            SqlConnection conn = new SqlConnection("Server=.\\SQLEXPRESS;Database=RoosterDB");
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "SELECT PersoonId, PersoonGbn, PersoonWw FROM [Persoon]";
+            cmd.Connection = conn;
+
+            SqlDataReader rd = cmd.ExecuteReader();
+            conn.close();
+
+            while (rd.Read())
+            {
+                if(rd[1].ToString()==persoonNaam.Text && rd[2].ToString()==persoonWw.Text)
+                {
+                    Flag = true;
+                    break;
+                }
+                
+            }
+            if (Flag = true)
+                return true;
+            else
+                return false;
+
+
+
+            // als er een gebruiker aanwezig is in de database dan wordt deze in userdetails geladen. 
+            var userDetails = db.Persoon.Where(x => x.PersoonGbn == persoonModel.PersoonGbn && x.PersoonWw == persoonModel.PersoonWw).FirstOrDefault();
+            if (userDetails == null)
+            {
+                persoonModel.LoginErrorMessage = "Wrong username or password.";
+                return View("Index", persoonModel);
+            }
+            else
+            {
+                Session["persoonId"] = userDetails.PersoonId;
+                return RedirectToAction("../Home/Index");
+            }
+
         }
 
         public void TweeStapsVer(string token, bool True)
