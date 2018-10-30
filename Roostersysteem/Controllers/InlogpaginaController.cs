@@ -21,7 +21,7 @@ namespace Roostersysteem.Controllers
             //ipv de methode en dan via de methode vanuit de constructer aanvragen?
             Persoon o = new Persoon();
             bool check = o.Inloggen(InputGebruiker, InputWachtwoord);
-            if (check = true)
+            if (check == true)
             {
                 return View("../Home/Index");
             }

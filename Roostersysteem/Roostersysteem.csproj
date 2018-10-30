@@ -157,7 +157,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Classes\Authenticator.cs" />
-    <Compile Include="Models\Classes\DatabaseConnection.cs" />
     <Compile Include="Models\Classes\Docent.cs" />
     <Compile Include="Models\Interfaces\iBeschikbaarheid.cs" />
     <Compile Include="Models\Interfaces\iLokaalReserveren.cs" />

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.SqlClient;
 
 namespace Roostersysteem.Models
 {
@@ -104,36 +105,23 @@ namespace Roostersysteem.Models
             cmd.Connection = conn;
 
             SqlDataReader rd = cmd.ExecuteReader();
-            conn.close();
+            conn.Close();
+
+            bool Flag = false;
 
             while (rd.Read())
             {
-                if(rd[1].ToString()==persoonNaam.Text && rd[2].ToString()==persoonWw.Text)
+                if(rd[1].ToString()==persoonNaam && rd[2].ToString()==persoonWw)
                 {
                     Flag = true;
                     break;
                 }
                 
             }
-            if (Flag = true)
+            if (Flag == true)
                 return true;
             else
-                return false;
-
-
-
-            // als er een gebruiker aanwezig is in de database dan wordt deze in userdetails geladen. 
-            var userDetails = db.Persoon.Where(x => x.PersoonGbn == persoonModel.PersoonGbn && x.PersoonWw == persoonModel.PersoonWw).FirstOrDefault();
-            if (userDetails == null)
-            {
-                persoonModel.LoginErrorMessage = "Wrong username or password.";
-                return View("Index", persoonModel);
-            }
-            else
-            {
-                Session["persoonId"] = userDetails.PersoonId;
-                return RedirectToAction("../Home/Index");
-            }
+                return false;          
 
         }
 
