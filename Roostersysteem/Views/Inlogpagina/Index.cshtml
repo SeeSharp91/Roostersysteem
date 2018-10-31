@@ -1,32 +1,64 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<!DOCTYPE html>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+<html>
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <title>Login</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12"></div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <!--form start-->
+                <form class="login-form-container" action="/Inlogpagina/Autherize" method="post">
+                    <!--Titel en logo-->
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h1>
+                                Inlog pagina
+                            </h1>
+                        </div>
+                        <div class="col-lg-2">
+                            <img src="../images/logo.png" width="100px" height="100px" alt="ZUYD" />
+                        </div>
+                    </div>
+                    <!--gebruikersnaam-->
+                    <div class="form-group">
+                        <label for="InputGebruiker">Gebruikersnaam:</label>
+                        <input type="text" class="form-control" id="persoonGbn" name="persoonGbn" placeholder="Gebruikersnaam" required/>
+                    </div>
+                    <!--wachtwoord-->
+                    <div class="form-group">
+                        <label for="InputWachtwoord">Wachtwoord:</label>
+                        <input type="password" class="form-control" id="persoonWw" name="persoonWw" placeholder="Wachtwoord" required />
+                    </div>
+                    <!--check referentie behouden-->
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="remember" /> Onthoud mijn gebruikersnaam
+                        </label>
+                    </div>
 
+                    <!--knop voor te inloggen-->
+                    <button type="submit" class="btn btn-danger btn-block" id="Button1" name="Button1" value="Inloggen">Inloggen</button>
+
+                    <!--Link voor herstellen wachtwoord-->
+                    <div class="container">
+                        <span class="psw"><a href="#" style="color:red">Wachtwoord vergeten?</a></span>
+                    </div>
+                </form>
+                <!--from end-->
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12"></div>
+        </div>
+    </div>
+</body>
+</html>
