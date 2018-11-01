@@ -203,7 +203,7 @@ div.container:nth-child(3) {
     }
 }
 
-/*Styles voor VakkenKoppelen*/
+/*Styles voor VakkenKoppelen.cshtml*/
 #labelsVakken {
     max-width: 296px;
     width: 100%;
