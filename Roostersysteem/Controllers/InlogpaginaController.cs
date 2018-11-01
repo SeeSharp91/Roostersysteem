@@ -1,46 +1,51 @@
-﻿using Roostersysteem.Models;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using System.Globalization;
 using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Roostersysteem.Models;
+using System.Collections.Generic;
+
+
+
+
+
 
 namespace Roostersysteem.Controllers
-{
+{    
     public class InlogpaginaController : Controller
-    {
+    {   
+        
         public ActionResult Index()
         {
             return View();
-        }          
-        
-      
+        }
         
 
         [HttpPost]
-        public ActionResult Autherize(Roostersysteem.Models.Persoon model)
+        public ActionResult Login(LoginViewModel model, string returnUrl)
         {
-            //if (Autherize == true)
-
-            //moet ik deze 2 gegevens niet meegeven aan de constructor
-            //ipv de methode en dan via de methode vanuit de constructer aanvragen?  
-                        
             Persoon p = new Persoon();
-            bool check = p.Inloggen(model.persoonGbn,model.persoonWw);
+          
+            
+            bool check = p.Inloggen(model.Gebruikersnaam, model.Wachtwoord);
+            //bool check = p.Inloggen(p.persoonGbn,p.persoonWw);
 
             if (check == true)
             {
-                Session["gebruikersid"] = model.persoonId;
+                Session["gebruikersid"] = p.persoonId;
                 return RedirectToAction("../Home/Home");
             }
             else
             {
                 return View("Index");
             }
-            
-            //return RedirectToAction("../Home/Home");
-            
-        }
+
+
+        }      
+        
 
         public ActionResult About()
         {

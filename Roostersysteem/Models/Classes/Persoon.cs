@@ -3,9 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
+using System.ComponentModel.DataAnnotations;
 
 namespace Roostersysteem.Models
 {
+
+    public class LoginViewModel
+    {
+        [Required]        
+        [Display(Name = "Gebruikersnaam")]
+        
+        public string Gebruikersnaam { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Wachtwoord")]
+        public string Wachtwoord { get; set; }
+
+        [Display(Name = "Remember me?")]
+        public bool RememberMe { get; set; }
+    }
+
     public class Persoon
     {
         //----------------------------Private variables------------------------------------------------
@@ -44,12 +62,6 @@ namespace Roostersysteem.Models
             set { _persoonNaam = persoonNaam; }
         }
 
-        public string persoonEmail
-        {
-            get { return _persoonEmail; }
-            set { _persoonEmail = persoonEmail; }
-        }
-
         public string persoonGbn
         {
             get { return _persoonGbn; }
@@ -60,6 +72,12 @@ namespace Roostersysteem.Models
         {
             get { return _persoonWw; }
             set { _persoonWw = persoonWw; }
+        }
+
+        public string persoonEmail
+        {
+            get { return _persoonEmail; }
+            set { _persoonEmail = persoonEmail; }
         }
 
         public string functie
@@ -96,11 +114,14 @@ namespace Roostersysteem.Models
 
         public bool Inloggen(string gebruikersnaam, string wachtwoord)
         {
+
             // te verplaatsen naar database connectie
             // link is verkeerd moet fixen
+         
+
 
             bool Flag = false;
-            SqlConnection conn = new SqlConnection("Server=MAX-PC;DataBase=RoosterDB;Trusted_Connection=True");          
+            SqlConnection conn = new SqlConnection("Server=MAX-PC;DataBase=RoosterDB;Trusted_Connection=True");
             conn.Open();
 
             SqlCommand cmd = new SqlCommand();
@@ -110,28 +131,20 @@ namespace Roostersysteem.Models
             SqlDataReader rd = cmd.ExecuteReader();
             
             while (rd.Read())
-            {
+            {   
                 if (rd[1].ToString() == gebruikersnaam && rd[2].ToString() == wachtwoord)
                 {
                     Flag = true;
                     persoonId = Convert.ToInt32(rd[0]);
+                    
                 }
-
-
-            }
+            }        
             conn.Close();
-
-
-
-
-            
-
-            
             return Flag;
-            
-                
-
         }
+            
+
+                
 
         public void TweeStapsVer(string token, bool True)
         {
@@ -153,4 +166,5 @@ namespace Roostersysteem.Models
             //to do
         }     
     }
+
 }
