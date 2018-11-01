@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Roostersysteem.Models;
 
 namespace Roostersysteem.Controllers
 {
@@ -19,6 +20,16 @@ namespace Roostersysteem.Controllers
         {
             ViewBag.Message = "";
             return View();
+        }
+
+        public ActionResult Annuleren()
+        {
+            return RedirectToAction("../Home/Home");
+        }
+
+        public ActionResult saveData(Docent BeschikbaarheidAangeven)
+        {
+            return View(); // aanpassen
         }
     }
 }

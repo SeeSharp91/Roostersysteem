@@ -5,6 +5,54 @@
 @* Gemaakt door: Mitchell; op 26-10: layout gemaakt
     bijgewerkt op: 27-10 en 28-10 layout bijgewerkt*@
 
+@{
+    var naam = "";
+    var achternaam = "";
+    var email = "";
+    var telefoonnr = "";
+    var mobielnr = "";
+    var straat = "";
+    var huisnr = "";
+    var toevoeging = "";
+    var plaats = "";
+    var postcodeGetallen = "";
+    var postcodeLetters = "";
+    var regio = "";
+    var land = "";
+    var gebruikersnaam = "";
+    var nieuwWachtwoord= "";
+    var nieuwHerWachtwoord= "";
+
+    //var = "";
+    //var = "";
+
+    if (IsPost)
+    {
+        naam = Request.Form["naam"];
+        achternaam = Request.Form["achternaam"];
+        email = Request.Form["email"];
+        telefoonnr = Request.Form["telefoonnr"];
+        mobielnr = Request.Form["mobielnr"];
+        straat = Request.Form["straat"];
+        huisnr = Request.Form["huisnr"];
+        toevoeging = Request.Form["toevoeging"];
+        plaats = Request.Form["plaats"];
+        postcodeGetallen = Request.Form["postcodeGetallen"];
+        postcodeLetters = Request.Form["postcodeLetters"];
+        regio = Request.Form["regio"];
+        land = Request.Form["land"];
+        gebruikersnaam = Request.Form["gebruikersnaam"];
+        nieuwWachtwoord = Request.Form["nieuwWachtwoord"];
+        nieuwHerWachtwoord = Request.Form["niewHerWachtwoord"];
+
+        var db = Database.Open("WebPagesMovies");
+        var insertCommand = "Update /table name/ (naam, achternaam, email, telefoonnr, mobielnr, straat, huisnr, toevoeging, plaats, postcodeGetallen, postcodeLetters, regio, land) VALUES(@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13)";
+        db.Execute(insertCommand, naam, achternaam, email, telefoonnr, mobielnr, straat, huisnr, toevoeging, plaats, postcodeGetallen, postcodeLetters, regio, land);
+        Response.Redirect("~/MijnGegevens");
+    }
+}
+
+
 
 <html>
 <body>
@@ -25,18 +73,18 @@
                 </h4>
                 <fieldset>
 
-                    <label class="labelsGegevens">Naam:</label>  <input type="text" style="width:235px;" maxlength="20" name="naam" /><br />
-                    <label class="labelsGegevens">Achternaam:</label> <input type="text" style="width:235px;" maxlength="20" name="achternaam" /><br />
-                    <label class="labelsGegevens">E-mailadres:</label> <input type="email" style="width:235px;" maxlength="40" name="email" /><br />
-                    <label class="labelsGegevens">Telefoonnummer:</label> <input type="text" maxlength="13" style="width:235px;" name="telefoonnr" /><br />
-                    <label class="labelsGegevens">Mobiel telefoonnummer:</label> <input type="text" maxlength="13" style="width:235px;" name="mobielnr" /><br />
-                    <label class="labelsGegevens">Straat:</label> <input type="text" style="width:235px;" maxlength="30" name="straat" /><br />
-                    <label class="labelsGegevens">Huisnummer + toevoeging (optioneel):</label> <input type="text" style="width:235px;" maxlength="4" name="huisnr" /> <input type="text" maxlength="1" style="width:40px; padding-left:10px;" name="toevoeging" /><br />
-                    <label class="labelsGegevens">Plaats:</label>  <input type="text" style="width:235px;" maxlength="25" name="plaats" /><br />
-                    <label class="labelsGegevens">Postcode:</label> <input type="text" style="width:235px;" maxlength="4" name="postcodeGetallen" /> <input type="text" style="width:40px;" maxlength="2" name="postcodeLetters" /><br />
-                    <label class="labelsGegevens">Regio:</label> <input type="text" style="width:235px;" maxlength="15" name="regio" /><br />
-                    <label class="labelsGegevens">Land:</label> <input type="text" style="width:235px;" maxlength="25" name="land" /><br />
-                    <label class="labelsGegevens">Geslacht:</label> <label><input type="radio" value="Man" name="geslacht" />     Man</label><label><input style="margin-left:55px;" type="radio" value="Vrouw" name="geslacht" />     Vrouw</label><br />
+                    <label class="labelsGegevens">Naam:</label>  <input type="text" style="width:235px;" maxlength="20" name="naam" value="@Request.Form["naam"]" required /><br />
+                    <label class="labelsGegevens">Achternaam:</label> <input type="text" style="width:235px;" maxlength="20" name="achternaam" value="@Request.Form["achternaam"]" required /><br />
+                    <label class="labelsGegevens">E-mailadres:</label> <input type="email" style="width:235px;" maxlength="40" name="email" value="@Request.Form["email"]" required /><br />
+                    <label class="labelsGegevens">Telefoonnummer:</label> <input type="text" maxlength="13" style="width:235px;" name="telefoonnr" value="@Request.Form["telefoonnr"]" required /><br />
+                    <label class="labelsGegevens">Mobiel telefoonnummer:</label> <input type="text" maxlength="13" style="width:235px;" name="mobielnr" value="@Request.Form["mobielnr"]" required /><br />
+                    <label class="labelsGegevens">Straat:</label> <input type="text" style="width:235px;" maxlength="30" name="straat" value="@Request.Form["straat"]" required /><br />
+                    <label class="labelsGegevens">Huisnummer + toevoeging (optioneel):</label> <input type="text" style="width:235px;" maxlength="4" name="huisnr" value="@Request.Form["huisnr"]" required /> <input type="text" maxlength="1" style="width:40px; padding-left:10px;" name="toevoeging" value="@Request.Form["toevoeging"]" /><br />
+                    <label class="labelsGegevens">Plaats:</label>  <input type="text" style="width:235px;" maxlength="25" name="plaats" value="@Request.Form["plaats"]" required /><br />
+                    <label class="labelsGegevens">Postcode:</label> <input type="text" style="width:235px;" maxlength="4" name="postcodeGetallen" value="@Request.Form["postcodeGetallen"]" required /> <input type="text" style="width:40px;" maxlength="2" name="postcodeLetters" value="@Request.Form["postcodeLetters"]" required /><br />
+                    <label class="labelsGegevens">Regio:</label> <input type="text" style="width:235px;" maxlength="15" name="regio" value="@Request.Form["regio"]" required /><br />
+                    <label class="labelsGegevens">Land:</label> <input type="text" style="width:235px;" maxlength="25" name="land" value="@Request.Form["land"]" required /><br />
+                    @*<label class="labelsGegevens">Geslacht:</label> <label><input type="radio" value="Man" name="geslacht" />     Man</label><label><input style="margin-left:55px;" type="radio" value="Vrouw" name="geslacht" />     Vrouw</label><br />*@
                 </fieldset>
             </div>
         </fieldset>
@@ -50,9 +98,9 @@
                     <h4>
                         Accountgegevens:
                     </h4>
-                    <label class="labelsGegevens">Gebruikersnaam: </label><input type="text" name="gebruikersnaam" style="width:235px; margin-left:4px;" maxlength="30" /><br />
-                    <label class="labelsGegevens">Wachtwoord: </label><input type="password" name="wachtwoord" style="width:235px; margin-left:4px;" maxlength="30" /><br />
-                    <label class="labelsGegevens">Hehaal wachtwoord: </label><input type="password" name="herhaalWw" style="width:235px; margin-left:4px;" maxlength="30" /><br />
+                    <label class="labelsGegevens">Gebruikersnaam: </label><input type="text" name="gebruikersnaam" style="width:235px; margin-left:4px;" maxlength="30" value="@Request.Form["gebruikersnaam"]" /><br />
+                    <label class="labelsGegevens">Wachtwoord: </label><input type="password" name="wachtwoord" style="width:235px; margin-left:4px;" maxlength="30" value="@Request.Form["nieuwWachtwoord"]" /><br />
+                    <label class="labelsGegevens">Hehaal wachtwoord: </label><input type="password" name="herhaalWw" style="width:235px; margin-left:4px;" maxlength="30" value="@Request.Form["nieuwHerWachtwoord"]" /><br />
                 </fieldset>
             </div>
         </fieldset>

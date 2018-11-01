@@ -2375,28 +2375,32 @@ if (typeof jQuery === 'undefined') {
     })
 
     // custom query's:
-    var invulformBeschikbaarheid1 = document.getElementById('idMaandag');
-    var invulformBeschikbaarheid2 = document.getElementById('idDinsdag');
-    var invulformBeschikbaarheid3 = document.getElementById('idWoensdag');
-    var invulformBeschikbaarheid4 = document.getElementById('idDonderdag');
-    var invulformBeschikbaarheid5 = document.getElementById('idVrijdag');
+    //var invulformBeschikbaarheid1 = document.getElementById('idMaandag');
+    //var invulformBeschikbaarheid2 = document.getElementById('idDinsdag');
+    //var invulformBeschikbaarheid3 = document.getElementById('idWoensdag');
+    //var invulformBeschikbaarheid4 = document.getElementById('idDonderdag');
+    //var invulformBeschikbaarheid5 = document.getElementById('idVrijdag');
 
-    // als je buiten de box klikt, wordt het scherm gesloten / herstelt NIET de ingevoerde data
-    window.onclick = function (event) {
-        if (event.target == invulformBeschikbaarheid1) {
-            invulformBeschikbaarheid1.style.display = "none";
-        }
-        if (event.target == invulformBeschikbaarheid2) {
-            invulformBeschikbaarheid2.style.display = "none";
-        }
-        if (event.target == invulformBeschikbaarheid3) {
-            invulformBeschikbaarheid3.style.display = "none";
-        }
-        if (event.target == invulformBeschikbaarheid4) {
-            invulformBeschikbaarheid4.style.display = "none";
-        }
-        if (event.target == invulformBeschikbaarheid5) {
-            invulformBeschikbaarheid5.style.display = "none";
-        }
+    //// als je buiten de box klikt, wordt het scherm gesloten / herstelt NIET de ingevoerde data
+    //window.onclick = function (event) {
+    //    if (event.target == invulformBeschikbaarheid1) {
+    //        invulformBeschikbaarheid1.style.display = "none";
+    //    }
+    //    if (event.target == invulformBeschikbaarheid2) {
+    //        invulformBeschikbaarheid2.style.display = "none";
+    //    }
+    //    if (event.target == invulformBeschikbaarheid3) {
+    //        invulformBeschikbaarheid3.style.display = "none";
+    //    }
+    //    if (event.target == invulformBeschikbaarheid4) {
+    //        invulformBeschikbaarheid4.style.display = "none";
+    //    }
+    //    if (event.target == invulformBeschikbaarheid5) {
+    //        invulformBeschikbaarheid5.style.display = "none";
+    //    }
+    //}
+
+    function opslaanUrenBeschikbaarheidDocent() {
+        alert('opgeslagen');
     }
 }(jQuery);
