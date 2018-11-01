@@ -3,11 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
+using System.Configuration;
+using System.Data;
+using System.ComponentModel;
+using System.Drawing;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Roostersysteem.Models
 {
     public class Persoon
     {
+
+        string strCon = ConfigurationManager.ConnectionStrings["myDatabase"].ConnectionString.ToString();
         //----------------------------Private variables------------------------------------------------
         private int _persoonId;
 
@@ -148,9 +156,58 @@ namespace Roostersysteem.Models
             //to do
         }
 
-        public void GegevensWijzigen(string persoonNaam, string persoonEmail, double telefoonNr, string huisNummer, string postcode, bool check)
+        public static void GegevensWijzigen(int persoonId, string persoonNaam, string persoonEmail, double telefoonNr, string straatNaam, string huisNummer, string postcode)
         {
-            //to do
-        }     
+            string constring;
+            SqlConnection con;
+            constring = @"Data Source=localhost; Initial Catalog=testDB; Integrated Security=True;";
+            con = new SqlConnection(constring);
+            con.Open();
+
+            try
+            {
+                SqlCommand cmd;
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                string sql = "";
+                sql = "DELETE testTable WHERE persoonID = 1";
+                cmd = new SqlCommand(sql, con);
+
+                adapter.DeleteCommand = new SqlCommand(sql, con);
+                adapter.DeleteCommand.ExecuteNonQuery();
+                cmd.Dispose();
+
+
+                //cmd.CommandType = CommandType.Text;
+                //cmd.CommandText = "DELETE FROM testTable where persoonID = persoonId";
+                ////cmd.CommandText = "UPDATE testTable SET PERSOONnaam = persoonNaam, " +
+                ////    "PERSOONemail = persoonEmail, PERSOONtelnr = telefoonNr, STRAATnaam = straatNaam, STRAATnr = huisnNummer, POSTcode = postcode = WHERE persoonID = persoonId";
+                //cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+            throw ex;
+            }
+
+            finally
+            {
+                con.Close();
+            }
+
+            
+        }   
+        
+        public void test()
+        {
+            string strCon = ConfigurationManager.ConnectionStrings["myDatabase"].ConnectionString.ToString();
+
+            using (SqlConnection con = new SqlConnection(strCon))
+            {
+                string sql = "DELETE testTable WHERE persoonID = 1";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 }
