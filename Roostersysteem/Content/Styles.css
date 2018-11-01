@@ -9,7 +9,6 @@ h1 {
 }
 
 /*Navbar styling*/
-
 .navbar-brand > img:nth-child(1) {
     display: inline-block;
     float: left;
@@ -30,6 +29,11 @@ a.navbar-brand:nth-child(3) {
     color: black !important;
 }
 
+    /* layout voorhet dropdownmenu */
+    .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+        color: red !important;
+    }
+
 /* de layout voor elk list item in de navbar*/
 .navbar-left > li:nth-child(-n+10) > a:nth-child(-n+10) {
     color: black !important;
@@ -45,7 +49,6 @@ body > nav:nth-child(1) {
     border-bottom: 1px black solid;
     border-radius: unset;
 }
-
 
 /*Zoekbalk*/
 .form-control {
@@ -109,10 +112,23 @@ div.container:nth-child(3) {
 /*Zoekbalk styling*/
 .zoekbalk {
     max-width: 200px;
+    border-color: red !important;
+}
+
+/*Button styling*/
+#buttonStyle {
+    color: white;
+    background-color: red;
 }
 
 .col-sm-2 .zoekbalk {
     max-width: 200px;
+    border-color: red !important;
+}
+
+/* vergrootglas layout bij de zoekbalk */
+.glyphicon {
+    color: red !important;    
 }
 
 /*navbar bovenin*/
@@ -187,7 +203,7 @@ div.container:nth-child(3) {
     }
 }
 
-/*Styles voor VakkenKoppelen*/
+/*Styles voor VakkenKoppelen.cshtml*/
 #labelsVakken {
     max-width: 296px;
     width: 100%;
@@ -198,84 +214,3 @@ div.container:nth-child(3) {
     width: 100%;
 }
 
-/* toevoegen zoom animatie in forms */
-.animate {
-    -webkit-animation: animatezoom 0.6s;
-    animation: animatezoom 0.6s;
-}
-
-@-webkit-keyframes animatezoom {
-    from {
-        -webkit-transform: scale(0)
-    }
-
-    to {
-        -webkit-transform: scale(1)
-    }
-}
-
-@keyframes animatezoom {
-    from {
-        transform: scale(0)
-    }
-
-    to {
-        transform: scale(1)
-    }
-}
-
-/* style aanpassingen, voor de span en de annuleer knop, voor kleine schermen */
-@media screen and (max-width: 300px) {
-    span.psw {
-        display: block;
-        float: none;
-    }
-
-    .btn-default {
-        width: 100%;
-    }
-}
-
-/* The invulformBeschikbaarheid (background) */
-.invulformBeschikbaarheid1, .invulformBeschikbaarheid2, .invulformBeschikbaarheid3, .invulformBeschikbaarheid4, .invulformBeschikbaarheid5 {
-    display: none; /* standaard verborgen */
-    position: fixed; /* gefixeerde positie */
-    z-index: 1; /* gepositioneerd op de voorgrond */
-    left: 0;
-    top: 0;
-    width: 100%; /* Volledige wijdte die nodig is */
-    height: 100%; /* volledige hoogte die nodig is */
-    overflow: auto; /* Indien nodig kan er gescrolled worden */
-    background-color: rgb(0,0,0); /* standaard kleur */
-    background-color: rgba(0,0,0,0.4); /* zwart w/ opacity*/
-    padding-top: 60px;
-}
-
-/* invulformBeschikbaarheid Content/Box */
-.invulformBeschikbaarheid1-content, .invulformBeschikbaarheid2-content, .invulformBeschikbaarheid3-content, .invulformBeschikbaarheid4-content, .invulformBeschikbaarheid5-content {
-    background-color: white !important;
-    margin: 5% auto 15% auto; /* 5% van de top af, 15% van de onderkant en in het midden gecentreerd*/
-    border: 1px solid #888;
-    width: 10%; /* wijdte van het pop up venster */
-}
-
-/* standaard button voor bv opslaan/annuleren */
-.btn-default {
-    color: #fff !important;
-    background: #000 !important;
-    border-color: transparent !important;
-    outline: none !important;
-    border-radius: unset;
-}
-
-/* uitlijning voor de button */
-#opslaanContacturen {
-    margin-left: 44px;
-    margin-top: 40px;
-}
-
-/* Zorgt voor de juiste spacing en uitlijning op het formulier (geeft een vaste wijdte aan elk label) */
-.labelsGegevens {
-    max-width: 514px;
-    width: 100%;
-}
