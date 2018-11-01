@@ -3,15 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
-using System.Configuration;
-using System.Data;
-using System.ComponentModel;
-using System.Drawing;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Roostersysteem.Models
 {
+
+    public class LoginViewModel
+    {
+        [Required]        
+        [Display(Name = "Gebruikersnaam")]
+        
+        public string Gebruikersnaam { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Wachtwoord")]
+        public string Wachtwoord { get; set; }
+
+        [Display(Name = "Remember me?")]
+        public bool RememberMe { get; set; }
+    }
+
     public class Persoon
     {
 
@@ -52,12 +63,6 @@ namespace Roostersysteem.Models
             set { _persoonNaam = persoonNaam; }
         }
 
-        public string persoonEmail
-        {
-            get { return _persoonEmail; }
-            set { _persoonEmail = persoonEmail; }
-        }
-
         public string persoonGbn
         {
             get { return _persoonGbn; }
@@ -68,6 +73,12 @@ namespace Roostersysteem.Models
         {
             get { return _persoonWw; }
             set { _persoonWw = persoonWw; }
+        }
+
+        public string persoonEmail
+        {
+            get { return _persoonEmail; }
+            set { _persoonEmail = persoonEmail; }
         }
 
         public string functie
@@ -104,11 +115,15 @@ namespace Roostersysteem.Models
 
         public bool Inloggen(string gebruikersnaam, string wachtwoord)
         {
+
             // te verplaatsen naar database connectie
             // link is verkeerd moet fixen
+         
+
 
             bool Flag = false;
-            SqlConnection conn = new SqlConnection("Server=MAX-PC;DataBase=RoosterDB;Trusted_Connection=True");          
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;
             conn.Open();
 
             SqlCommand cmd = new SqlCommand();
@@ -118,32 +133,40 @@ namespace Roostersysteem.Models
             SqlDataReader rd = cmd.ExecuteReader();
             
             while (rd.Read())
-            {
+            {   
                 if (rd[1].ToString() == gebruikersnaam && rd[2].ToString() == wachtwoord)
                 {
                     Flag = true;
                     persoonId = Convert.ToInt32(rd[0]);
+                    
                 }
-
-
-            }
+            }        
             conn.Close();
-
-
-
-
-            
-
-            
+            TweeStapsVer();
             return Flag;
+        }
             
+
                 
 
-        }
-
-        public void TweeStapsVer(string token, bool True)
+        public void TweeStapsVer()
         {
-            //to do
+            // Command line argument must the the SMTP host.
+            SmtpClient client = new SmtpClient();
+            client.Port = 587;
+            client.Host = "smtp-mail.outlook.com";
+            client.EnableSsl = true;
+            client.Timeout = 10000;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.UseDefaultCredentials = false;
+            client.Credentials = new System.Net.NetworkCredential("RoosterDontReplyVerificatie@hotmail.com", "100200MMmn");
+
+            MailMessage mm = new MailMessage("RoosterDontReplyVerificatie@hotmail.com", "maxthomas2805@gmail.com", "test", "test");
+            mm.BodyEncoding = UTF8Encoding.UTF8;
+            mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
+
+            client.Send(mm);
+            
         }
 
         public void WachtwoordWijzigen(string persoonNaam, string PersoonWw, string persoonEmail, bool check)
@@ -210,4 +233,5 @@ namespace Roostersysteem.Models
             }
         }
     }
+
 }
