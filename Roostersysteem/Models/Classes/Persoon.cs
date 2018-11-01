@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
 using System.ComponentModel.DataAnnotations;
+using System.Configuration;
+using System.Net.Mail;
+using System.Text;
 
 namespace Roostersysteem.Models
 {
@@ -121,7 +124,8 @@ namespace Roostersysteem.Models
 
 
             bool Flag = false;
-            SqlConnection conn = new SqlConnection("Server=MAX-PC;DataBase=RoosterDB;Trusted_Connection=True");
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;
             conn.Open();
 
             SqlCommand cmd = new SqlCommand();
@@ -140,15 +144,31 @@ namespace Roostersysteem.Models
                 }
             }        
             conn.Close();
+            TweeStapsVer();
             return Flag;
         }
             
 
                 
 
-        public void TweeStapsVer(string token, bool True)
+        public void TweeStapsVer()
         {
-            //to do
+            // Command line argument must the the SMTP host.
+            SmtpClient client = new SmtpClient();
+            client.Port = 587;
+            client.Host = "smtp-mail.outlook.com";
+            client.EnableSsl = true;
+            client.Timeout = 10000;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.UseDefaultCredentials = false;
+            client.Credentials = new System.Net.NetworkCredential("RoosterDontReplyVerificatie@hotmail.com", "100200MMmn");
+
+            MailMessage mm = new MailMessage("RoosterDontReplyVerificatie@hotmail.com", "maxthomas2805@gmail.com", "test", "test");
+            mm.BodyEncoding = UTF8Encoding.UTF8;
+            mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
+
+            client.Send(mm);
+            
         }
 
         public void WachtwoordWijzigen(string persoonNaam, string PersoonWw, string persoonEmail, bool check)
