@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Configuration;
+using System.Data;
 
 namespace Roostersysteem.Models
 {
@@ -15,31 +16,35 @@ namespace Roostersysteem.Models
     //
     public class Vak
     {
+
+        public int VakId { get; set; }
+        public string VakType { get; set; }
+        public bool IsSelected { get; set; }
+
+        public static List<Vak>getvakken()
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DatabaseConnectionExpress"].ConnectionString);
+            SqlCommand cmd = new SqlCommand("select * from TypeVak", con);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            var vak = new List<Vak>(ds.Tables[0].Rows.Count);
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                var values = row.ItemArray;
+                var vakken = new Vak()
+                {
+                    VakId = (int)values[0],
+                    VakType = (string)values[1],
+                };
+                vak.Add(vakken);
+            }
+            return vak;
+        }
+
+
         //Attributen
-        public int VakNr;
-        public enum TypeLokaal { Collegezaal, Practicumlokaal, Leslokaal };
-        public enum TypeCollege { Hoorcollege, Discussiecollege, Werkcollege };
-        //enum TypeVak even op 'public'gezet om te kunnen testen met het view 'VakkenKoppelen'
-        public enum TypeVak {};
-        public DateTime _totaalTijd;
-        public string strConnection = ConfigurationManager.ConnectionStrings["DatabaseConnectionServer"].ConnectionString.ToString();
-        //List <SelectVakken> items;
 
-        //Properties
-        public TypeVak _typeVak
-        { get; set; }
-        public DateTime TotaalTijd
-        {
-            get { return _totaalTijd; }
-            set { _totaalTijd = TotaalTijd; }
-        }
-
-        //Constructor
-        public Vak() { }
-        public Vak (string vakNr, string vak)
-        {
-            //To do
-        }
 
         //Methods 
         public void VakContacturenDoorgeven(string vakNr, int uren, string typeLokaal)

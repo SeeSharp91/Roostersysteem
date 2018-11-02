@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -12,33 +13,36 @@ namespace Roostersysteem.Controllers
     {
         [HttpGet]
         // GET: Vakken from DB
-        public ActionResult SelectieVak()
+        public ActionResult VakkenKoppelen()
         {
-            Vak oVak = new Vak();
-            List<SelectListItem> items = new List<SelectListItem>();
-            using (SqlConnection con = new SqlConnection(oVak.strConnection))
+            List<Vak> model = new List<Vak>();
+            model = Vak.getvakken();
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult VakkenKoppelen(List<Vak> vak)
+        {
+            if (vak.Count(x => x.IsSelected) == 0)
             {
-                string query = "SELECT * FROM TypeVak";
-                using (SqlCommand cmd = new SqlCommand(query))
-                {
-                    cmd.Connection = con;
-                    con.Open();
-                    using (SqlDataReader sdr = cmd.ExecuteReader())
-                    {
-                        while (sdr.Read())
-                        {
-                            items.Add(new SelectListItem
-                            {
-                                Text = sdr["VakType"].ToString(),
-                                Value = sdr["VakId"].ToString()
-                            });
-                        }
-                    }
-                    con.Close();
-                }
+                ViewBag.msg = "Je hebt geen vak geselecteerd";
+                return View();
             }
-
-            return View("VakkenKoppelen", items);
+            else
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.Append("Je hebt de volgende vakken geselecteerd : ");
+                foreach (Vak v in vak)
+                {
+                    if (v.IsSelected)
+                    {
+                        sb.Append(v.VakType + ",");
+                    }
+                }
+                sb.Remove(sb.ToString().LastIndexOf(","), 1);
+                sb.Append(" Vakken");
+                ViewBag.msg = sb.ToString();
+                return View(vak);
+            }
         }
 
         [HttpPost]
