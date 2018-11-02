@@ -2,13 +2,16 @@
 @model LoginViewModel
 @{
     ViewBag.Title = "Home Page";
+    Layout = null;
 }
+
+
 
 <!DOCTYPE html>
 
 <html>
 <head>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> 
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <title>Login</title>
@@ -63,53 +66,53 @@
                     }
 
                 </section>
-            <div class="col-md-4 col-sm-4 col-xs-12"></div>
+                <div class="col-md-4 col-sm-4 col-xs-12"></div>
+            </div>
         </div>
-    </div>
         @*
-        <form class="login-form-container" action="/Inlogpagina/Autherize" method="post">
-            <!--Titel en logo-->
-            <div class="row">
-                <div class="col-lg-6">
-                    <h1>
-                        Inlog pagina
-                    </h1>
-                </div>
-                <div class="col-lg-2">
-                    <img src="../images/logo.png" width="100px" height="100px" alt="ZUYD" />
-                </div>
-            </div>
-            <!--gebruikersnaam-->
-            <div class="form-group">
-                <label for="InputGebruiker">Gebruikersnaam:</label>
-                <input type="text" class="form-control" id="persoonGbn" name="persoonGbn" placeholder="Gebruikersnaam" required />
-            </div>
-            <!--wachtwoord-->
-            <div class="form-group">
-                <label for="InputWachtwoord">Wachtwoord:</label>
-                <input type="password" class="form-control" id="persoonWw" name="persoonWw" placeholder="Wachtwoord" required />
-            </div>
-            <!--check referentie behouden-->
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="remember" /> Onthoud mijn gebruikersnaam
-                </label>
+                <form class="login-form-container" action="/Inlogpagina/Autherize" method="post">
+                    <!--Titel en logo-->
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h1>
+                                Inlog pagina
+                            </h1>
+                        </div>
+                        <div class="col-lg-2">
+                            <img src="../images/logo.png" width="100px" height="100px" alt="ZUYD" />
+                        </div>
+                    </div>
+                    <!--gebruikersnaam-->
+                    <div class="form-group">
+                        <label for="InputGebruiker">Gebruikersnaam:</label>
+                        <input type="text" class="form-control" id="persoonGbn" name="persoonGbn" placeholder="Gebruikersnaam" required />
+                    </div>
+                    <!--wachtwoord-->
+                    <div class="form-group">
+                        <label for="InputWachtwoord">Wachtwoord:</label>
+                        <input type="password" class="form-control" id="persoonWw" name="persoonWw" placeholder="Wachtwoord" required />
+                    </div>
+                    <!--check referentie behouden-->
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="remember" /> Onthoud mijn gebruikersnaam
+                        </label>
+                    </div>
+
+                    <!--knop voor te inloggen-->
+                    <button type="submit" class="btn btn-danger btn-block" id="Button1" name="Button1" onclick="Autherize(List<SelectListITem> items)" value="Inloggen">Inloggen</button>
+
+                    <!--Link voor herstellen wachtwoord-->
+                    <div class="container">
+                        <span class="psw"><a href="#" style="color:red">Wachtwoord vergeten?</a></span>
+                    </div>
+                </form>
+                <!--from end-->
             </div>
 
-            <!--knop voor te inloggen-->
-            <button type="submit" class="btn btn-danger btn-block" id="Button1" name="Button1" onclick="Autherize(List<SelectListITem> items)" value="Inloggen">Inloggen</button>
-
-            <!--Link voor herstellen wachtwoord-->
-            <div class="container">
-                <span class="psw"><a href="#" style="color:red">Wachtwoord vergeten?</a></span>
+                    <div class="col-md-4 col-sm-4 col-xs-12"></div>
+                </div>
             </div>
-        </form>
-        <!--from end-->
-    </div>
-            
-            <div class="col-md-4 col-sm-4 col-xs-12"></div>
-        </div>
-    </div>
-    *@
+        *@
 </body>
 </html>
