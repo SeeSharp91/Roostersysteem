@@ -3,6 +3,8 @@ using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
+using System.Configuration;
 
 namespace Roostersysteem.Models
 {
@@ -14,12 +16,14 @@ namespace Roostersysteem.Models
     public class Vak
     {
         //Attributen
-        private int _vakNr;
-        private enum TypeLokaal { Collegezaal, Practicumlokaal, Leslokaal };
-        private enum TypeCollege { Hoorcollege, Discussiecollege, Werkcollege };
-        //enum TypeVak even op 'public'gezet om te kunnen testen voor de radiobuttons met het view 'VakkenKoppelen'
-        public enum TypeVak {};//Enum's nog verwerken in DB
-        private DateTime _totaalTijd;
+        public int VakNr;
+        public enum TypeLokaal { Collegezaal, Practicumlokaal, Leslokaal };
+        public enum TypeCollege { Hoorcollege, Discussiecollege, Werkcollege };
+        //enum TypeVak even op 'public'gezet om te kunnen testen met het view 'VakkenKoppelen'
+        public enum TypeVak {};
+        public DateTime _totaalTijd;
+        public string strConnection = ConfigurationManager.ConnectionStrings["DatabaseConnectionServer"].ConnectionString.ToString();
+        //List <SelectVakken> items;
 
         //Properties
         public TypeVak _typeVak
@@ -31,6 +35,7 @@ namespace Roostersysteem.Models
         }
 
         //Constructor
+        public Vak() { }
         public Vak (string vakNr, string vak)
         {
             //To do
@@ -47,9 +52,31 @@ namespace Roostersysteem.Models
             //To do
         }
 
-        public void VakkenAangeven(string vak)
+        public void VakkenAangeven(Vak oVak)
         {
-            //To do
+            //List<string> items = new List <string>();
+            
+            //using (SqlConnection con = new SqlConnection(strConnection))
+            //{
+            //    string query = "SELECT * FROM TypeVak";
+            //    using (SqlCommand cmd = new SqlCommand(query))
+            //    {
+            //        cmd.Connection = con;
+            //        con.Open();
+            //        using (SqlDataReader sdr = cmd.ExecuteReader())
+            //        {
+            //            while (sdr.Read())
+            //            {
+            //                items.Add(new SelectVakken
+            //                {
+            //                    Text = sdr["VakType"].ToString(),
+            //                    Value = sdr["VakId"].ToString()
+            //                });
+            //            }
+            //        }
+            //        con.Close();
+            //    }
+            //}
         }
 
         public void DocentKoppelenVak(string docentNaam, string vak)
