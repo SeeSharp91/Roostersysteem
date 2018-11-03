@@ -32,5 +32,11 @@ namespace Roostersysteem.Controllers
             ViewBag.Message = "";
             return View();
         }
+
+        public ActionResult Logout()
+        {
+            Session.Abandon();
+            return RedirectToAction("index", "Inlogpagina");
+        }
     }
 }

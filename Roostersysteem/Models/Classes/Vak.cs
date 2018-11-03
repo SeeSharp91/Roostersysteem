@@ -3,6 +3,9 @@ using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
+using System.Configuration;
+using System.Data;
 
 namespace Roostersysteem.Models
 {
@@ -13,28 +16,35 @@ namespace Roostersysteem.Models
     //
     public class Vak
     {
+
+        public int VakId { get; set; }
+        public string VakType { get; set; }
+        public bool IsSelected { get; set; }
+
+        public static List<Vak>getvakken()
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DatabaseConnectionExpress"].ConnectionString);
+            SqlCommand cmd = new SqlCommand("select * from TypeVak", con);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            var vak = new List<Vak>(ds.Tables[0].Rows.Count);
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                var values = row.ItemArray;
+                var vakken = new Vak()
+                {
+                    VakId = (int)values[0],
+                    VakType = (string)values[1],
+                };
+                vak.Add(vakken);
+            }
+            return vak;
+        }
+
+
         //Attributen
-        private int _vakNr;
-        private enum TypeLokaal { Collegezaal, Practicumlokaal, Leslokaal };
-        private enum TypeCollege { Hoorcollege, Discussiecollege, Werkcollege };
-        //enum TypeVak even op 'public'gezet om te kunnen testen voor de radiobuttons met het view 'VakkenKoppelen'
-        public enum TypeVak {};//Enum's nog verwerken in DB
-        private DateTime _totaalTijd;
 
-        //Properties
-        public TypeVak _typeVak
-        { get; set; }
-        public DateTime TotaalTijd
-        {
-            get { return _totaalTijd; }
-            set { _totaalTijd = TotaalTijd; }
-        }
-
-        //Constructor
-        public Vak (string vakNr, string vak)
-        {
-            //To do
-        }
 
         //Methods 
         public void VakContacturenDoorgeven(string vakNr, int uren, string typeLokaal)
@@ -47,9 +57,31 @@ namespace Roostersysteem.Models
             //To do
         }
 
-        public void VakkenAangeven(string vak)
+        public void VakkenAangeven(Vak oVak)
         {
-            //To do
+            //List<string> items = new List <string>();
+            
+            //using (SqlConnection con = new SqlConnection(strConnection))
+            //{
+            //    string query = "SELECT * FROM TypeVak";
+            //    using (SqlCommand cmd = new SqlCommand(query))
+            //    {
+            //        cmd.Connection = con;
+            //        con.Open();
+            //        using (SqlDataReader sdr = cmd.ExecuteReader())
+            //        {
+            //            while (sdr.Read())
+            //            {
+            //                items.Add(new SelectVakken
+            //                {
+            //                    Text = sdr["VakType"].ToString(),
+            //                    Value = sdr["VakId"].ToString()
+            //                });
+            //            }
+            //        }
+            //        con.Close();
+            //    }
+            //}
         }
 
         public void DocentKoppelenVak(string docentNaam, string vak)
