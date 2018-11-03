@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using static Roostersysteem.Models.Vak;
 
 namespace Roostersysteem.Controllers
 {
@@ -57,5 +58,28 @@ namespace Roostersysteem.Controllers
             }
             return View(items);
         }
+
+        // wordt aan gewerkt
+        //public ActionResult contactUrenDoorgeven()
+        //{
+        //    var list = new List<MyListTable>();
+        //
+        //    using (SqlConnection c = new SqlConnection(cString))
+        //    using (SqlCommand cmd = new SqlCommand("SELECT KeyField, DisplayField FROM Table", c))
+        //    {
+        //        using (SqlDataReader rdr = cmd.ExecuteReader())
+        //        {
+        //            while (rdr.Read())
+        //            {
+        //                list.Add(new MyListTable
+        //                {
+        //                    Key = rdr.GetString(0),
+        //                    Display = rdr.GetString(1)
+        //                });
+        //            }
+        //        }
+        //    }
+        // 
+        //    return View(model);
     }
 }

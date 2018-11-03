@@ -7,6 +7,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Configuration;
 using System.ComponentModel.DataAnnotations;
+using System.Data;
 
 namespace Roostersysteem.Models
 {
@@ -30,7 +31,7 @@ namespace Roostersysteem.Models
     public class Persoon
     {
 
-        string strCon = ConfigurationManager.ConnectionStrings["myDatabase"].ConnectionString.ToString();
+        string strCon = ConfigurationManager.ConnectionStrings["DatabaseConnectionExpress"].ConnectionString.ToString();
         //----------------------------Public variables------------------------------------------------
         public string PersoonNaam { get; set; }
 
@@ -67,7 +68,7 @@ namespace Roostersysteem.Models
 
             bool Flag = false;
             SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;
+            conn.ConnectionString = ConfigurationManager.ConnectionStrings["DatabaseConnectionExpress"].ConnectionString;
             conn.Open();
 
             SqlCommand cmd = new SqlCommand();
@@ -113,9 +114,17 @@ namespace Roostersysteem.Models
 
         }
 
-        public void WachtwoordWijzigen(string persoonNaam, string PersoonWw, string persoonEmail, bool check)
+        public void WachtwoordWijzigen(Persoon persoon)
         {
-            //to do
+            string strCon = ConfigurationManager.ConnectionStrings["DatabaseConnectionExpress"].ConnectionString.ToString();
+
+            using (SqlConnection con = new SqlConnection(strCon))
+            {
+                string sql = "UPDATE Persoon set PersoonWw = '"+ persoon.PersoonWw +"' WHERE PersoonGbn = '" + persoon.PersoonGbn + "'  ";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public void WachtwoordResetten(string persoonNaam, string persoonWw, string persoonEmail, bool check)
@@ -135,5 +144,36 @@ namespace Roostersysteem.Models
                 cmd.ExecuteNonQuery();
             }
         }
+
+
+
+        public void getGegevens(Persoon persoon)
+        {
+            string strCon = ConfigurationManager.ConnectionStrings["DatabaseConnectionExpress"].ConnectionString.ToString();
+
+            using (SqlConnection con = new SqlConnection(strCon))
+            {
+                string sql = "SELECT * FROM Persoon WHERE PersoonId = 1 ";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+
+        public Persoon()
+        {
+            PersoonId = 1;
+            PersoonNaam = "Voornaam Achternaam";
+            PersoonEmail = "email@email.com";
+            TelefoonNr = 0000000000;
+            PersoonGbn = "0000000Achternaam";
+            PersoonWw = "Wachtwoord";
+            PersoonWwHerhaling = PersoonWw;
+            StraatNaam = "Straatnaam";
+            HuisNummer = 1;
+            Postcode = "1234AB";
+        }
+
     }
 }

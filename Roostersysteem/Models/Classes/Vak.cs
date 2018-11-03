@@ -20,6 +20,10 @@ namespace Roostersysteem.Models
         public int VakId { get; set; }
         public string VakType { get; set; }
         public bool IsSelected { get; set; }
+        public SelectList DropDownList { get; set; } // dropdownmenu
+
+
+
 
         public static List<Vak>getvakken()
         {
@@ -45,6 +49,14 @@ namespace Roostersysteem.Models
 
         //Attributen
 
+
+
+        //table voor dropdownmenu
+        public class MyListTable
+        {
+            public string key { get; set; }
+            public string Display { get; set; }
+        }
 
         //Methods 
         public void VakContacturenDoorgeven(string vakNr, int uren, string typeLokaal)
