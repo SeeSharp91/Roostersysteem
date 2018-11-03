@@ -39,8 +39,15 @@ namespace Roostersysteem.Controllers
         public ActionResult MijnGegevens(FormCollection formCollection)
         {
             Persoon persoon = new Persoon();
-            persoon.test();
-            return View("regSuccess");
+            persoon.PersoonId = Int32.Parse(formCollection["PersoonId"]);
+            persoon.PersoonNaam = formCollection["PersoonNaam"];
+            persoon.PersoonEmail= formCollection["PersoonEmail"];
+            persoon.TelefoonNr = Int32.Parse(formCollection["TelefoonNr"]);
+            persoon.StraatNaam = formCollection["StraatNaam"];
+            persoon.HuisNummer= Int32.Parse(formCollection["HuisNummer"]);
+            persoon.Postcode = formCollection["Postcode"];
+            persoon.GegevensWijzigen(persoon);
+            return View("MijnGegevens", persoon);
         }
     }
 }

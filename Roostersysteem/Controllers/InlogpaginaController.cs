@@ -35,7 +35,7 @@ namespace Roostersysteem.Controllers
 
             if (check == true)
             {
-                Session["gebruikersid"] = p.persoonId;
+                Session["gebruikersid"] = p.PersoonId;
                 return RedirectToAction("../Home/Home");
             }
             else

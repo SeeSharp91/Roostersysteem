@@ -7,42 +7,6 @@
 @* Gemaakt door: Mitchell; op 26-10: layout gemaakt
     bijgewerkt op: 27-10 en 28-10 layout bijgewerkt*@
 
-@*@{
-        var persoonNaam = "";
-        var persoonEmail = "";
-        var telefoonNr = "";
-        var straatNaam = "";
-        var huisNummer = "";
-        var postcode= "";
-
-        //var = "";
-        //var = "";
-
-        if (IsPost)
-        {
-            persoonNaam = Request.Form["persoonNaam"];
-            persoonEmail = Request.Form["persoonEmail"];
-            telefoonNr = Request.Form["telefoonNr"];
-            straatNaam = Request.Form["straatNaam"];
-            huisNummer = Request.Form["huisNummer"];
-            postcode = Request.Form["postcode"];
-        }
-    }
-
-    @{
-        var gebruikersnaam = "";
-        var nieuwWachtwoord = "";
-        var nieuwHerWachtwoord = "";
-
-        if (IsPost)
-        {
-            gebruikersnaam = Request.Form["gebruikersnaam"];
-            nieuwWachtwoord = Request.Form["nieuwWachtwoord"];
-            nieuwHerWachtwoord = Request.Form["niewHerWachtwoord"];
-        }
-    }*@
-
-
 
 <html>
 <head>
@@ -68,16 +32,73 @@
                     <h4>
                         Personalia:
                     </h4>
-                    <fieldset>
-                        <label class="labelsGegevens" id="labelsVakken">PersoonId:</label> @Html.TextBoxFor(m => m.persoonId)<br />
-                        <label class="labelsGegevens" id="labelsVakken">Naam:</label>  @Html.TextBoxFor(m => m.persoonNaam)<br />
-                        <label class="labelsGegevens" id="labelsVakken">E-mailadres:</label> @Html.TextBoxFor(m => m.persoonEmail)<br />
-                        <label class="labelsGegevens" id="labelsVakken">Telefoonnummer:</label> @Html.TextBoxFor(m => m.telefoonNr) <br />
-                        <label class="labelsGegevens" id="labelsVakken">Straat:</label> @Html.TextBoxFor(m => m.straatNaam)<br />
-                        <label class="labelsGegevens" id="labelsVakken">Huisnummer + toevoeging (optioneel):</label> @Html.TextBoxFor(m => m.huisNummer)<br />
-                        <label class="labelsGegevens" id="labelsVakken">Postcode:</label> @Html.TextBoxFor(m => m.postcode) <br />
-                    </fieldset>
-                </div>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.ValidationSummary(true)
+                        <fieldset>
+
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.PersoonId)
+                            </div>
+                            <div class="editor-field">
+                                @Html.EditorFor(model => model.PersoonId)
+                                @Html.ValidationMessageFor(model => model.PersoonId)
+                            </div>
+
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.PersoonNaam)
+                            </div>
+                            <div class="editor-field">
+                                @Html.EditorFor(model => model.PersoonNaam)
+                                @Html.ValidationMessageFor(model => model.PersoonNaam)
+                            </div>
+
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.PersoonEmail)
+                            </div>
+                            <div class="editor-field">
+                                @Html.EditorFor(model => model.PersoonEmail)
+                                @Html.ValidationMessageFor(model => model.PersoonEmail)
+                            </div>
+
+
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.TelefoonNr)
+                            </div>
+                            <div class="editor-field">
+                                @Html.EditorFor(model => model.TelefoonNr)
+                                @Html.ValidationMessageFor(model => model.TelefoonNr)
+                            </div>
+
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.StraatNaam)
+                            </div>
+                            <div class="editor-field">
+                                @Html.EditorFor(model => model.StraatNaam)
+                                @Html.ValidationMessageFor(model => model.StraatNaam)
+                            </div>
+
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.HuisNummer)
+                            </div>
+                            <div class="editor-field">
+                                @Html.EditorFor(model => model.HuisNummer)
+                                @Html.ValidationMessageFor(model => model.HuisNummer)
+                            </div>
+
+
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.Postcode)
+                            </div>
+                            <div class="editor-field">
+                                @Html.EditorFor(model => model.Postcode)
+                                @Html.ValidationMessageFor(model => model.Postcode)
+                            </div>
+
+
+                        </fieldset>
+                    }
+                    </div>
             </fieldset>
 
             @* opslaan *@
