@@ -12,35 +12,66 @@ namespace Roostersysteem.Controllers
 {
     public class ProfielController : Controller
     {
-        // GET: Profiel
+
+        [HttpGet]
         public ActionResult MijnGegevens()
         {
-            return View();
+            //Persoon persoon = new Persoon();
+            //persoon.getGegevens(persoon);
+            //persoon.PersoonId = persoon.PersoonId
+            //return View("MijnGegevens", persoon);
+
+            //
+            //The clean way to do so is to pass a new instance of the created entity through the controller:
+
+            ////GET
+            //public ActionResult CreateNewMyEntity(string default_value)
+            //{
+            //    Persoon persoon = new Persoon();
+            //    persoon.PersoonId = 1;
+
+            //    return View(persoon);
+            //}
+
+            var model = new Persoon();
+            return View(model);
+            
         }
-
-        //[HttpPost]
-        //public ActionResult Persoon(Persoon persoon)
-        //{
-        //    int persoonId = persoon.persoonId;
-        //    string persoonnaam = persoon.persoonNaam;
-        //    string persoonemail = persoon.persoonEmail;
-        //    double telefoonnummer = persoon.telefoonNr;
-        //    string straatnaam = persoon.straatNaam;
-        //    string huisnummer = persoon.huisNummer;
-        //    string postcode = persoon.postcode;
-        //    Models.Persoon.GegevensWijzigen(persoonId, persoonnaam, persoonemail, telefoonnummer, straatnaam, huisnummer, postcode);
-
-
-        //    return View(persoon);
-        //}
+        
+        
 
 
         [HttpPost]
         public ActionResult MijnGegevens(FormCollection formCollection)
         {
             Persoon persoon = new Persoon();
-            persoon.test();
-            return View("regSuccess");
+            persoon.PersoonId = Int32.Parse(formCollection["PersoonId"]);
+            persoon.PersoonNaam = formCollection["PersoonNaam"];
+            persoon.PersoonEmail= formCollection["PersoonEmail"];
+            persoon.TelefoonNr = Int32.Parse(formCollection["TelefoonNr"]);
+            persoon.StraatNaam = formCollection["StraatNaam"];
+            persoon.HuisNummer= Int32.Parse(formCollection["HuisNummer"]);
+            persoon.Postcode = formCollection["Postcode"];
+            persoon.GegevensWijzigen(persoon);
+            return View("MijnGegevens", persoon);
         }
+
+        [HttpPost]
+        public ActionResult MijnWachtwoord(FormCollection formCollection)
+        {
+            
+            Persoon persoon = new Persoon();
+            if (persoon.PersoonWw == persoon.PersoonWwHerhaling)
+            {
+                persoon.PersoonGbn = formCollection["PersoonGbn"];
+                persoon.PersoonWw = formCollection["PersoonWw"];
+                persoon.PersoonWwHerhaling = formCollection["PersoonWwHerhaling"];
+                persoon.WachtwoordWijzigen(persoon);
+            }
+            
+            return View("MijnGegevens", persoon);
+
+        }
+
     }
 }

@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
-using System.ComponentModel.DataAnnotations;
-using System.Configuration;
 using System.Net.Mail;
 using System.Text;
+using System.Configuration;
+using System.ComponentModel.DataAnnotations;
+using System.Data;
 
 namespace Roostersysteem.Models
 {
 
     public class LoginViewModel
     {
-        [Required]        
+        [Required]
         [Display(Name = "Gebruikersnaam")]
-        
+
         public string Gebruikersnaam { get; set; }
 
         [Required]
@@ -30,90 +31,30 @@ namespace Roostersysteem.Models
     public class Persoon
     {
 
-        string strCon = ConfigurationManager.ConnectionStrings["myDatabase"].ConnectionString.ToString();
-        //----------------------------Private variables------------------------------------------------
-        private int _persoonId;
+        string strCon = ConfigurationManager.ConnectionStrings["DatabaseConnectionExpress"].ConnectionString.ToString();
+        //----------------------------Public variables------------------------------------------------
+        public string PersoonNaam { get; set; }
 
-        private string _persoonNaam;
+        public int PersoonId { get; set; }
 
-        private string _persoonEmail;
+        public string PersoonEmail { get; set; }
 
-        private string _persoonGbn;
+        public int TelefoonNr { get; set; }
 
-        private string _persoonWw;
+        public string StraatNaam { get; set; }
 
-        private string _functie;
+        public int HuisNummer { get; set; }
 
-        private double _telefoonNr;
+        public string Postcode { get; set; }
 
-        private string _straatNaam;
+        public string PersoonGbn { get; set; }
 
-        private string _huisNummer;
+        public string PersoonWw { get; set; }
 
-        private string _postcode;
+        public string PersoonWwHerhaling { get; set; }
 
-        //----------------------------Public variables-----------------------------------------------
-        //Dit zijn geen variabelen maar properties. Mede mogelijk gemaakt door Micha corp. ©
+        public string Functie { get; set; }
 
-        public int persoonId
-        {
-            get { return _persoonId; }
-            set { _persoonId = persoonId; }
-        }
-
-        public string persoonNaam
-        {
-            get { return _persoonNaam; }
-            set { _persoonNaam = persoonNaam; }
-        }
-
-        public string persoonGbn
-        {
-            get { return _persoonGbn; }
-            set { _persoonGbn = persoonGbn; }
-        }
-
-        public string persoonWw
-        {
-            get { return _persoonWw; }
-            set { _persoonWw = persoonWw; }
-        }
-
-        public string persoonEmail
-        {
-            get { return _persoonEmail; }
-            set { _persoonEmail = persoonEmail; }
-        }
-
-        public string functie
-        {
-            get { return _functie; }
-            set { _functie = functie; }
-        }
-
-        public double telefoonNr
-        {
-            get { return _telefoonNr; }
-            set { _telefoonNr = telefoonNr; }
-        }
-
-        public string straatNaam
-        {
-            get { return _straatNaam; }
-            set { _straatNaam = straatNaam; }
-        }
-
-        public string huisNummer
-        {
-            get { return _huisNummer; }
-            set { _huisNummer = huisNummer; }
-        }
-
-        public string postcode
-        {
-            get { return _postcode; }
-            set { _postcode = postcode; }
-        }
 
         //-------------------------------METHODS------------------------------------------------------
 
@@ -122,12 +63,12 @@ namespace Roostersysteem.Models
 
             // te verplaatsen naar database connectie
             // link is verkeerd moet fixen
-         
+
 
 
             bool Flag = false;
             SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;
+            conn.ConnectionString = ConfigurationManager.ConnectionStrings["DatabaseConnectionExpress"].ConnectionString;
             conn.Open();
 
             SqlCommand cmd = new SqlCommand();
@@ -135,23 +76,23 @@ namespace Roostersysteem.Models
             cmd.Connection = conn;
 
             SqlDataReader rd = cmd.ExecuteReader();
-            
+
             while (rd.Read())
-            {   
+            {
                 if (rd[1].ToString() == gebruikersnaam && rd[2].ToString() == wachtwoord)
                 {
                     Flag = true;
-                    persoonId = Convert.ToInt32(rd[0]);
-                    
+                    PersoonId = Convert.ToInt32(rd[0]);
+
                 }
-            }        
+            }
             conn.Close();
             TweeStapsVer();
             return Flag;
         }
-            
 
-                
+
+
 
         public void TweeStapsVer()
         {
@@ -170,12 +111,20 @@ namespace Roostersysteem.Models
             mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
 
             client.Send(mm);
-            
+
         }
 
-        public void WachtwoordWijzigen(string persoonNaam, string PersoonWw, string persoonEmail, bool check)
+        public void WachtwoordWijzigen(Persoon persoon)
         {
-            //to do
+            string strCon = ConfigurationManager.ConnectionStrings["DatabaseConnectionExpress"].ConnectionString.ToString();
+
+            using (SqlConnection con = new SqlConnection(strCon))
+            {
+                string sql = "UPDATE Persoon set PersoonWw = '"+ persoon.PersoonWw +"' WHERE PersoonGbn = '" + persoon.PersoonGbn + "'  ";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public void WachtwoordResetten(string persoonNaam, string persoonWw, string persoonEmail, bool check)
@@ -183,59 +132,48 @@ namespace Roostersysteem.Models
             //to do
         }
 
-        public static void GegevensWijzigen(int persoonId, string persoonNaam, string persoonEmail, double telefoonNr, string straatNaam, string huisNummer, string postcode)
+        public void GegevensWijzigen(Persoon persoon)
         {
-            string constring;
-            SqlConnection con;
-            constring = @"Data Source=localhost; Initial Catalog=testDB; Integrated Security=True;";
-            con = new SqlConnection(constring);
-            con.Open();
-
-            try
-            {
-                SqlCommand cmd;
-                SqlDataAdapter adapter = new SqlDataAdapter();
-                string sql = "";
-                sql = "DELETE testTable WHERE persoonID = 1";
-                cmd = new SqlCommand(sql, con);
-
-                adapter.DeleteCommand = new SqlCommand(sql, con);
-                adapter.DeleteCommand.ExecuteNonQuery();
-                cmd.Dispose();
-
-
-                //cmd.CommandType = CommandType.Text;
-                //cmd.CommandText = "DELETE FROM testTable where persoonID = persoonId";
-                ////cmd.CommandText = "UPDATE testTable SET PERSOONnaam = persoonNaam, " +
-                ////    "PERSOONemail = persoonEmail, PERSOONtelnr = telefoonNr, STRAATnaam = straatNaam, STRAATnr = huisnNummer, POSTcode = postcode = WHERE persoonID = persoonId";
-                //cmd.ExecuteNonQuery();
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-            throw ex;
-            }
-
-            finally
-            {
-                con.Close();
-            }
-
-            
-        }   
-        
-        public void test()
-        {
-            string strCon = ConfigurationManager.ConnectionStrings["myDatabase"].ConnectionString.ToString();
+            string strCon = ConfigurationManager.ConnectionStrings["DatabaseConnectionExpress"].ConnectionString.ToString();
 
             using (SqlConnection con = new SqlConnection(strCon))
             {
-                string sql = "DELETE testTable WHERE persoonID = 1";
+                string sql = "UPDATE Persoon set PersoonNaam = '"+ persoon.PersoonNaam + "', PersoonEmail = '" + persoon.PersoonEmail+ "', TelefoonNr = '" + persoon.TelefoonNr + "', StraatNaam = '" + persoon.StraatNaam + "', HuisNummer = '" + persoon.HuisNummer + "', Postcode = '" + persoon.Postcode + "' WHERE persoonId = '"+ persoon.PersoonId +"'  ";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
         }
-    }
 
+
+
+        public void getGegevens(Persoon persoon)
+        {
+            string strCon = ConfigurationManager.ConnectionStrings["DatabaseConnectionExpress"].ConnectionString.ToString();
+
+            using (SqlConnection con = new SqlConnection(strCon))
+            {
+                string sql = "SELECT * FROM Persoon WHERE PersoonId = 1 ";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+
+        public Persoon()
+        {
+            PersoonId = 1;
+            PersoonNaam = "Voornaam Achternaam";
+            PersoonEmail = "email@email.com";
+            TelefoonNr = 0000000000;
+            PersoonGbn = "0000000Achternaam";
+            PersoonWw = "Wachtwoord";
+            PersoonWwHerhaling = PersoonWw;
+            StraatNaam = "Straatnaam";
+            HuisNummer = 1;
+            Postcode = "1234AB";
+        }
+
+    }
 }

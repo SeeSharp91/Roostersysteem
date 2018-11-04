@@ -208,6 +208,12 @@ div.container:nth-child(3) {
     width: 100%;
 }
 
+#labelsGegevens {
+    max-width: 296px;
+    width: 100%;
+    margin-right: 100px;
+}
+
 #labelsDagen {
     max-width: 100px;
     width: 100%;

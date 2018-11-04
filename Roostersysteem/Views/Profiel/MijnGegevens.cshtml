@@ -7,78 +7,85 @@
 @* Gemaakt door: Mitchell; op 26-10: layout gemaakt
     bijgewerkt op: 27-10 en 28-10 layout bijgewerkt*@
 
-@*@{
-        var persoonNaam = "";
-        var persoonEmail = "";
-        var telefoonNr = "";
-        var straatNaam = "";
-        var huisNummer = "";
-        var postcode= "";
-
-        //var = "";
-        //var = "";
-
-        if (IsPost)
-        {
-            persoonNaam = Request.Form["persoonNaam"];
-            persoonEmail = Request.Form["persoonEmail"];
-            telefoonNr = Request.Form["telefoonNr"];
-            straatNaam = Request.Form["straatNaam"];
-            huisNummer = Request.Form["huisNummer"];
-            postcode = Request.Form["postcode"];
-        }
-    }
-
-    @{
-        var gebruikersnaam = "";
-        var nieuwWachtwoord = "";
-        var nieuwHerWachtwoord = "";
-
-        if (IsPost)
-        {
-            gebruikersnaam = Request.Form["gebruikersnaam"];
-            nieuwWachtwoord = Request.Form["nieuwWachtwoord"];
-            nieuwHerWachtwoord = Request.Form["niewHerWachtwoord"];
-        }
-    }*@
-
-
 
 <html>
 <head>
     <title>MijnGegevens</title>
 </head>
 <body>
-    
+
     <ol class="breadcrumb">
         <h1>Roostersysteem Zuyd</h1>
         <li>@Html.ActionLink("Home", "Index", "Home")</li>
         <li>>Profiel</a></li>
         <li class="active">Mijn gegevens</li>
-        
+
     </ol>
 
     @using (Html.BeginForm("MijnGegevens", "Profiel", FormMethod.Post))
     {
-        <div class="col-lg-6">
+        <div class="col-lg-10 col-lg-offset-2">
             @* personalia*@
-            <fieldset>
 
-                <div>
-                    <h4>
-                        Personalia:
-                    </h4>
+            <div>
+                <h2>
+                    Personalia:
+                </h2>
+                @using (Html.BeginForm())
+                {
+                    @Html.ValidationSummary(true)
                     <fieldset>
-                        <label class="labelsGegevens" id="labelsVakken">PersoonId:</label> @Html.TextBoxFor(m => m.persoonId)<br />
-                        <label class="labelsGegevens" id="labelsVakken">Naam:</label>  @Html.TextBoxFor(m => m.persoonNaam)<br />
-                        <label class="labelsGegevens" id="labelsVakken">E-mailadres:</label> @Html.TextBoxFor(m => m.persoonEmail)<br />
-                        <label class="labelsGegevens" id="labelsVakken">Telefoonnummer:</label> @Html.TextBoxFor(m => m.telefoonNr) <br />
-                        <label class="labelsGegevens" id="labelsVakken">Straat:</label> @Html.TextBoxFor(m => m.straatNaam)<br />
-                        <label class="labelsGegevens" id="labelsVakken">Huisnummer + toevoeging (optioneel):</label> @Html.TextBoxFor(m => m.huisNummer)<br />
-                        <label class="labelsGegevens" id="labelsVakken">Postcode:</label> @Html.TextBoxFor(m => m.postcode) <br />
+
+
+                        <span id="labelsGegevens" style="margin-right:200px;"> Persoonsnummer: </span>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.PersoonId, new { @PersoonId = "1"}) 
+                            @Html.ValidationMessageFor(model => model.PersoonId)
+                        </div>
+
+
+                        <span id="labelsGegevens" style="margin-right:200px;"> Voor- en achternaam: </span>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.PersoonNaam)
+                            @Html.ValidationMessageFor(model => model.PersoonNaam)
+                        </div>
+
+                        <span id="labelsGegevens" style="margin-right:200px;"> Emailadres: </span>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.PersoonEmail)
+                            @Html.ValidationMessageFor(model => model.PersoonEmail)
+                        </div>
+
+
+                        <span id="labelsGegevens" style="margin-right:200px;"> Telefoonnummer: </span>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.TelefoonNr)
+                            @Html.ValidationMessageFor(model => model.TelefoonNr)
+                        </div>
+
+                        <span id="labelsGegevens" style="margin-right:200px;"> Straatnaam: </span>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.StraatNaam)
+                            @Html.ValidationMessageFor(model => model.StraatNaam)
+                        </div>
+
+                        <span id="labelsGegevens" style="margin-right:200px;"> Huisnummer (+ toevoeging): </span>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.HuisNummer)
+                            @Html.ValidationMessageFor(model => model.HuisNummer)
+                        </div>
+
+
+                        <span id="labelsGegevens" style="margin-right:200px;"> Postcode: </span>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Postcode)
+                            @Html.ValidationMessageFor(model => model.Postcode)
+                        </div>
+
+
                     </fieldset>
-                </div>
-            </fieldset>
+                }
+            </div>
 
             @* opslaan *@
 
@@ -86,11 +93,11 @@
             <fieldset>
                 <div id="borderDefaultTop">
 
-                    <div class="col-lg-offset-5" style="margin-left:40%;">
+                    <div class="col-lg-offset-3" style="margin-left:40%;">
                         <br />
                         <div>
-                            <input type="submit" value="Create" />
-                            
+                            <input type="submit" value="Opslaan gegevens" />
+
                             @* <input class="btn-default" id="annuleren" type="submit" value="Annuleren" />*@
 
                         </div>
@@ -103,45 +110,72 @@
             <br />
         </div>
     }
-    @*<div>
-            <br />
-            @* Wijzigen van wachtwoord
 
-            <fieldset>
-                <div id="borderDefaultTop">
-                    <fieldset>
-                        <h4>
-                            Accountgegevens:
-                        </h4>
-                        <label class="labelsGegevens">Gebruikersnaam: </label><input type="text" name="gebruikersnaam" style="width:235px; margin-left:4px;" maxlength="30" value="@Request.Form["gebruikersnaam"]" /><br />
-                        <label class="labelsGegevens">Wachtwoord: </label><input type="password" name="wachtwoord" style="width:235px; margin-left:4px;" maxlength="30" value="@Request.Form["nieuwWachtwoord"]" /><br />
-                        <label class="labelsGegevens">Hehaal wachtwoord: </label><input type="password" name="herhaalWw" style="width:235px; margin-left:4px;" maxlength="30" value="@Request.Form["nieuwHerWachtwoord"]" /><br />
-                    </fieldset>
-                </div>
-            </fieldset>
-            <br />
+    @using (Html.BeginForm("MijnWachtwoord", "Profiel", FormMethod.Post))
+    {
+        <div class="col-lg-offset-2">
+            <div>
+                <h2>
+                    Accountgegevens:
+                </h2>
+                <br />
+                @using (Html.BeginForm())
+                {
+                    @Html.ValidationSummary(true)
+                    {
+                        <fieldset>
 
-            Img uploaden
-            <fieldset>
-                <div id="borderDefaultTop">
-                    <div class="col-lg-7" style="margin-left:0px; padding-left:0px;">
-                        <h4>Upload je profielfoto:</h4>
-                        <label>Upload hier je profielfoto voor je profiel:</label>
-                    </div>
-                    <div class="col-lg-5" style="padding-left:32px;">
+                            <div class="editor-field">
+                                <span id="labelsGegevens" style="margin-right:200px;"> Gebruikersnaam: </span>
+                                @Html.EditorFor(model => model.PersoonGbn)
+                                @Html.ValidationMessageFor(model => model.PersoonGbn)
+                            </div>
+
+                            <span id="labelsGegevens" style="margin-right:200px;"> Wachtwoord (nieuw): </span>
+                            <div class="editor-field">
+                                @Html.PasswordFor(model => model.PersoonWw)
+                                @Html.ValidationMessageFor(model => model.PersoonWw)
+                            </div>
+
+                            <span id="labelsGegevens" style="margin-right:200px;"> Wachtwoord Herhaling: </span>
+                            <div class="editor-field">
+                                @Html.PasswordFor(model => model.PersoonWwHerhaling)
+                                @Html.ValidationMessageFor(model => model.PersoonWwHerhaling)
+                            </div>
+                        </fieldset>
+
+                        @* opslaan *@
+
                         <br />
+                        <fieldset>
+                            <div id="borderDefaultTop">
+
+                                <div class="col-lg-offset-3" style="margin-left:40%;">
+                                    <br />
+                                    <div>
+                                        <input type="submit" value="Opslaan wachtwoord" />
+
+                                        @* <input class="btn-default" id="annuleren" type="submit" value="Annuleren" />*@
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </fieldset>
                         <br />
-                        <input style="margin-top:-2px; padding-left:4px;" type="file" name="profielFoto" />
-                        <br />
-                    </div>
+                    }
+                    <br />
+                }
+            </div>
+        </div>
+     }
 
-                </div>
+    @using (Html.BeginForm("MijnGegevens", "Profiel", FormMethod.Get))
+    {
 
-            </fieldset>
+    }
 
-
-
-
-        </div>*@
 </body>
 </html>
