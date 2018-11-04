@@ -35,27 +35,18 @@ namespace Roostersysteem.Controllers
                 {
                     if (v.IsSelected)
                     {
-                        sb.Append(v.VakType + ",");
+                        sb.Append(v.VakNaam + ",");
+                        Vak oVak = new Vak(v.VakId, 3);
                     }
                 }
+
                 sb.Remove(sb.ToString().LastIndexOf(","), 1);
-                sb.Append(" Vakken");
+                sb.Append("Vakken");
                 ViewBag.msg = sb.ToString();
                 return View(vak);
             }
         }
 
-        [HttpPost]
-        public ActionResult SelectieVak(List<SelectListItem> items)
-        {
-            foreach (SelectListItem item in items)
-            {
-                if (item.Selected)
-                {
-                    ViewBag.WeergaveVakken += string.Format("{0}\n", item.Text);
-                }
-            }
-            return View(items);
-        }
+
     }
 }

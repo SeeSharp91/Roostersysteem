@@ -15,16 +15,36 @@ namespace Roostersysteem.Models
     //Project: Caus Bureau Onderwijs
     //
     public class Vak
-    {
+    {    
+        //Attributen
+        public int docentId;
+        public int vakId;
 
-        public int VakId { get; set; }
-        public string VakType { get; set; }
+
+        //Properties
+        public int persoonId { get; set; }
+        public string VakNaam { get; set; }
         public bool IsSelected { get; set; }
+        public int VakId { get; set; }
 
-        public static List<Vak>getvakken()
+        public Vak() { }
+        public Vak(int VakId, int PersoonId)
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DatabaseConnectionExpress"].ConnectionString);
-            SqlCommand cmd = new SqlCommand("select * from TypeVak", con);
+            persoonId = PersoonId;
+            vakId = VakId;
+            DocentKoppelenVak("JOIN Persoon ON Vak.VakId = Persoon.PersoonId (PersoonId, VakNr) values('"
+                    + PersoonId + "','"
+                    + VakId + "')");
+            //DocentKoppelenVak("JOIN VakId AND PersoonId WHERE PersoonId =  (PersoonId, VakNr) values('"
+            //        + DocentId + "','"
+            //        + VakId + "')");
+
+        }
+
+        public static List<Vak> getvakken()
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DatabaseConnectionNP"].ConnectionString);
+            SqlCommand cmd = new SqlCommand("select * from Vak", con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
             da.Fill(ds);
@@ -35,15 +55,12 @@ namespace Roostersysteem.Models
                 var vakken = new Vak()
                 {
                     VakId = (int)values[0],
-                    VakType = (string)values[1],
+                    VakNaam = (string)values[1],
                 };
                 vak.Add(vakken);
             }
             return vak;
         }
-
-
-        //Attributen
 
 
         //Methods 
@@ -83,10 +100,21 @@ namespace Roostersysteem.Models
             //    }
             //}
         }
-
-        public void DocentKoppelenVak(string docentNaam, string vak)
+        public void DocentKoppelenVak(string sql)
         {
-            //To do
+            //Connectie maken.
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DatabaseConnectionNP"].ConnectionString);
+
+            //Vakken toevoegen aan docent met sql command.
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = sql;
+            cmd.Connection = con;
+
+            con.Open();
+            cmd.ExecuteNonQuery();
+            con.Close();
+
         }
 
         public  void DocentWijzigenVak(string docentNaam, string vak)
