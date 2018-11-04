@@ -220,11 +220,10 @@
     <Content Include="Views\Uren\UrenDocent.cshtml" />
     <Content Include="Views\Uren\UrenRoosteraar.cshtml" />
     <Content Include="Views\Rooster\Rooster.cshtml" />
-    <Content Include="Views\Vakgegevens\Contacturen.cshtml" />
     <Content Include="Views\Vakgegevens\VakkenKoppelen.cshtml" />
     <Content Include="Views\Profiel\MijnGegevens.cshtml" />
     <Content Include="Views\Home\Home.cshtml" />
-    <Content Include="Views\Vakgegevens\contactUrenDoorgeven.cshtml" />
+    <Content Include="Views\Vakgegevens\ContactUren.cshtml" />
     <Content Include="Views\Profiel\regSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>

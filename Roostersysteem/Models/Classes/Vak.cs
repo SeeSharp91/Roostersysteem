@@ -12,7 +12,7 @@ namespace Roostersysteem.Models
     //** Klasse vak**
     //
     //Door:    Natasja Pisters
-    //Project: Caus Bureau Onderwijs
+    //Project: Casus Bureau Onderwijs
     //
     public class Vak
     {
@@ -21,6 +21,11 @@ namespace Roostersysteem.Models
         public string VakType { get; set; }
         public bool IsSelected { get; set; }
         public SelectList DropDownList { get; set; } // dropdownmenu
+        public int Hoorcollege { get; set; }
+        public int Werkcollege { get; set; }
+        public int Discussiecollege { get; set; }
+        public IEnumerable<SelectListItem> Vakken { get; set; }
+        public string VakNaam { get; set; }
 
 
 
@@ -28,7 +33,7 @@ namespace Roostersysteem.Models
         public static List<Vak>getvakken()
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DatabaseConnectionExpress"].ConnectionString);
-            SqlCommand cmd = new SqlCommand("select * from TypeVak", con);
+            SqlCommand cmd = new SqlCommand("select * from Vak", con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
             da.Fill(ds);
@@ -47,16 +52,26 @@ namespace Roostersysteem.Models
         }
 
 
+
+
         //Attributen
 
+       
+
+        //public IEnumerable<SelectListItem> ToSelectListItems(this IEnumerable<Vak> vakken, int selectedId)
+        //{
+        //    return
+        //        vakken.OrderBy(Vak => Vak.Name)
+        //        .Select(Vak =>
+        //        new SelectListItem
+        //        {
+        //            Selected = (Vak.ID == selectedId),
+        //            Text = Vak.Name,
+        //            Value = Vak.ID.ToString()
+        //        });
+        //}
 
 
-        //table voor dropdownmenu
-        public class MyListTable
-        {
-            public string key { get; set; }
-            public string Display { get; set; }
-        }
 
         //Methods 
         public void VakContacturenDoorgeven(string vakNr, int uren, string typeLokaal)
@@ -68,6 +83,10 @@ namespace Roostersysteem.Models
         {
             //To do
         }
+
+        public IEnumerable<SelectListItem> takeVakken { get; set; }
+
+       
 
         public void VakkenAangeven(Vak oVak)
         {
@@ -112,4 +131,6 @@ namespace Roostersysteem.Models
         }
 
     }
+
+
 }

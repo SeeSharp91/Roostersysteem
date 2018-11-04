@@ -1,6 +1,7 @@
 ﻿using Roostersysteem.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -81,5 +82,47 @@ namespace Roostersysteem.Controllers
         //    }
         // 
         //    return View(model);
+
+        [HttpGet]
+        public ActionResult ContactUren()
+        {
+            //string strCon = ConfigurationManager.ConnectionStrings["DatabaseConnectionExpress"].ConnectionString.ToString();
+
+            //var model = new Roostersysteem.Models.Vak();
+            ////using (CSharpCornerEntities cshparpEntity = new CSharpCornerEntities())
+            //using (SqlConnection con = new SqlConnection(strCon))
+            //{
+            //    con.Open();
+            //    SqlDataReader dr;
+            //    SqlCommand cmd = con.CreateCommand();
+            //    cmd.CommandType = System.Data.CommandType.Text;
+            //    cmd.CommandText = "SELECT * FROM VAK";
+            //    dr = cmd.ExecuteReader();
+            //    while (dr.Read)
+            //    {
+            //        SelectList listItems = new SelectList(dr["VakId"].ToString());
+            //        listItems.Add(dr["VakNaam"].ToString());
+            //    }
+            //    //var dbData = cshparpEntity.Vak.ToList();
+            //    //model.takeVakken = GetSelectListItems(dbData);
+            //}
+
+            // return View(model);
+            return View();
+        }
+
+        private IEnumerable<SelectListItem> GetSelectListItems(IEnumerable<Vak> elements)
+        {
+            var selectList = new List<SelectListItem>();
+            foreach (var element in elements)
+            {
+                selectList.Add(new SelectListItem
+                {
+                    Value = element.VakId.ToString(),
+                    Text = element.VakNaam
+                });
+            }
+            return selectList;
+        }
     }
 }

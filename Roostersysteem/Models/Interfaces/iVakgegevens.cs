@@ -8,5 +8,6 @@ namespace Roostersysteem.Models
 {
     interface iVakgegevens
     {
+
     }
 }

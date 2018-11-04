@@ -1,22 +1,98 @@
-﻿@{
-    ViewBag.Title="Contacturen doorgeven";
+﻿@model Roostersysteem.Models.Vak
+
+@{
+    ViewBag.Title = "Vakcontacturen";
 }
 
+@* Gemaakt door: Mitchell; op 26-10: layout gemaakt
+    bijgewerkt op: 27-10 en 28-10 layout bijgewerkt*@
 
-
-<!DOCTYPE html>
 
 <html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
 <body>
     <ol class="breadcrumb">
         <h1>Roostersysteem Zuyd</h1>
         <li>@Html.ActionLink("Home", "Home", "Home")</li>
         <li>Vakgegevens</li>
-        <li class="active">Contacturen</li>
+        <li class="active">Contacturen doorgeven</li>
     </ol>
+
+    <div class="col-lg-5" style="padding-left:0px;">
+        <fieldset>
+            <legend>
+                Vakcontacturen doorgeven
+            </legend>
+            <div class="col-lg-8" style="margin-left:-16px;">
+                @*<p>Selecteer een vak uit het dropdown menu hieronder:</p>
+            <select name="vak" style="max-width:333px; width:100%">
+                <option value="engels"> Engels</option>
+                <option value="drama"> Drama</option>
+                <option value="lo"> Lichamelijke Opvoeding</option>
+                <option value="frans"> Frans</option>
+                <option value="muziek"> Muziek</option>
+                <option value="nederlands"> Nederlands</option>
+                <option value="duits"> Duits</option>
+                <option value="wiskunde"> Wiskunde</option>
+            </select>*@
+
+            </div>
+
+            @using (Html.BeginForm("ContactUren","Vakgegevens", FormMethod.Get))
+                {
+                    @Html.ValidationSummary(true)
+                    <div class=" = col-lg-4">
+                        <fieldset>
+
+                            @Html.DropDownList("FromModel", Model.takeVakken)
+                            <span id="labelsGegevens" style="margin-right:200px;"> Hoorcollege: </span>
+                            <div class="editor-field">
+                                @Html.EditorFor(model => model.Hoorcollege)
+                                @Html.ValidationMessageFor(model => model.Hoorcollege)
+                            </div>
+
+                            <span id="labelsGegevens" style="margin-right:200px;"> Werkcollege: </span>
+                            <div class="editor-field">
+                                @Html.EditorFor(model => model.Werkcollege)
+                                @Html.ValidationMessageFor(model => model.Werkcollege)
+                            </div>
+
+                            <span id="labelsGegevens" style="margin-right:200px;"> Discussiecollege: </span>
+                            <div class="editor-field">
+                                @Html.EditorFor(model => model.Discussiecollege)
+                                @Html.ValidationMessageFor(model => model.Discussiecollege)
+                            </div>
+
+                        </fieldset>
+                </div>
+
+
+                <br />
+                <fieldset>
+                    <div id="borderDefaultTop">
+
+                        <div class="col-lg-offset-3" style="margin-left:40%;">
+                            <br />
+                            <div>
+                                <input type="submit" value="Opslaan gegevens" />
+
+                                @* <input class="btn-default" id="annuleren" type="submit" value="Annuleren" />*@
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </fieldset>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+            }
+        </fieldset>
+    </div>
 </body>
 </html>

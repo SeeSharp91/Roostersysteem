@@ -150,7 +150,7 @@ namespace Roostersysteem.Models
         public void getGegevens(Persoon persoon)
         {
             string strCon = ConfigurationManager.ConnectionStrings["DatabaseConnectionExpress"].ConnectionString.ToString();
-
+            // method ophalen PersoonId
             using (SqlConnection con = new SqlConnection(strCon))
             {
                 string sql = "SELECT * FROM Persoon WHERE PersoonId = 1 ";
