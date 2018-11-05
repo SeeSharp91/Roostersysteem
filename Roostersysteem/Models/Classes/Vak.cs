@@ -15,7 +15,7 @@ namespace Roostersysteem.Models
     //Project: Casus Bureau Onderwijs
     //
     public class Vak
-    {    
+    {
         //Attributen
         public int docentId;
         public int vakId;
@@ -31,23 +31,33 @@ namespace Roostersysteem.Models
         public int Werkcollege { get; set; }
         public int Discussiecollege { get; set; }
         public IEnumerable<SelectListItem> Vakken { get; set; }
-        
 
         public Vak() { }
-        public Vak(int VakId, int PersoonId)
+        public Vak(int PersoonId)//Constructor voor het ophalen van de vakken van een docent
+        {
+            //Connectie("SELECT Vak.VakNaam, PersoonVak.Vak_Id, PersoonVak.Persoon_Id" +
+            //            "FROM Vak" +
+            //            "INNER JOIN PersoonVak ON PersoonVak.Vak_Id = Vak.VakId WHERE Persoon_Id = "+ PersoonId.ToString());
+            //reader.Read
+            List<Vak> l = getvakken("SELECT Vak.VakNaam, PersoonVak.Vak_Id, PersoonVak.Persoon_Id" +
+                        "FROM Vak" +
+                        "INNER JOIN PersoonVak ON PersoonVak.Vak_Id = Vak.VakId WHERE Persoon_Id = " + PersoonId.ToString());
+        }
+
+        public Vak(int VakId, int PersoonId, bool nieuw)//Constructor vakken toevoegen aan docent
         {
             persoonId = PersoonId;
             vakId = VakId;
-            DocentKoppelenVak("INSERT INTO PersoonVak (Persoon_Id, Vak_Id) VALUES ('"
+            Connectie("INSERT INTO PersoonVak (Persoon_Id, Vak_Id) VALUES ('"
                     + PersoonId + "','"
                     + VakId + "')");
 
         }
 
-        public static List<Vak> getvakken()
+        public static List<Vak> getvakken(string query)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DatabaseConnectionNP"].ConnectionString);
-            SqlCommand cmd = new SqlCommand("select * from Vak", con);
+            SqlCommand cmd = new SqlCommand(query, con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
             da.Fill(ds);
@@ -64,11 +74,6 @@ namespace Roostersysteem.Models
             }
             return vak;
         }
-
-
-        //Attributen
-
-
 
         //table voor dropdownmenu
         public class MyListTable
@@ -92,33 +97,11 @@ namespace Roostersysteem.Models
 
        
 
-        public void VakkenAangeven(Vak oVak)
+        public void VakkenDocentOphalen()
         {
-            //List<string> items = new List <string>();
-            
-            //using (SqlConnection con = new SqlConnection(strConnection))
-            //{
-            //    string query = "SELECT * FROM TypeVak";
-            //    using (SqlCommand cmd = new SqlCommand(query))
-            //    {
-            //        cmd.Connection = con;
-            //        con.Open();
-            //        using (SqlDataReader sdr = cmd.ExecuteReader())
-            //        {
-            //            while (sdr.Read())
-            //            {
-            //                items.Add(new SelectVakken
-            //                {
-            //                    Text = sdr["VakType"].ToString(),
-            //                    Value = sdr["VakId"].ToString()
-            //                });
-            //            }
-            //        }
-            //        con.Close();
-            //    }
-            //}
+            //To do
         }
-        public void DocentKoppelenVak(string sql)
+        public void Connectie(string sql)
         {
             //Connectie maken.
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DatabaseConnectionNP"].ConnectionString);
@@ -132,11 +115,8 @@ namespace Roostersysteem.Models
             con.Open();
             cmd.ExecuteNonQuery();
             con.Close();
-        }
 
-        public void DocentKoppelenVak(string docentNaam, string vak)
-        {
-            //To do
+            //return cmd.ExecuteReader();
         }
 
         public  void DocentWijzigenVak(string docentNaam, string vak)

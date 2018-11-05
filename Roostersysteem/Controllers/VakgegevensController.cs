@@ -12,12 +12,13 @@ namespace Roostersysteem.Controllers
 {
     public class VakgegevensController : Controller
     {
+        //-------------------- Vakken Koppelen aan Docent --------------------\\
         [HttpGet]
         // GET: Vakken from DB
         public ActionResult VakkenKoppelen()
         {
             List<Vak> model = new List<Vak>();
-            model = Vak.getvakken();
+            model = Vak.getvakken("select * from Vak");
             return View(model);
         }
         [HttpPost]
@@ -37,7 +38,7 @@ namespace Roostersysteem.Controllers
                     if (v.IsSelected)
                     {
                         sb.Append(v.VakNaam + ",");
-                        Vak oVak = new Vak(v.VakId, 3);
+                        Vak oVak = new Vak(v.VakId, 3, true); //TODO: PersoonId nog hardcoded, aanpassen wanneer inloggen optimaal werkt. 
                     }
                 }
 
@@ -48,6 +49,15 @@ namespace Roostersysteem.Controllers
             }
         }
 
+        //-------------------- Vakken bekijken van een Docent --------------------\\
+        [HttpGet]
+        // GET: Vakken from DB
+        public ActionResult VakkenBekijken()
+        {
+            //Vak oVak = new Vak(4);
+            //return View(oVak);
+        }
+        // Met een button naar een nieuwe pagine/view verwijzen (OnClick event maken).
 
         // wordt aan gewerkt
         //public ActionResult contactUrenDoorgeven()
