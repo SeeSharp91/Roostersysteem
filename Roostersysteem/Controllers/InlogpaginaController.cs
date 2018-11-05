@@ -22,20 +22,45 @@ namespace Roostersysteem.Controllers
         {
             return View();
         }
-        
+
+        public ActionResult Validatie()
+        {
+            return View();
+        }
+
 
         [HttpPost]
         public ActionResult Login(LoginViewModel model, string returnUrl)
         {
             Persoon p = new Persoon();
-          
-            
+
             bool check = p.Inloggen(model.Gebruikersnaam, model.Wachtwoord);
             //bool check = p.Inloggen(p.persoonGbn,p.persoonWw);
 
             if (check == true)
             {
-                Session["gebruikersid"] = p.PersoonId;
+                return RedirectToAction("Validatie");
+
+            }
+            else
+            {
+                return View("Index");
+            }
+
+        }
+
+        [HttpPost]
+        public ActionResult Valideren(ValidatieViewModel model, string returnUrl)
+        {
+            Persoon p = new Persoon();
+
+
+            bool check = p.TweeStapsVer(p.persoonId, p.Code);
+            //bool check = p.Inloggen(p.persoonGbn,p.persoonWw);
+
+            if (check == true)
+            {
+                Session["gebruikersid"] = p.persoonId;
                 return RedirectToAction("../Home/Home");
             }
             else
@@ -44,21 +69,6 @@ namespace Roostersysteem.Controllers
             }
 
 
-        }      
-        
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
         }
 
 

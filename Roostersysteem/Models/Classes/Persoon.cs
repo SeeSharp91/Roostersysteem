@@ -28,6 +28,15 @@ namespace Roostersysteem.Models
         public bool RememberMe { get; set; }
     }
 
+    public class ValidatieViewModel
+    {
+        [Required]
+        [Display(Name = "Code")]
+
+        public string Code { get; set; }
+
+    }
+
     public class Persoon
     {
 
@@ -55,6 +64,8 @@ namespace Roostersysteem.Models
 
         public string Functie { get; set; }
 
+        public string Code { get; set; }
+
 
         //-------------------------------METHODS------------------------------------------------------
 
@@ -72,7 +83,7 @@ namespace Roostersysteem.Models
             conn.Open();
 
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT PersoonId, PersoonGbn, PersoonWw FROM [Persoon]";
+            cmd.CommandText = "SELECT PersoonId, PersoonGbn, PersoonWw, PersoonEmail FROM [Persoon]";
             cmd.Connection = conn;
 
             SqlDataReader rd = cmd.ExecuteReader();
@@ -82,20 +93,86 @@ namespace Roostersysteem.Models
                 if (rd[1].ToString() == gebruikersnaam && rd[2].ToString() == wachtwoord)
                 {
                     Flag = true;
-                    PersoonId = Convert.ToInt32(rd[0]);
-
+                    persoonId = Convert.ToInt32(rd[0]);
+                    persoonEmail = Convert.ToString(rd[3]);
+                    Mail(persoonId, persoonEmail);
                 }
             }
             conn.Close();
-            TweeStapsVer();
+          
             return Flag;
         }
 
 
 
 
-        public void TweeStapsVer()
+        public bool TweeStapsVer(int userID, string verificatiecode) // todo: add check for code
         {
+            bool Flag = false;
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "SELECT PersoonId, Code, TimeStamp FROM [Authenticator] WHERE PersoonId = " + userID;
+            cmd.Connection = conn;
+
+            SqlDataReader rd = cmd.ExecuteReader();
+
+            while (rd.Read())
+            {
+                if (rd[1].ToString() == verificatiecode)
+                {
+                    Flag = true;
+                }
+                PersoonId = Convert.ToInt32(rd[0]);
+
+            }
+
+            conn.Close();
+            return Flag;
+        }
+
+        public void Mail(int gebruikerid, string email)
+        {
+            //get random functie voor code generator
+            Random rnd = new Random();
+            //Generate code                    
+            string code = rnd.Next(100000, 999999).ToString();
+            //get timestamp
+            DateTime localDate = DateTime.Now;
+
+            //load values to database
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString))
+            {
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.Connection = conn;
+                    comm.CommandType = CommandType.Text;
+                    comm.CommandText = "INSERT INTO AuthenticatorTBL (PersoonId, Code, TimeStemp) VALUES (@PersoonId, @Code, @TimeStamp)";
+                    comm.Parameters.Add("@PersoonId", SqlDbType.VarChar, 50).Value = gebruikerid;
+                    comm.Parameters.Add("@Code", SqlDbType.VarChar, 50).Value = code;
+                    comm.Parameters.Add("@TimeStamp", SqlDbType.DateTime).Value = localDate;
+
+                    try
+                    {
+                        conn.Open();
+                        comm.ExecuteNonQuery();
+                    }
+                    catch (SqlException)
+                    {
+                        // error
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+
+                }
+            }
+
+            //send email
+
             // Command line argument must the the SMTP host.
             SmtpClient client = new SmtpClient();
             client.Port = 587;
@@ -106,13 +183,16 @@ namespace Roostersysteem.Models
             client.UseDefaultCredentials = false;
             client.Credentials = new System.Net.NetworkCredential("RoosterDontReplyVerificatie@hotmail.com", "100200MMmn");
 
-            MailMessage mm = new MailMessage("RoosterDontReplyVerificatie@hotmail.com", "maxthomas2805@gmail.com", "test", "test");
+            MailMessage mm = new MailMessage("RoosterDontReplyVerificatie@hotmail.com", "maxthomas28@hotmail.com", "test", "test" + email + code);
             mm.BodyEncoding = UTF8Encoding.UTF8;
             mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
 
             client.Send(mm);
 
         }
+
+
+
 
         public void WachtwoordWijzigen(Persoon persoon)
         {
