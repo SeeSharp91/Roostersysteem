@@ -55,12 +55,12 @@ namespace Roostersysteem.Controllers
             Persoon p = new Persoon();
 
 
-            bool check = p.TweeStapsVer(p.persoonId, p.Code);
+            bool check = p.TweeStapsVer(p.PersoonId, p.Code);
             //bool check = p.Inloggen(p.persoonGbn,p.persoonWw);
 
             if (check == true)
             {
-                Session["gebruikersid"] = p.persoonId;
+                Session["gebruikersid"] = p.PersoonId;
                 return RedirectToAction("../Home/Home");
             }
             else

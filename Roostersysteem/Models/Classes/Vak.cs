@@ -23,6 +23,7 @@ namespace Roostersysteem.Models
 
         //Properties
         public int persoonId { get; set; }
+        public int VakId { get; set; }
         public string VakNaam { get; set; }
         public bool IsSelected { get; set; }
         public SelectList DropDownList { get; set; } // dropdownmenu
@@ -30,20 +31,16 @@ namespace Roostersysteem.Models
         public int Werkcollege { get; set; }
         public int Discussiecollege { get; set; }
         public IEnumerable<SelectListItem> Vakken { get; set; }
-        public string VakNaam { get; set; }
-        public int VakId { get; set; }
+        
 
         public Vak() { }
         public Vak(int VakId, int PersoonId)
         {
             persoonId = PersoonId;
             vakId = VakId;
-            DocentKoppelenVak("JOIN Persoon ON Vak.VakId = Persoon.PersoonId (PersoonId, VakNr) values('"
+            DocentKoppelenVak("INSERT INTO PersoonVak (Persoon_Id, Vak_Id) VALUES ('"
                     + PersoonId + "','"
                     + VakId + "')");
-            //DocentKoppelenVak("JOIN VakId AND PersoonId WHERE PersoonId =  (PersoonId, VakNr) values('"
-            //        + DocentId + "','"
-            //        + VakId + "')");
 
         }
 
@@ -135,6 +132,7 @@ namespace Roostersysteem.Models
             con.Open();
             cmd.ExecuteNonQuery();
             con.Close();
+        }
 
         public void DocentKoppelenVak(string docentNaam, string vak)
         {

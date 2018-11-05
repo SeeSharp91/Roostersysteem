@@ -93,9 +93,9 @@ namespace Roostersysteem.Models
                 if (rd[1].ToString() == gebruikersnaam && rd[2].ToString() == wachtwoord)
                 {
                     Flag = true;
-                    persoonId = Convert.ToInt32(rd[0]);
-                    persoonEmail = Convert.ToString(rd[3]);
-                    Mail(persoonId, persoonEmail);
+                    PersoonId = Convert.ToInt32(rd[0]);
+                    PersoonEmail = Convert.ToString(rd[3]);
+                    Mail(PersoonId, PersoonEmail);
                 }
             }
             conn.Close();
