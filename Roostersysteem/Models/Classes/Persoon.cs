@@ -42,9 +42,9 @@ namespace Roostersysteem.Models
 
         string strCon = ConfigurationManager.ConnectionStrings["DatabaseConnectionExpress"].ConnectionString.ToString();
         //----------------------------Public variables------------------------------------------------
-        public string PersoonNaam { get; set; }
-
         public int PersoonId { get; set; }
+
+        public string PersoonNaam { get; set; }
 
         public string PersoonEmail { get; set; }
 
@@ -73,13 +73,11 @@ namespace Roostersysteem.Models
         {
 
             // te verplaatsen naar database connectie
-            // link is verkeerd moet fixen
-
-
+            // link is verkeerd moet fixen            
 
             bool Flag = false;
             SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = ConfigurationManager.ConnectionStrings["DatabaseConnectionExpress"].ConnectionString;
+            conn.ConnectionString = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;
             conn.Open();
 
             SqlCommand cmd = new SqlCommand();
@@ -93,18 +91,16 @@ namespace Roostersysteem.Models
                 if (rd[1].ToString() == gebruikersnaam && rd[2].ToString() == wachtwoord)
                 {
                     Flag = true;
+
                     PersoonId = Convert.ToInt32(rd[0]);
                     PersoonEmail = Convert.ToString(rd[3]);
                     Mail(PersoonId, PersoonEmail);
                 }
             }
             conn.Close();
-          
+
             return Flag;
         }
-
-
-
 
         public bool TweeStapsVer(int userID, string verificatiecode) // todo: add check for code
         {
@@ -114,22 +110,18 @@ namespace Roostersysteem.Models
             conn.Open();
 
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT PersoonId, Code, TimeStamp FROM [Authenticator] WHERE PersoonId = " + userID;
+            cmd.CommandText = "SELECT COUNT(*) FROM [Authenticator] WHERE Code = '" + verificatiecode + "'";
+
             cmd.Connection = conn;
+            int CodeExists = (int)cmd.ExecuteScalar();
 
-            SqlDataReader rd = cmd.ExecuteReader();
-
-            while (rd.Read())
+            if (CodeExists >= 0)
             {
-                if (rd[1].ToString() == verificatiecode)
-                {
-                    Flag = true;
-                }
-                PersoonId = Convert.ToInt32(rd[0]);
-
+                Flag = true;
             }
 
             conn.Close();
+
             return Flag;
         }
 
@@ -149,24 +141,24 @@ namespace Roostersysteem.Models
                 {
                     comm.Connection = conn;
                     comm.CommandType = CommandType.Text;
-                    comm.CommandText = "INSERT INTO AuthenticatorTBL (PersoonId, Code, TimeStemp) VALUES (@PersoonId, @Code, @TimeStamp)";
+                    comm.CommandText = "INSERT INTO Authenticator (PersoonId, Code, TimeStamp) VALUES (@PersoonId, @Code, @TimeStamp)";
                     comm.Parameters.Add("@PersoonId", SqlDbType.VarChar, 50).Value = gebruikerid;
                     comm.Parameters.Add("@Code", SqlDbType.VarChar, 50).Value = code;
                     comm.Parameters.Add("@TimeStamp", SqlDbType.DateTime).Value = localDate;
 
-                    try
-                    {
-                        conn.Open();
-                        comm.ExecuteNonQuery();
-                    }
-                    catch (SqlException)
-                    {
-                        // error
-                    }
-                    finally
-                    {
-                        conn.Close();
-                    }
+                    //try
+                    //{
+                    conn.Open();
+                    comm.ExecuteNonQuery();
+                    //}
+                    //catch(SqlException)
+                    //{
+                    // error
+                    //}
+                    //finally
+                    //{
+                    conn.Close();
+                    //}
 
                 }
             }
@@ -183,7 +175,7 @@ namespace Roostersysteem.Models
             client.UseDefaultCredentials = false;
             client.Credentials = new System.Net.NetworkCredential("RoosterDontReplyVerificatie@hotmail.com", "100200MMmn");
 
-            MailMessage mm = new MailMessage("RoosterDontReplyVerificatie@hotmail.com", "maxthomas28@hotmail.com", "test", "test" + email + code);
+            MailMessage mm = new MailMessage("RoosterDontReplyVerificatie@hotmail.com", email, "test", "test" + code);
             mm.BodyEncoding = UTF8Encoding.UTF8;
             mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
 

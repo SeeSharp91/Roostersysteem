@@ -27,29 +27,29 @@
                     <!--form start-->
                     @using (Html.BeginForm("Valideren", "Inlogpagina", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login-form-container", role = "form" }))
                     {
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <h1>
-                                Inlog pagina
-                            </h1>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h1>
+                                    Inlog pagina
+                                </h1>
+                            </div>
+                            <div class="col-lg-2">
+                                <img src="../../images/ZuydMiniLogo.png" width="100" height="100" alt="ZUYD" />
+                            </div>
                         </div>
-                        <div class="col-lg-2">
-                            <img src="../../images/ZuydMiniLogo.png" width="100" height="100" alt="ZUYD" />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Code, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.Code, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Code, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Code, new { @class = "col-md-2 control-label" })
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.Code, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Code, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Log in" class="btn btn-default" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Log in" class="btn btn-default" />
-                        </div>
-                    </div>
                     }
 
                 </section>

@@ -8,11 +8,6 @@ using System.Web.Mvc;
 using Roostersysteem.Models;
 using System.Collections.Generic;
 
-
-
-
-
-
 namespace Roostersysteem.Controllers
 {    
     public class InlogpaginaController : Controller
@@ -40,7 +35,6 @@ namespace Roostersysteem.Controllers
             if (check == true)
             {
                 return RedirectToAction("Validatie");
-
             }
             else
             {
@@ -67,8 +61,6 @@ namespace Roostersysteem.Controllers
             {
                 return View("Index");
             }
-
-
         }
 
 

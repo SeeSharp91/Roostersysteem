@@ -56,6 +56,7 @@ namespace Roostersysteem.Controllers
         {
             //Vak oVak = new Vak(4);
             //return View(oVak);
+            return View();
         }
         // Met een button naar een nieuwe pagine/view verwijzen (OnClick event maken).
 
