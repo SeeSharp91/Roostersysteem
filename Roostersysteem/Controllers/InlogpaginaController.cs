@@ -33,7 +33,8 @@ namespace Roostersysteem.Controllers
             //bool check = p.Inloggen(p.persoonGbn,p.persoonWw);
 
             if (check == true)
-            {
+            {                
+                Session["gebruikersnaam"] = p.PersoonNaam;
                 return RedirectToAction("Validatie");
             }
             else
@@ -44,17 +45,19 @@ namespace Roostersysteem.Controllers
         }
 
         [HttpPost]
-        public ActionResult Valideren(ValidatieViewModel model, string returnUrl)
+        public ActionResult Valideren(ValiderenViewModel model, string returnUrl)
         {
+            Authenticator a = new Authenticator();
             Persoon p = new Persoon();
 
 
-            bool check = p.TweeStapsVer(p.PersoonId, p.Code);
+            bool check = a.TweeStapsVer(p.PersoonId, model.verificatiecode);
             //bool check = p.Inloggen(p.persoonGbn,p.persoonWw);
 
             if (check == true)
             {
-                Session["gebruikersid"] = p.PersoonId;
+                
+                //Session["gebruikersnaam"] = p.PersoonNaam;
                 return RedirectToAction("../Home/Home");
             }
             else

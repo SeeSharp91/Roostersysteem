@@ -28,14 +28,7 @@ namespace Roostersysteem.Models
         public bool RememberMe { get; set; }
     }
 
-    public class ValidatieViewModel
-    {
-        [Required]
-        [Display(Name = "Code")]
 
-        public string Code { get; set; }
-
-    }
 
     public class Persoon
     {
@@ -64,7 +57,7 @@ namespace Roostersysteem.Models
 
         public string Functie { get; set; }
 
-        public string Code { get; set; }
+        public string Vcode { get; set; }
 
 
         //-------------------------------METHODS------------------------------------------------------
@@ -81,7 +74,7 @@ namespace Roostersysteem.Models
             conn.Open();
 
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT PersoonId, PersoonGbn, PersoonWw, PersoonEmail FROM [Persoon]";
+            cmd.CommandText = "SELECT PersoonId, PersoonGbn, PersoonWw, PersoonEmail, PersoonNaam FROM [Persoon]";
             cmd.Connection = conn;
 
             SqlDataReader rd = cmd.ExecuteReader();
@@ -94,6 +87,7 @@ namespace Roostersysteem.Models
 
                     PersoonId = Convert.ToInt32(rd[0]);
                     PersoonEmail = Convert.ToString(rd[3]);
+                    PersoonNaam = Convert.ToString(rd[4]);
                     Mail(PersoonId, PersoonEmail);
                 }
             }
@@ -102,28 +96,7 @@ namespace Roostersysteem.Models
             return Flag;
         }
 
-        public bool TweeStapsVer(int userID, string verificatiecode) // todo: add check for code
-        {
-            bool Flag = false;
-            SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;
-            conn.Open();
 
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT COUNT(*) FROM [Authenticator] WHERE Code = '" + verificatiecode + "'";
-
-            cmd.Connection = conn;
-            int CodeExists = (int)cmd.ExecuteScalar();
-
-            if (CodeExists >= 0)
-            {
-                Flag = true;
-            }
-
-            conn.Close();
-
-            return Flag;
-        }
 
         public void Mail(int gebruikerid, string email)
         {
@@ -192,7 +165,7 @@ namespace Roostersysteem.Models
 
             using (SqlConnection con = new SqlConnection(strCon))
             {
-                string sql = "UPDATE Persoon set PersoonWw = '"+ persoon.PersoonWw +"' WHERE PersoonGbn = '" + persoon.PersoonGbn + "'  ";
+                string sql = "UPDATE Persoon set PersoonWw = '" + persoon.PersoonWw + "' WHERE PersoonGbn = '" + persoon.PersoonGbn + "'  ";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -210,7 +183,7 @@ namespace Roostersysteem.Models
 
             using (SqlConnection con = new SqlConnection(strCon))
             {
-                string sql = "UPDATE Persoon set PersoonNaam = '"+ persoon.PersoonNaam + "', PersoonEmail = '" + persoon.PersoonEmail+ "', TelefoonNr = '" + persoon.TelefoonNr + "', StraatNaam = '" + persoon.StraatNaam + "', HuisNummer = '" + persoon.HuisNummer + "', Postcode = '" + persoon.Postcode + "' WHERE persoonId = '"+ persoon.PersoonId +"'  ";
+                string sql = "UPDATE Persoon set PersoonNaam = '" + persoon.PersoonNaam + "', PersoonEmail = '" + persoon.PersoonEmail + "', TelefoonNr = '" + persoon.TelefoonNr + "', StraatNaam = '" + persoon.StraatNaam + "', HuisNummer = '" + persoon.HuisNummer + "', Postcode = '" + persoon.Postcode + "' WHERE persoonId = '" + persoon.PersoonId + "'  ";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -230,22 +203,7 @@ namespace Roostersysteem.Models
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
-        }
-
-
-        public Persoon()
-        {
-            PersoonId = 1;
-            PersoonNaam = "Voornaam Achternaam";
-            PersoonEmail = "email@email.com";
-            TelefoonNr = 0000000000;
-            PersoonGbn = "0000000Achternaam";
-            PersoonWw = "Wachtwoord";
-            PersoonWwHerhaling = PersoonWw;
-            StraatNaam = "Straatnaam";
-            HuisNummer = 1;
-            Postcode = "1234AB";
-        }
+        }       
 
     }
 }

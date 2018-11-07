@@ -224,6 +224,7 @@
     <Content Include="Views\Vakgegevens\ContactUren.cshtml" />
     <Content Include="Views\Profiel\regSuccess.cshtml" />
     <Content Include="Views\Inlogpagina\Validatie.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
