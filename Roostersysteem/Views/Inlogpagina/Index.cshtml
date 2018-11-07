@@ -28,7 +28,7 @@
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <section id="loginForm">
                     <!--form start-->
-                    <form class=" login-form-container">
+                    
                         @using (Html.BeginForm("Login", "Inlogpagina", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login-form-container", role = "form" }))
                         {
                             <div class="row">
@@ -70,7 +70,7 @@
                                 </div>
                             </div>
                         }
-                    </form>
+                  
                 </section>
                 <div class="col-md-4 col-sm-4 col-xs-12"></div>
             </div>
