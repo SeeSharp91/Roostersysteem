@@ -16,11 +16,12 @@ namespace Roostersysteem.Controllers
     {        
         //-------------------- Vakken Koppelen aan Docent --------------------\\
         [HttpGet]
-        // GET: Vakken from DB
+        // GET: Vakken uit DB
         public ActionResult VakkenKoppelen()
         {
             List<Vak> model = new List<Vak>();
-            model = Vak.getvakken("SELECT * FROM Vak");
+            model = Vak.getvakken("SELECT * FROM Vak");//Maakt een lijst van Vakken, 
+                                                       //zodat de checkboxen in het view gevuld kunnen worden met de data.
             return View(model);
         }
         [HttpPost]
@@ -52,7 +53,7 @@ namespace Roostersysteem.Controllers
 
         //-------------------- Vakken bekijken van een Docent --------------------\\
         [HttpGet]
-        // GET: Vakken from DB
+        // GET: Vakken uit DB
         public ActionResult VakkenBekijken()
         {
             List<Vak> model = new List<Vak>();
@@ -64,7 +65,7 @@ namespace Roostersysteem.Controllers
         [HttpGet]
         public ActionResult Wijzigen(int? id)//TODO Wijzigen Connectie met de view werkt, wijzigen nog niet mogelijk.
         {
-            return View();
+            return View();//Verwijst door naar een nieuwe view om de keuze te bevestigen.
         }
         [HttpPost]
         // GET: Vakken from DB en verwijder selectie
@@ -80,7 +81,7 @@ namespace Roostersysteem.Controllers
         [HttpGet]
         public ActionResult Verwijderen(int? id)
         {            
-            return View();
+            return View();//Verwijst door naar een nieuwe view om de keuze te bevestigen.
         }
 
         [HttpPost]

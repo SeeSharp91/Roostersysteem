@@ -9,10 +9,12 @@ using System.Data;
 
 namespace Roostersysteem.Models
 {
-    //** Klasse vak**
+    //**Vakken koppelen aan docent**
     //
-    //Door:    Natasja Pisters
-    //Project: Casus Bureau Onderwijs
+    //Door:     Natasja Pisters
+    //Project:  Casus Bureau Onderwijs
+    //
+    //Betreft:  Ophalen/Toevoegen/Wijzigen/Verwijderen van vakken van een docent.
     //
     public class Vak
     {
@@ -31,9 +33,10 @@ namespace Roostersysteem.Models
         public int Werkcollege { get; set; }
         public int Discussiecollege { get; set; }
         public IEnumerable<SelectListItem> Vakken { get; set; }
+        public IEnumerable<SelectListItem> takeVakken { get; set; }
 
         public Vak() { }
-        public Vak(int PersoonId)//Constructor voor het ophalen van de vakken van een docent
+        public Vak(int PersoonId)//Constructor voor het ophalen van de vakken van een docent.
         {
             Connectie("SELECT Vak.VakNaam, PersoonVak.Vak_Id, PersoonVak.Persoon_Id" +
                         "FROM Vak" +
@@ -47,14 +50,14 @@ namespace Roostersysteem.Models
             Connectie("DELETE FROM PersoonVak WHERE Vak_Id = "+ VakId + "AND Persoon_Id = "+ PersoonId );
 
         }
-        public Vak(int PersoonId, bool wijzigen)//Constructor vakken wijzigen van een docent
+        public Vak(int PersoonId, bool wijzigen)//Constructor vakken wijzigen van een docent.
         {
             persoonId = PersoonId;
             Connectie("UPDATE PersoonVak SET Vak_Id = 3" +
-                      "WHERE Vak_Id = 8 AND Persoon_Id = " + PersoonId);
+                      "WHERE Vak_Id = 8 AND Persoon_Id = " + PersoonId);//TODO nog hardcoded. Zet Modeleren om naar Programmeerconcepten.
 
         }
-        public Vak(int VakId, int PersoonId, bool nieuw)//Constructor vakken toevoegen aan docent
+        public Vak(int VakId, int PersoonId, bool nieuw)//Constructor vakken toevoegen aan docent.
         {
             persoonId = PersoonId;
             vakId = VakId;
@@ -86,7 +89,8 @@ namespace Roostersysteem.Models
             return vak;
         }
 
-        public static List<Vak> toonVakkenDocent(int PersoonId)
+        public static List<Vak> toonVakkenDocent(int PersoonId)//Static list voor het ophalen van alle vakken (Vak_Id + VakNaam) voor een docent.
+                                                               //In dit geval wordt Id 8 doorgegeven van docent Natasja.
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DatabaseConnectionNP"].ConnectionString);
             SqlCommand cmd = new SqlCommand("SELECT Vak.VakId, Vak.VakNaam " +
@@ -109,33 +113,8 @@ namespace Roostersysteem.Models
             return vak;
         }
 
-        //table voor dropdownmenu
-        public class MyListTable
-        {
-            public string key { get; set; }
-            public string Display { get; set; }
-        }
-
-        //Methods 
-        public void VakContacturenDoorgeven(string vakNr, int uren, string typeLokaal)
-        {
-            //To do
-        }
-
-        public void VakcontacturenOphalen()
-        {
-            //To do
-        }
-
-        public IEnumerable<SelectListItem> takeVakken { get; set; }
-
-       
-
-        public void VakkenDocentOphalen()
-        {
-            //To do
-        }
-        public void Connectie(string sql)
+        //Methods
+        public void Connectie(string sql)//Zorgt voor de connectie met db en maakt een sql command aan.
         {
             //Connectie maken.
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DatabaseConnectionNP"].ConnectionString);
@@ -152,8 +131,13 @@ namespace Roostersysteem.Models
 
             //return cmd.ExecuteReader();
         }
+        
+        public void VakContacturenDoorgeven(string vakNr, int uren, string typeLokaal)
+        {
+            //To do
+        }
 
-        public  void DocentWijzigenVak(string docentNaam, string vak)
+        public void VakcontacturenOphalen()
         {
             //To do
         }
@@ -162,6 +146,11 @@ namespace Roostersysteem.Models
         {
             //To do
         }
-
+        //table voor dropdownmenu
+        public class MyListTable
+        {
+            public string key { get; set; }
+            public string Display { get; set; }
+        }
     }
 }
