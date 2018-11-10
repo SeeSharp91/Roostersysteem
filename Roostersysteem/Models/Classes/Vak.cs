@@ -47,6 +47,13 @@ namespace Roostersysteem.Models
             Connectie("DELETE FROM PersoonVak WHERE Vak_Id = "+ VakId + "AND Persoon_Id = "+ PersoonId );
 
         }
+        public Vak(int PersoonId, bool wijzigen)//Constructor vakken wijzigen van een docent
+        {
+            persoonId = PersoonId;
+            Connectie("UPDATE PersoonVak SET Vak_Id = 3" +
+                      "WHERE Vak_Id = 8 AND Persoon_Id = " + PersoonId);
+
+        }
         public Vak(int VakId, int PersoonId, bool nieuw)//Constructor vakken toevoegen aan docent
         {
             persoonId = PersoonId;

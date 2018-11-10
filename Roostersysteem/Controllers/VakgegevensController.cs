@@ -13,8 +13,7 @@ using System.Web.Mvc;
 namespace Roostersysteem.Controllers
 {
     public class VakgegevensController : Controller
-    {
-        
+    {        
         //-------------------- Vakken Koppelen aan Docent --------------------\\
         [HttpGet]
         // GET: Vakken from DB
@@ -46,7 +45,6 @@ namespace Roostersysteem.Controllers
                 }
 
                 sb.Remove(sb.ToString().LastIndexOf(","), 1);
-                sb.Append("Vakken");
                 ViewBag.msg = sb.ToString();
                 return View(vak);
             }
@@ -61,30 +59,35 @@ namespace Roostersysteem.Controllers
             model = Vak.toonVakkenDocent(8);//TODO: PersoonId nog hardcoded, aanpassen wanneer inloggen optimaal werkt.
             return View(model);
         }
+
         //-------------------- Vakken wijzigen van een Docent --------------------\\
-        
-            // GET: Vakgegevens/Wijzigen/5
+        [HttpGet]
         public ActionResult Wijzigen(int? id)//TODO Wijzigen Connectie met de view werkt, wijzigen nog niet mogelijk.
         {
-            string persoonId = Request.QueryString["PersoonId"];
-
             return View();
         }
+        [HttpPost]
+        // GET: Vakken from DB en verwijder selectie
+        public ActionResult Wijzigen(int id)//TODO Vewijderen is nog hardcoded.
+        {
+            Vak oVak = new Vak(8, true);//Constructor wijzigen aanroepen.
+            List<Vak> model = new List<Vak>();
+            model = Vak.toonVakkenDocent(8);//TODO: PersoonId nog hardcoded, aanpassen wanneer inloggen optimaal werkt.
+            return View("VakkenBekijken", model);
+        }
+
         //-------------------- Vakken verwijderen van een Docent --------------------\\
         [HttpGet]
-        // GET: Vakken from DB
         public ActionResult Verwijderen(int? id)
-        {
-            
+        {            
             return View();
         }
 
         [HttpPost]
-        // GET: Vakken from DB
-        public ActionResult Verwijderen(int id)//TODO Vewijderen Connectie met de view werkt,  
-                                                                 //verwijderen bij druk op de knop nog niet mogelijk.
+        // GET: Vakken from DB en verwijder selectie
+        public ActionResult Verwijderen(int id)//TODO Vewijderen is nog hardcoded.
         {
-            Vak oVak = new Vak(8, 1);
+            Vak oVak = new Vak(1, 8);//Constructor verwijderen aanroepen.
             List<Vak> model = new List<Vak>();
             model = Vak.toonVakkenDocent(8);//TODO: PersoonId nog hardcoded, aanpassen wanneer inloggen optimaal werkt.
             return View("VakkenBekijken", model);

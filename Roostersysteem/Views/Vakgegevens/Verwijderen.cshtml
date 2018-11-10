@@ -5,14 +5,14 @@
 
 <h2>Vakken Verwijderen</h2>
 
-<h3>Weet u zeker dat u dit wilt verwijderen?</h3>
+<h3>Weet u zeker dat u Scripting wilt verwijderen?</h3>
 <div>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Verwijderen" class="btn btn-default" onclick="location.href='@Url.Action("VakkenBekijken", "VakGegevens")'" /> |
+            <input type="submit" value="Verwijderen" class="btn btn-default"/> |
             @Html.ActionLink("Terug", "VakkenBekijken")
         </div>
     }
