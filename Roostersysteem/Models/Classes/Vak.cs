@@ -35,15 +35,18 @@ namespace Roostersysteem.Models
         public Vak() { }
         public Vak(int PersoonId)//Constructor voor het ophalen van de vakken van een docent
         {
-            //Connectie("SELECT Vak.VakNaam, PersoonVak.Vak_Id, PersoonVak.Persoon_Id" +
-            //            "FROM Vak" +
-            //            "INNER JOIN PersoonVak ON PersoonVak.Vak_Id = Vak.VakId WHERE Persoon_Id = "+ PersoonId.ToString());
-            //reader.Read
-            List<Vak> l = getvakken("SELECT Vak.VakNaam, PersoonVak.Vak_Id, PersoonVak.Persoon_Id" +
+            Connectie("SELECT Vak.VakNaam, PersoonVak.Vak_Id, PersoonVak.Persoon_Id" +
                         "FROM Vak" +
                         "INNER JOIN PersoonVak ON PersoonVak.Vak_Id = Vak.VakId WHERE Persoon_Id = " + PersoonId.ToString());
         }
+        public Vak(int VakId, int PersoonId)//Constructor vakken verwijderen docent
+                                            //TODO: Werkt nog niet met de controller/view. Query wel getest in DB en werkt.
+        {
+            persoonId = PersoonId;
+            vakId = VakId;
+            Connectie("DELETE FROM PersoonVak WHERE Vak_Id = "+ VakId + "AND Persoon_Id = "+ PersoonId );
 
+        }
         public Vak(int VakId, int PersoonId, bool nieuw)//Constructor vakken toevoegen aan docent
         {
             persoonId = PersoonId;
@@ -53,6 +56,7 @@ namespace Roostersysteem.Models
                     + VakId + "')");
 
         }
+
 
         public static List<Vak> getvakken(string query)
         {
@@ -69,6 +73,29 @@ namespace Roostersysteem.Models
                 {
                     VakId = (int)values[0],
                     VakNaam = (string)values[1],
+                };
+                vak.Add(vakken);
+            }
+            return vak;
+        }
+
+        public static List<Vak> toonVakkenDocent(int PersoonId)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DatabaseConnectionNP"].ConnectionString);
+            SqlCommand cmd = new SqlCommand("SELECT Vak.VakId, Vak.VakNaam " +
+                                            "FROM Vak " +
+                                            "JOIN PersoonVak ON Vak.VakId=PersoonVak.Vak_Id WHERE Persoon_Id = " + PersoonId, con);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            var vak = new List<Vak>(ds.Tables[0].Rows.Count);
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                var values = row.ItemArray;
+                var vakken = new Vak()
+                {
+                    VakId = (int)values[0],
+                    VakNaam = (string)values[1]
                 };
                 vak.Add(vakken);
             }

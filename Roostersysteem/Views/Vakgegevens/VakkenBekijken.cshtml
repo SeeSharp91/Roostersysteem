@@ -1,0 +1,36 @@
+﻿@model List<Roostersysteem.Models.Vak>
+@{
+    ViewBag.Title = "VakkenBekijken";
+}
+
+<h2>Overzicht Vakken</h2>
+<html>
+<body>
+    <div class="col-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">Natasja's Vakken:</div><!--TODO:Hardcoded de naam van de docent vermeld. 
+                                                                  Aanpassen wanneer een link met het account mogelijk is.-->
+            <div class="panel-body">
+                <table style="border:1px">
+                    <tr>
+                        <th style="width: 40%">VakId</th>
+                        <th style="width: 40%">VakNaam</th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.VakId</td>
+                            <td>@item.VakNaam</td>
+                            <td>
+                                <!--Genereert de links om te kunnen wijzigen of verwijderen-->
+                                @Html.ActionLink("Wijzigen", "Wijzigen", new { id = 8 }) |
+                                @Html.ActionLink("Verwijderen", "Verwijderen", new { id = 8})
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,9 +1,11 @@
 ﻿using Roostersysteem.Models;
+using Roostersysteem.Models.Classes;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
@@ -12,13 +14,14 @@ namespace Roostersysteem.Controllers
 {
     public class VakgegevensController : Controller
     {
+        
         //-------------------- Vakken Koppelen aan Docent --------------------\\
         [HttpGet]
         // GET: Vakken from DB
         public ActionResult VakkenKoppelen()
         {
             List<Vak> model = new List<Vak>();
-            model = Vak.getvakken("select * from Vak");
+            model = Vak.getvakken("SELECT * FROM Vak");
             return View(model);
         }
         [HttpPost]
@@ -38,7 +41,7 @@ namespace Roostersysteem.Controllers
                     if (v.IsSelected)
                     {
                         sb.Append(v.VakNaam + ",");
-                        Vak oVak = new Vak(v.VakId, 3, true); //TODO: PersoonId nog hardcoded, aanpassen wanneer inloggen optimaal werkt. 
+                        Vak oVak = new Vak(v.VakId, 8, true); //TODO: PersoonId nog hardcoded, aanpassen wanneer inloggen optimaal werkt. 
                     }
                 }
 
@@ -54,12 +57,42 @@ namespace Roostersysteem.Controllers
         // GET: Vakken from DB
         public ActionResult VakkenBekijken()
         {
-            //Vak oVak = new Vak(4);
-            //return View(oVak);
+            List<Vak> model = new List<Vak>();
+            model = Vak.toonVakkenDocent(8);//TODO: PersoonId nog hardcoded, aanpassen wanneer inloggen optimaal werkt.
+            return View(model);
         }
-        // Met een button naar een nieuwe pagine/view verwijzen (OnClick event maken).
+        //-------------------- Vakken wijzigen van een Docent --------------------\\
+        
+            // GET: Vakgegevens/Wijzigen/5
+        public ActionResult Wijzigen(int? id)//TODO Wijzigen Connectie met de view werkt, wijzigen nog niet mogelijk.
+        {
+            string persoonId = Request.QueryString["PersoonId"];
 
-        // wordt aan gewerkt
+            return View();
+        }
+        //-------------------- Vakken verwijderen van een Docent --------------------\\
+        [HttpGet]
+        // GET: Vakken from DB
+        public ActionResult Verwijderen(int? id)
+        {
+            
+            return View();
+        }
+
+        [HttpPost]
+        // GET: Vakken from DB
+        public ActionResult Verwijderen(int id)//TODO Vewijderen Connectie met de view werkt,  
+                                                                 //verwijderen bij druk op de knop nog niet mogelijk.
+        {
+            Vak oVak = new Vak(8, 1);
+            List<Vak> model = new List<Vak>();
+            model = Vak.toonVakkenDocent(8);//TODO: PersoonId nog hardcoded, aanpassen wanneer inloggen optimaal werkt.
+            return View("VakkenBekijken", model);
+        }
+
+
+        // wordt aan gewerkt, code van Mitchell
+
         //public ActionResult contactUrenDoorgeven()
         //{
         //    var list = new List<MyListTable>();
