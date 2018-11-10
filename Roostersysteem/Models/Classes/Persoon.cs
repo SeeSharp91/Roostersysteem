@@ -28,23 +28,16 @@ namespace Roostersysteem.Models
         public bool RememberMe { get; set; }
     }
 
-    public class ValidatieViewModel
-    {
-        [Required]
-        [Display(Name = "Code")]
 
-        public string Code { get; set; }
-
-    }
 
     public class Persoon
     {
 
         string strCon = ConfigurationManager.ConnectionStrings["DatabaseConnectionExpress"].ConnectionString.ToString();
         //----------------------------Public variables------------------------------------------------
-        public string PersoonNaam { get; set; }
-
         public int PersoonId { get; set; }
+
+        public string PersoonNaam { get; set; }
 
         public string PersoonEmail { get; set; }
 
@@ -64,7 +57,7 @@ namespace Roostersysteem.Models
 
         public string Functie { get; set; }
 
-        public string Code { get; set; }
+        public string Vcode { get; set; }
 
 
         //-------------------------------METHODS------------------------------------------------------
@@ -73,17 +66,15 @@ namespace Roostersysteem.Models
         {
 
             // te verplaatsen naar database connectie
-            // link is verkeerd moet fixen
-
-
+            // link is verkeerd moet fixen            
 
             bool Flag = false;
             SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = ConfigurationManager.ConnectionStrings["DatabaseConnectionExpress"].ConnectionString;
+            conn.ConnectionString = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;
             conn.Open();
 
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT PersoonId, PersoonGbn, PersoonWw, PersoonEmail FROM [Persoon]";
+            cmd.CommandText = "SELECT PersoonId, PersoonGbn, PersoonWw, PersoonEmail, PersoonNaam FROM [Persoon]";
             cmd.Connection = conn;
 
             SqlDataReader rd = cmd.ExecuteReader();
@@ -93,45 +84,19 @@ namespace Roostersysteem.Models
                 if (rd[1].ToString() == gebruikersnaam && rd[2].ToString() == wachtwoord)
                 {
                     Flag = true;
+
                     PersoonId = Convert.ToInt32(rd[0]);
                     PersoonEmail = Convert.ToString(rd[3]);
+                    PersoonNaam = Convert.ToString(rd[4]);
                     Mail(PersoonId, PersoonEmail);
                 }
             }
             conn.Close();
-          
+
             return Flag;
         }
 
 
-
-
-        public bool TweeStapsVer(int userID, string verificatiecode) // todo: add check for code
-        {
-            bool Flag = false;
-            SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;
-            conn.Open();
-
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT PersoonId, Code, TimeStamp FROM [Authenticator] WHERE PersoonId = " + userID;
-            cmd.Connection = conn;
-
-            SqlDataReader rd = cmd.ExecuteReader();
-
-            while (rd.Read())
-            {
-                if (rd[1].ToString() == verificatiecode)
-                {
-                    Flag = true;
-                }
-                PersoonId = Convert.ToInt32(rd[0]);
-
-            }
-
-            conn.Close();
-            return Flag;
-        }
 
         public void Mail(int gebruikerid, string email)
         {
@@ -149,24 +114,24 @@ namespace Roostersysteem.Models
                 {
                     comm.Connection = conn;
                     comm.CommandType = CommandType.Text;
-                    comm.CommandText = "INSERT INTO AuthenticatorTBL (PersoonId, Code, TimeStemp) VALUES (@PersoonId, @Code, @TimeStamp)";
+                    comm.CommandText = "INSERT INTO Authenticator (PersoonId, Code, TimeStamp) VALUES (@PersoonId, @Code, @TimeStamp)";
                     comm.Parameters.Add("@PersoonId", SqlDbType.VarChar, 50).Value = gebruikerid;
                     comm.Parameters.Add("@Code", SqlDbType.VarChar, 50).Value = code;
                     comm.Parameters.Add("@TimeStamp", SqlDbType.DateTime).Value = localDate;
 
-                    try
-                    {
-                        conn.Open();
-                        comm.ExecuteNonQuery();
-                    }
-                    catch (SqlException)
-                    {
-                        // error
-                    }
-                    finally
-                    {
-                        conn.Close();
-                    }
+                    //try
+                    //{
+                    conn.Open();
+                    comm.ExecuteNonQuery();
+                    //}
+                    //catch(SqlException)
+                    //{
+                    // error
+                    //}
+                    //finally
+                    //{
+                    conn.Close();
+                    //}
 
                 }
             }
@@ -183,7 +148,7 @@ namespace Roostersysteem.Models
             client.UseDefaultCredentials = false;
             client.Credentials = new System.Net.NetworkCredential("RoosterDontReplyVerificatie@hotmail.com", "100200MMmn");
 
-            MailMessage mm = new MailMessage("RoosterDontReplyVerificatie@hotmail.com", "maxthomas28@hotmail.com", "test", "test" + email + code);
+            MailMessage mm = new MailMessage("RoosterDontReplyVerificatie@hotmail.com", email, "test", "test" + code);
             mm.BodyEncoding = UTF8Encoding.UTF8;
             mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
 
@@ -200,7 +165,7 @@ namespace Roostersysteem.Models
 
             using (SqlConnection con = new SqlConnection(strCon))
             {
-                string sql = "UPDATE Persoon set PersoonWw = '"+ persoon.PersoonWw +"' WHERE PersoonGbn = '" + persoon.PersoonGbn + "'  ";
+                string sql = "UPDATE Persoon set PersoonWw = '" + persoon.PersoonWw + "' WHERE PersoonGbn = '" + persoon.PersoonGbn + "'  ";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -218,7 +183,7 @@ namespace Roostersysteem.Models
 
             using (SqlConnection con = new SqlConnection(strCon))
             {
-                string sql = "UPDATE Persoon set PersoonNaam = '"+ persoon.PersoonNaam + "', PersoonEmail = '" + persoon.PersoonEmail+ "', TelefoonNr = '" + persoon.TelefoonNr + "', StraatNaam = '" + persoon.StraatNaam + "', HuisNummer = '" + persoon.HuisNummer + "', Postcode = '" + persoon.Postcode + "' WHERE persoonId = '"+ persoon.PersoonId +"'  ";
+                string sql = "UPDATE Persoon set PersoonNaam = '" + persoon.PersoonNaam + "', PersoonEmail = '" + persoon.PersoonEmail + "', TelefoonNr = '" + persoon.TelefoonNr + "', StraatNaam = '" + persoon.StraatNaam + "', HuisNummer = '" + persoon.HuisNummer + "', Postcode = '" + persoon.Postcode + "' WHERE persoonId = '" + persoon.PersoonId + "'  ";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -238,22 +203,7 @@ namespace Roostersysteem.Models
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
-        }
-
-
-        public Persoon()
-        {
-            PersoonId = 1;
-            PersoonNaam = "Voornaam Achternaam";
-            PersoonEmail = "email@email.com";
-            TelefoonNr = 0000000000;
-            PersoonGbn = "0000000Achternaam";
-            PersoonWw = "Wachtwoord";
-            PersoonWwHerhaling = PersoonWw;
-            StraatNaam = "Straatnaam";
-            HuisNummer = 1;
-            Postcode = "1234AB";
-        }
+        }       
 
     }
 }

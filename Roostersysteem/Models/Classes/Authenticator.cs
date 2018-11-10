@@ -1,33 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
 namespace Roostersysteem.Models
 {
+
+    public class ValiderenViewModel
+    {
+        [Required]
+        [Display(Name = "verificatiecode")]
+        public string verificatiecode { get; set; }
+
+    }
+
     public class Authenticator
     {
-        private string _code;
-        private DateTime _timeStamp;
+        public string Code { get; set; }
 
-        public string Code
+        public DateTime TimeStamp { get; set; }      
+
+        
+
+        public bool TweeStapsVer(int userID, string verificatiecode) // todo: add check for code
         {
-            get { return _code; }
-            set { _code = Code; }
+            bool Flag = false;
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "SELECT Code FROM [Authenticator] WHERE Code = '" + verificatiecode + "'";
+
+            cmd.Connection = conn;
+            string CodeExists = Convert.ToString(cmd.ExecuteScalar());
+
+            if (CodeExists != null)
+            {
+
+                cmd.CommandText = "SELECT TimeStamp FROM [Authenticator] WHERE Code = '" + verificatiecode + "'";
+                DateTime StoredTime = Convert.ToDateTime(cmd.ExecuteScalar());
+                DateTime TimeLimit = StoredTime.AddMinutes(5);
+                DateTime CurrentTime = DateTime.Now;
+                if (CurrentTime < TimeLimit)
+                {
+                    Flag = true;
+                }
+            }
+
+            conn.Close();
+
+            return Flag;
         }
-
-        public DateTime TimeStamp
-        {
-            get { return _timeStamp; }
-            set { _timeStamp = TimeStamp; }
-        }
-
-        public bool True { get; private set; } //tijdelijk om bugs te voorkomen //weghalen op het moment van implementeren
-
-        public bool VerifiërenGebruiker(
-            string code, DateTime timeStamp)
-        {
-            return True; //tijdelijk om bugs te voorkomen //weghalen op het moment van implementeren
-        }            
     }
 }
