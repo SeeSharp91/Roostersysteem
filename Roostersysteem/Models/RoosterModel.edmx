@@ -1,0 +1,790 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RoosterDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Authenticator">
+          <Key>
+            <PropertyRef Name="AuthenticatorId" />
+          </Key>
+          <Property Name="AuthenticatorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Persoon_Id" Type="int" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Timestamp" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LokaalType">
+          <Key>
+            <PropertyRef Name="LokaalTypeId" />
+          </Key>
+          <Property Name="LokaalTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LokaalTypeNaam" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="Persoon">
+          <Key>
+            <PropertyRef Name="PersoonId" />
+          </Key>
+          <Property Name="PersoonId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersoonVoornaam" Type="varchar" MaxLength="15" />
+          <Property Name="PersoonAchternaam" Type="varchar" MaxLength="15" />
+          <Property Name="PersoonTelefoonnummer" Type="int" />
+          <Property Name="PersoonEmail" Type="nvarchar" MaxLength="30" />
+          <Property Name="PersoonStraat" Type="varchar" MaxLength="30" />
+          <Property Name="PersoonHuisnummer" Type="int" />
+          <Property Name="PersoonToevoegingHuisnr" Type="varchar" MaxLength="1" />
+          <Property Name="PersoonWoonplaats" Type="varchar" MaxLength="15" />
+          <Property Name="PersoonPostcode" Type="varchar" MaxLength="6" />
+          <Property Name="PersoonGebruikersnaam" Type="varchar" MaxLength="30" />
+          <Property Name="PersoonWachtwoord" Type="nvarchar" MaxLength="30" />
+          <Property Name="PersoonFunctie" Type="varchar" MaxLength="20" />
+          <Property Name="PersoonContractUren" Type="int" />
+        </EntityType>
+        <EntityType Name="PersoonUren">
+          <Key>
+            <PropertyRef Name="PersoonUren_Id" />
+          </Key>
+          <Property Name="UrenBeschikbaarheid_Id" Type="int" />
+          <Property Name="Persoon_Id" Type="int" />
+          <Property Name="PersoonUren_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PersoonVak">
+          <Key>
+            <PropertyRef Name="PersoonVak_Id" />
+          </Key>
+          <Property Name="Persoon_Id" Type="int" />
+          <Property Name="Vak_Id" Type="int" />
+          <Property Name="PersoonVak_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rooster">
+          <Key>
+            <PropertyRef Name="RoosterId" />
+          </Key>
+          <Property Name="RoosterId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersoonVak_Id" Type="int" />
+          <Property Name="VakUrenCollege_Id" Type="int" />
+          <Property Name="Klas" Type="nchar" MaxLength="20" />
+          <Property Name="VakLokaalType_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="UrenBeschikbaarheid">
+          <Key>
+            <PropertyRef Name="UrenBeschikbaarheidId" />
+          </Key>
+          <Property Name="UrenBeschikbaarheidId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TijdstipBeschikbaarheid" Type="datetime" />
+          <Property Name="DagBeschikbaarheid" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="UrenCollege">
+          <Key>
+            <PropertyRef Name="UrenCollegeId" />
+          </Key>
+          <Property Name="UrenCollegeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CollegeNaam" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Vak">
+          <Key>
+            <PropertyRef Name="VakId" />
+          </Key>
+          <Property Name="VakId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VakNaam" Type="varchar" MaxLength="30" />
+          <Property Name="VakCode" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="VakLokaalType">
+          <Key>
+            <PropertyRef Name="VakLokaalType_Id" />
+          </Key>
+          <Property Name="LokaalType_Id" Type="int" />
+          <Property Name="Vak_Id" Type="int" />
+          <Property Name="VakLokaalType_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VakUrenCollege">
+          <Key>
+            <PropertyRef Name="VakUrenCollege_Id" />
+          </Key>
+          <Property Name="Vak_Id" Type="int" />
+          <Property Name="UrenCollege_Id" Type="int" />
+          <Property Name="Vakduur" Type="float" />
+          <Property Name="VakUrenCollege_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Authenticator_Persoon">
+          <End Role="Persoon" Type="Self.Persoon" Multiplicity="0..1" />
+          <End Role="Authenticator" Type="Self.Authenticator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persoon">
+              <PropertyRef Name="PersoonId" />
+            </Principal>
+            <Dependent Role="Authenticator">
+              <PropertyRef Name="Persoon_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersoonUren_Persoon">
+          <End Role="Persoon" Type="Self.Persoon" Multiplicity="0..1" />
+          <End Role="PersoonUren" Type="Self.PersoonUren" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persoon">
+              <PropertyRef Name="PersoonId" />
+            </Principal>
+            <Dependent Role="PersoonUren">
+              <PropertyRef Name="Persoon_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersoonUren_UrenBeschikbaarheid">
+          <End Role="UrenBeschikbaarheid" Type="Self.UrenBeschikbaarheid" Multiplicity="0..1" />
+          <End Role="PersoonUren" Type="Self.PersoonUren" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UrenBeschikbaarheid">
+              <PropertyRef Name="UrenBeschikbaarheidId" />
+            </Principal>
+            <Dependent Role="PersoonUren">
+              <PropertyRef Name="UrenBeschikbaarheid_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersoonVak_Persoon">
+          <End Role="Persoon" Type="Self.Persoon" Multiplicity="0..1" />
+          <End Role="PersoonVak" Type="Self.PersoonVak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persoon">
+              <PropertyRef Name="PersoonId" />
+            </Principal>
+            <Dependent Role="PersoonVak">
+              <PropertyRef Name="Persoon_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersoonVak_Vak">
+          <End Role="Vak" Type="Self.Vak" Multiplicity="0..1" />
+          <End Role="PersoonVak" Type="Self.PersoonVak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vak">
+              <PropertyRef Name="VakId" />
+            </Principal>
+            <Dependent Role="PersoonVak">
+              <PropertyRef Name="Vak_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rooster_PersoonVak">
+          <End Role="PersoonVak" Type="Self.PersoonVak" Multiplicity="0..1" />
+          <End Role="Rooster" Type="Self.Rooster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersoonVak">
+              <PropertyRef Name="PersoonVak_Id" />
+            </Principal>
+            <Dependent Role="Rooster">
+              <PropertyRef Name="PersoonVak_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rooster_VakLokaalType">
+          <End Role="VakLokaalType" Type="Self.VakLokaalType" Multiplicity="0..1" />
+          <End Role="Rooster" Type="Self.Rooster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VakLokaalType">
+              <PropertyRef Name="VakLokaalType_Id" />
+            </Principal>
+            <Dependent Role="Rooster">
+              <PropertyRef Name="VakLokaalType_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rooster_VakUrenCollege">
+          <End Role="VakUrenCollege" Type="Self.VakUrenCollege" Multiplicity="0..1" />
+          <End Role="Rooster" Type="Self.Rooster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VakUrenCollege">
+              <PropertyRef Name="VakUrenCollege_Id" />
+            </Principal>
+            <Dependent Role="Rooster">
+              <PropertyRef Name="VakUrenCollege_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VakLokaalType_LokaalType">
+          <End Role="LokaalType" Type="Self.LokaalType" Multiplicity="0..1" />
+          <End Role="VakLokaalType" Type="Self.VakLokaalType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LokaalType">
+              <PropertyRef Name="LokaalTypeId" />
+            </Principal>
+            <Dependent Role="VakLokaalType">
+              <PropertyRef Name="LokaalType_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VakLokaalType_Vak">
+          <End Role="Vak" Type="Self.Vak" Multiplicity="0..1" />
+          <End Role="VakLokaalType" Type="Self.VakLokaalType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vak">
+              <PropertyRef Name="VakId" />
+            </Principal>
+            <Dependent Role="VakLokaalType">
+              <PropertyRef Name="Vak_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VakUrenCollege_UrenCollege">
+          <End Role="UrenCollege" Type="Self.UrenCollege" Multiplicity="0..1" />
+          <End Role="VakUrenCollege" Type="Self.VakUrenCollege" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UrenCollege">
+              <PropertyRef Name="UrenCollegeId" />
+            </Principal>
+            <Dependent Role="VakUrenCollege">
+              <PropertyRef Name="UrenCollege_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VakUrenCollege_Vak">
+          <End Role="Vak" Type="Self.Vak" Multiplicity="0..1" />
+          <End Role="VakUrenCollege" Type="Self.VakUrenCollege" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vak">
+              <PropertyRef Name="VakId" />
+            </Principal>
+            <Dependent Role="VakUrenCollege">
+              <PropertyRef Name="Vak_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RoosterDBModelStoreContainer">
+          <EntitySet Name="Authenticator" EntityType="Self.Authenticator" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LokaalType" EntityType="Self.LokaalType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Persoon" EntityType="Self.Persoon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersoonUren" EntityType="Self.PersoonUren" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersoonVak" EntityType="Self.PersoonVak" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rooster" EntityType="Self.Rooster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UrenBeschikbaarheid" EntityType="Self.UrenBeschikbaarheid" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UrenCollege" EntityType="Self.UrenCollege" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vak" EntityType="Self.Vak" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VakLokaalType" EntityType="Self.VakLokaalType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VakUrenCollege" EntityType="Self.VakUrenCollege" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Authenticator_Persoon" Association="Self.FK_Authenticator_Persoon">
+            <End Role="Persoon" EntitySet="Persoon" />
+            <End Role="Authenticator" EntitySet="Authenticator" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersoonUren_Persoon" Association="Self.FK_PersoonUren_Persoon">
+            <End Role="Persoon" EntitySet="Persoon" />
+            <End Role="PersoonUren" EntitySet="PersoonUren" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersoonUren_UrenBeschikbaarheid" Association="Self.FK_PersoonUren_UrenBeschikbaarheid">
+            <End Role="UrenBeschikbaarheid" EntitySet="UrenBeschikbaarheid" />
+            <End Role="PersoonUren" EntitySet="PersoonUren" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersoonVak_Persoon" Association="Self.FK_PersoonVak_Persoon">
+            <End Role="Persoon" EntitySet="Persoon" />
+            <End Role="PersoonVak" EntitySet="PersoonVak" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersoonVak_Vak" Association="Self.FK_PersoonVak_Vak">
+            <End Role="Vak" EntitySet="Vak" />
+            <End Role="PersoonVak" EntitySet="PersoonVak" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rooster_PersoonVak" Association="Self.FK_Rooster_PersoonVak">
+            <End Role="PersoonVak" EntitySet="PersoonVak" />
+            <End Role="Rooster" EntitySet="Rooster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rooster_VakLokaalType" Association="Self.FK_Rooster_VakLokaalType">
+            <End Role="VakLokaalType" EntitySet="VakLokaalType" />
+            <End Role="Rooster" EntitySet="Rooster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rooster_VakUrenCollege" Association="Self.FK_Rooster_VakUrenCollege">
+            <End Role="VakUrenCollege" EntitySet="VakUrenCollege" />
+            <End Role="Rooster" EntitySet="Rooster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VakLokaalType_LokaalType" Association="Self.FK_VakLokaalType_LokaalType">
+            <End Role="LokaalType" EntitySet="LokaalType" />
+            <End Role="VakLokaalType" EntitySet="VakLokaalType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VakLokaalType_Vak" Association="Self.FK_VakLokaalType_Vak">
+            <End Role="Vak" EntitySet="Vak" />
+            <End Role="VakLokaalType" EntitySet="VakLokaalType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VakUrenCollege_UrenCollege" Association="Self.FK_VakUrenCollege_UrenCollege">
+            <End Role="UrenCollege" EntitySet="UrenCollege" />
+            <End Role="VakUrenCollege" EntitySet="VakUrenCollege" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VakUrenCollege_Vak" Association="Self.FK_VakUrenCollege_Vak">
+            <End Role="Vak" EntitySet="Vak" />
+            <End Role="VakUrenCollege" EntitySet="VakUrenCollege" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RoosterDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Authenticator">
+          <Key>
+            <PropertyRef Name="AuthenticatorId" />
+          </Key>
+          <Property Name="AuthenticatorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Persoon_Id" Type="Int32" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Timestamp" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Persoon" Relationship="Self.FK_Authenticator_Persoon" FromRole="Authenticator" ToRole="Persoon" />
+        </EntityType>
+        <EntityType Name="LokaalType">
+          <Key>
+            <PropertyRef Name="LokaalTypeId" />
+          </Key>
+          <Property Name="LokaalTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LokaalTypeNaam" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="VakLokaalTypes" Relationship="Self.FK_VakLokaalType_LokaalType" FromRole="LokaalType" ToRole="VakLokaalType" />
+        </EntityType>
+        <EntityType Name="Persoon">
+          <Key>
+            <PropertyRef Name="PersoonId" />
+          </Key>
+          <Property Name="PersoonId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersoonVoornaam" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="PersoonAchternaam" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="PersoonTelefoonnummer" Type="Int32" />
+          <Property Name="PersoonEmail" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="PersoonStraat" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PersoonHuisnummer" Type="Int32" />
+          <Property Name="PersoonToevoegingHuisnr" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="PersoonWoonplaats" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="PersoonPostcode" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="PersoonGebruikersnaam" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PersoonWachtwoord" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="PersoonFunctie" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PersoonContractUren" Type="Int32" />
+          <NavigationProperty Name="Authenticators" Relationship="Self.FK_Authenticator_Persoon" FromRole="Persoon" ToRole="Authenticator" />
+          <NavigationProperty Name="PersoonUrens" Relationship="Self.FK_PersoonUren_Persoon" FromRole="Persoon" ToRole="PersoonUren" />
+          <NavigationProperty Name="PersoonVaks" Relationship="Self.FK_PersoonVak_Persoon" FromRole="Persoon" ToRole="PersoonVak" />
+        </EntityType>
+        <EntityType Name="PersoonUren">
+          <Key>
+            <PropertyRef Name="PersoonUren_Id" />
+          </Key>
+          <Property Name="UrenBeschikbaarheid_Id" Type="Int32" />
+          <Property Name="Persoon_Id" Type="Int32" />
+          <Property Name="PersoonUren_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Persoon" Relationship="Self.FK_PersoonUren_Persoon" FromRole="PersoonUren" ToRole="Persoon" />
+          <NavigationProperty Name="UrenBeschikbaarheid" Relationship="Self.FK_PersoonUren_UrenBeschikbaarheid" FromRole="PersoonUren" ToRole="UrenBeschikbaarheid" />
+        </EntityType>
+        <EntityType Name="PersoonVak">
+          <Key>
+            <PropertyRef Name="PersoonVak_Id" />
+          </Key>
+          <Property Name="Persoon_Id" Type="Int32" />
+          <Property Name="Vak_Id" Type="Int32" />
+          <Property Name="PersoonVak_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Persoon" Relationship="Self.FK_PersoonVak_Persoon" FromRole="PersoonVak" ToRole="Persoon" />
+          <NavigationProperty Name="Vak" Relationship="Self.FK_PersoonVak_Vak" FromRole="PersoonVak" ToRole="Vak" />
+          <NavigationProperty Name="Roosters" Relationship="Self.FK_Rooster_PersoonVak" FromRole="PersoonVak" ToRole="Rooster" />
+        </EntityType>
+        <EntityType Name="Rooster">
+          <Key>
+            <PropertyRef Name="RoosterId" />
+          </Key>
+          <Property Name="RoosterId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersoonVak_Id" Type="Int32" />
+          <Property Name="VakUrenCollege_Id" Type="Int32" />
+          <Property Name="Klas" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="VakLokaalType_Id" Type="Int32" />
+          <NavigationProperty Name="PersoonVak" Relationship="Self.FK_Rooster_PersoonVak" FromRole="Rooster" ToRole="PersoonVak" />
+          <NavigationProperty Name="VakLokaalType" Relationship="Self.FK_Rooster_VakLokaalType" FromRole="Rooster" ToRole="VakLokaalType" />
+          <NavigationProperty Name="VakUrenCollege" Relationship="Self.FK_Rooster_VakUrenCollege" FromRole="Rooster" ToRole="VakUrenCollege" />
+        </EntityType>
+        <EntityType Name="UrenBeschikbaarheid">
+          <Key>
+            <PropertyRef Name="UrenBeschikbaarheidId" />
+          </Key>
+          <Property Name="UrenBeschikbaarheidId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TijdstipBeschikbaarheid" Type="DateTime" Precision="3" />
+          <Property Name="DagBeschikbaarheid" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PersoonUrens" Relationship="Self.FK_PersoonUren_UrenBeschikbaarheid" FromRole="UrenBeschikbaarheid" ToRole="PersoonUren" />
+        </EntityType>
+        <EntityType Name="UrenCollege">
+          <Key>
+            <PropertyRef Name="UrenCollegeId" />
+          </Key>
+          <Property Name="UrenCollegeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CollegeNaam" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="VakUrenColleges" Relationship="Self.FK_VakUrenCollege_UrenCollege" FromRole="UrenCollege" ToRole="VakUrenCollege" />
+        </EntityType>
+        <EntityType Name="Vak">
+          <Key>
+            <PropertyRef Name="VakId" />
+          </Key>
+          <Property Name="VakId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VakNaam" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="VakCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="PersoonVaks" Relationship="Self.FK_PersoonVak_Vak" FromRole="Vak" ToRole="PersoonVak" />
+          <NavigationProperty Name="VakLokaalTypes" Relationship="Self.FK_VakLokaalType_Vak" FromRole="Vak" ToRole="VakLokaalType" />
+          <NavigationProperty Name="VakUrenColleges" Relationship="Self.FK_VakUrenCollege_Vak" FromRole="Vak" ToRole="VakUrenCollege" />
+        </EntityType>
+        <EntityType Name="VakLokaalType">
+          <Key>
+            <PropertyRef Name="VakLokaalType_Id" />
+          </Key>
+          <Property Name="LokaalType_Id" Type="Int32" />
+          <Property Name="Vak_Id" Type="Int32" />
+          <Property Name="VakLokaalType_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="LokaalType" Relationship="Self.FK_VakLokaalType_LokaalType" FromRole="VakLokaalType" ToRole="LokaalType" />
+          <NavigationProperty Name="Roosters" Relationship="Self.FK_Rooster_VakLokaalType" FromRole="VakLokaalType" ToRole="Rooster" />
+          <NavigationProperty Name="Vak" Relationship="Self.FK_VakLokaalType_Vak" FromRole="VakLokaalType" ToRole="Vak" />
+        </EntityType>
+        <EntityType Name="VakUrenCollege">
+          <Key>
+            <PropertyRef Name="VakUrenCollege_Id" />
+          </Key>
+          <Property Name="Vak_Id" Type="Int32" />
+          <Property Name="UrenCollege_Id" Type="Int32" />
+          <Property Name="Vakduur" Type="Double" />
+          <Property Name="VakUrenCollege_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Roosters" Relationship="Self.FK_Rooster_VakUrenCollege" FromRole="VakUrenCollege" ToRole="Rooster" />
+          <NavigationProperty Name="UrenCollege" Relationship="Self.FK_VakUrenCollege_UrenCollege" FromRole="VakUrenCollege" ToRole="UrenCollege" />
+          <NavigationProperty Name="Vak" Relationship="Self.FK_VakUrenCollege_Vak" FromRole="VakUrenCollege" ToRole="Vak" />
+        </EntityType>
+        <Association Name="FK_Authenticator_Persoon">
+          <End Role="Persoon" Type="Self.Persoon" Multiplicity="0..1" />
+          <End Role="Authenticator" Type="Self.Authenticator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persoon">
+              <PropertyRef Name="PersoonId" />
+            </Principal>
+            <Dependent Role="Authenticator">
+              <PropertyRef Name="Persoon_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VakLokaalType_LokaalType">
+          <End Role="LokaalType" Type="Self.LokaalType" Multiplicity="0..1" />
+          <End Role="VakLokaalType" Type="Self.VakLokaalType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LokaalType">
+              <PropertyRef Name="LokaalTypeId" />
+            </Principal>
+            <Dependent Role="VakLokaalType">
+              <PropertyRef Name="LokaalType_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersoonUren_Persoon">
+          <End Role="Persoon" Type="Self.Persoon" Multiplicity="0..1" />
+          <End Role="PersoonUren" Type="Self.PersoonUren" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persoon">
+              <PropertyRef Name="PersoonId" />
+            </Principal>
+            <Dependent Role="PersoonUren">
+              <PropertyRef Name="Persoon_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersoonVak_Persoon">
+          <End Role="Persoon" Type="Self.Persoon" Multiplicity="0..1" />
+          <End Role="PersoonVak" Type="Self.PersoonVak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persoon">
+              <PropertyRef Name="PersoonId" />
+            </Principal>
+            <Dependent Role="PersoonVak">
+              <PropertyRef Name="Persoon_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersoonUren_UrenBeschikbaarheid">
+          <End Role="UrenBeschikbaarheid" Type="Self.UrenBeschikbaarheid" Multiplicity="0..1" />
+          <End Role="PersoonUren" Type="Self.PersoonUren" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UrenBeschikbaarheid">
+              <PropertyRef Name="UrenBeschikbaarheidId" />
+            </Principal>
+            <Dependent Role="PersoonUren">
+              <PropertyRef Name="UrenBeschikbaarheid_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersoonVak_Vak">
+          <End Role="Vak" Type="Self.Vak" Multiplicity="0..1" />
+          <End Role="PersoonVak" Type="Self.PersoonVak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vak">
+              <PropertyRef Name="VakId" />
+            </Principal>
+            <Dependent Role="PersoonVak">
+              <PropertyRef Name="Vak_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rooster_PersoonVak">
+          <End Role="PersoonVak" Type="Self.PersoonVak" Multiplicity="0..1" />
+          <End Role="Rooster" Type="Self.Rooster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersoonVak">
+              <PropertyRef Name="PersoonVak_Id" />
+            </Principal>
+            <Dependent Role="Rooster">
+              <PropertyRef Name="PersoonVak_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rooster_VakLokaalType">
+          <End Role="VakLokaalType" Type="Self.VakLokaalType" Multiplicity="0..1" />
+          <End Role="Rooster" Type="Self.Rooster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VakLokaalType">
+              <PropertyRef Name="VakLokaalType_Id" />
+            </Principal>
+            <Dependent Role="Rooster">
+              <PropertyRef Name="VakLokaalType_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rooster_VakUrenCollege">
+          <End Role="VakUrenCollege" Type="Self.VakUrenCollege" Multiplicity="0..1" />
+          <End Role="Rooster" Type="Self.Rooster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VakUrenCollege">
+              <PropertyRef Name="VakUrenCollege_Id" />
+            </Principal>
+            <Dependent Role="Rooster">
+              <PropertyRef Name="VakUrenCollege_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VakUrenCollege_UrenCollege">
+          <End Role="UrenCollege" Type="Self.UrenCollege" Multiplicity="0..1" />
+          <End Role="VakUrenCollege" Type="Self.VakUrenCollege" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UrenCollege">
+              <PropertyRef Name="UrenCollegeId" />
+            </Principal>
+            <Dependent Role="VakUrenCollege">
+              <PropertyRef Name="UrenCollege_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VakLokaalType_Vak">
+          <End Role="Vak" Type="Self.Vak" Multiplicity="0..1" />
+          <End Role="VakLokaalType" Type="Self.VakLokaalType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vak">
+              <PropertyRef Name="VakId" />
+            </Principal>
+            <Dependent Role="VakLokaalType">
+              <PropertyRef Name="Vak_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VakUrenCollege_Vak">
+          <End Role="Vak" Type="Self.Vak" Multiplicity="0..1" />
+          <End Role="VakUrenCollege" Type="Self.VakUrenCollege" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vak">
+              <PropertyRef Name="VakId" />
+            </Principal>
+            <Dependent Role="VakUrenCollege">
+              <PropertyRef Name="Vak_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RoosterDB" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Authenticators" EntityType="Self.Authenticator" />
+          <EntitySet Name="LokaalTypes" EntityType="Self.LokaalType" />
+          <EntitySet Name="Persoons" EntityType="Self.Persoon" />
+          <EntitySet Name="PersoonUrens" EntityType="Self.PersoonUren" />
+          <EntitySet Name="PersoonVaks" EntityType="Self.PersoonVak" />
+          <EntitySet Name="Roosters" EntityType="Self.Rooster" />
+          <EntitySet Name="UrenBeschikbaarheids" EntityType="Self.UrenBeschikbaarheid" />
+          <EntitySet Name="UrenColleges" EntityType="Self.UrenCollege" />
+          <EntitySet Name="Vaks" EntityType="Self.Vak" />
+          <EntitySet Name="VakLokaalTypes" EntityType="Self.VakLokaalType" />
+          <EntitySet Name="VakUrenColleges" EntityType="Self.VakUrenCollege" />
+          <AssociationSet Name="FK_Authenticator_Persoon" Association="Self.FK_Authenticator_Persoon">
+            <End Role="Persoon" EntitySet="Persoons" />
+            <End Role="Authenticator" EntitySet="Authenticators" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VakLokaalType_LokaalType" Association="Self.FK_VakLokaalType_LokaalType">
+            <End Role="LokaalType" EntitySet="LokaalTypes" />
+            <End Role="VakLokaalType" EntitySet="VakLokaalTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersoonUren_Persoon" Association="Self.FK_PersoonUren_Persoon">
+            <End Role="Persoon" EntitySet="Persoons" />
+            <End Role="PersoonUren" EntitySet="PersoonUrens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersoonVak_Persoon" Association="Self.FK_PersoonVak_Persoon">
+            <End Role="Persoon" EntitySet="Persoons" />
+            <End Role="PersoonVak" EntitySet="PersoonVaks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersoonUren_UrenBeschikbaarheid" Association="Self.FK_PersoonUren_UrenBeschikbaarheid">
+            <End Role="UrenBeschikbaarheid" EntitySet="UrenBeschikbaarheids" />
+            <End Role="PersoonUren" EntitySet="PersoonUrens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersoonVak_Vak" Association="Self.FK_PersoonVak_Vak">
+            <End Role="Vak" EntitySet="Vaks" />
+            <End Role="PersoonVak" EntitySet="PersoonVaks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rooster_PersoonVak" Association="Self.FK_Rooster_PersoonVak">
+            <End Role="PersoonVak" EntitySet="PersoonVaks" />
+            <End Role="Rooster" EntitySet="Roosters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rooster_VakLokaalType" Association="Self.FK_Rooster_VakLokaalType">
+            <End Role="VakLokaalType" EntitySet="VakLokaalTypes" />
+            <End Role="Rooster" EntitySet="Roosters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rooster_VakUrenCollege" Association="Self.FK_Rooster_VakUrenCollege">
+            <End Role="VakUrenCollege" EntitySet="VakUrenColleges" />
+            <End Role="Rooster" EntitySet="Roosters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VakUrenCollege_UrenCollege" Association="Self.FK_VakUrenCollege_UrenCollege">
+            <End Role="UrenCollege" EntitySet="UrenColleges" />
+            <End Role="VakUrenCollege" EntitySet="VakUrenColleges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VakLokaalType_Vak" Association="Self.FK_VakLokaalType_Vak">
+            <End Role="Vak" EntitySet="Vaks" />
+            <End Role="VakLokaalType" EntitySet="VakLokaalTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VakUrenCollege_Vak" Association="Self.FK_VakUrenCollege_Vak">
+            <End Role="Vak" EntitySet="Vaks" />
+            <End Role="VakUrenCollege" EntitySet="VakUrenColleges" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RoosterDBModelStoreContainer" CdmEntityContainer="RoosterDB">
+          <EntitySetMapping Name="Authenticators">
+            <EntityTypeMapping TypeName="RoosterDBModel.Authenticator">
+              <MappingFragment StoreEntitySet="Authenticator">
+                <ScalarProperty Name="AuthenticatorId" ColumnName="AuthenticatorId" />
+                <ScalarProperty Name="Persoon_Id" ColumnName="Persoon_Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LokaalTypes">
+            <EntityTypeMapping TypeName="RoosterDBModel.LokaalType">
+              <MappingFragment StoreEntitySet="LokaalType">
+                <ScalarProperty Name="LokaalTypeId" ColumnName="LokaalTypeId" />
+                <ScalarProperty Name="LokaalTypeNaam" ColumnName="LokaalTypeNaam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Persoons">
+            <EntityTypeMapping TypeName="RoosterDBModel.Persoon">
+              <MappingFragment StoreEntitySet="Persoon">
+                <ScalarProperty Name="PersoonId" ColumnName="PersoonId" />
+                <ScalarProperty Name="PersoonVoornaam" ColumnName="PersoonVoornaam" />
+                <ScalarProperty Name="PersoonAchternaam" ColumnName="PersoonAchternaam" />
+                <ScalarProperty Name="PersoonTelefoonnummer" ColumnName="PersoonTelefoonnummer" />
+                <ScalarProperty Name="PersoonEmail" ColumnName="PersoonEmail" />
+                <ScalarProperty Name="PersoonStraat" ColumnName="PersoonStraat" />
+                <ScalarProperty Name="PersoonHuisnummer" ColumnName="PersoonHuisnummer" />
+                <ScalarProperty Name="PersoonToevoegingHuisnr" ColumnName="PersoonToevoegingHuisnr" />
+                <ScalarProperty Name="PersoonWoonplaats" ColumnName="PersoonWoonplaats" />
+                <ScalarProperty Name="PersoonPostcode" ColumnName="PersoonPostcode" />
+                <ScalarProperty Name="PersoonGebruikersnaam" ColumnName="PersoonGebruikersnaam" />
+                <ScalarProperty Name="PersoonWachtwoord" ColumnName="PersoonWachtwoord" />
+                <ScalarProperty Name="PersoonFunctie" ColumnName="PersoonFunctie" />
+                <ScalarProperty Name="PersoonContractUren" ColumnName="PersoonContractUren" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersoonUrens">
+            <EntityTypeMapping TypeName="RoosterDBModel.PersoonUren">
+              <MappingFragment StoreEntitySet="PersoonUren">
+                <ScalarProperty Name="UrenBeschikbaarheid_Id" ColumnName="UrenBeschikbaarheid_Id" />
+                <ScalarProperty Name="Persoon_Id" ColumnName="Persoon_Id" />
+                <ScalarProperty Name="PersoonUren_Id" ColumnName="PersoonUren_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersoonVaks">
+            <EntityTypeMapping TypeName="RoosterDBModel.PersoonVak">
+              <MappingFragment StoreEntitySet="PersoonVak">
+                <ScalarProperty Name="Persoon_Id" ColumnName="Persoon_Id" />
+                <ScalarProperty Name="Vak_Id" ColumnName="Vak_Id" />
+                <ScalarProperty Name="PersoonVak_Id" ColumnName="PersoonVak_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roosters">
+            <EntityTypeMapping TypeName="RoosterDBModel.Rooster">
+              <MappingFragment StoreEntitySet="Rooster">
+                <ScalarProperty Name="RoosterId" ColumnName="RoosterId" />
+                <ScalarProperty Name="PersoonVak_Id" ColumnName="PersoonVak_Id" />
+                <ScalarProperty Name="VakUrenCollege_Id" ColumnName="VakUrenCollege_Id" />
+                <ScalarProperty Name="Klas" ColumnName="Klas" />
+                <ScalarProperty Name="VakLokaalType_Id" ColumnName="VakLokaalType_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UrenBeschikbaarheids">
+            <EntityTypeMapping TypeName="RoosterDBModel.UrenBeschikbaarheid">
+              <MappingFragment StoreEntitySet="UrenBeschikbaarheid">
+                <ScalarProperty Name="UrenBeschikbaarheidId" ColumnName="UrenBeschikbaarheidId" />
+                <ScalarProperty Name="TijdstipBeschikbaarheid" ColumnName="TijdstipBeschikbaarheid" />
+                <ScalarProperty Name="DagBeschikbaarheid" ColumnName="DagBeschikbaarheid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UrenColleges">
+            <EntityTypeMapping TypeName="RoosterDBModel.UrenCollege">
+              <MappingFragment StoreEntitySet="UrenCollege">
+                <ScalarProperty Name="UrenCollegeId" ColumnName="UrenCollegeId" />
+                <ScalarProperty Name="CollegeNaam" ColumnName="CollegeNaam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vaks">
+            <EntityTypeMapping TypeName="RoosterDBModel.Vak">
+              <MappingFragment StoreEntitySet="Vak">
+                <ScalarProperty Name="VakId" ColumnName="VakId" />
+                <ScalarProperty Name="VakNaam" ColumnName="VakNaam" />
+                <ScalarProperty Name="VakCode" ColumnName="VakCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VakLokaalTypes">
+            <EntityTypeMapping TypeName="RoosterDBModel.VakLokaalType">
+              <MappingFragment StoreEntitySet="VakLokaalType">
+                <ScalarProperty Name="LokaalType_Id" ColumnName="LokaalType_Id" />
+                <ScalarProperty Name="Vak_Id" ColumnName="Vak_Id" />
+                <ScalarProperty Name="VakLokaalType_Id" ColumnName="VakLokaalType_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VakUrenColleges">
+            <EntityTypeMapping TypeName="RoosterDBModel.VakUrenCollege">
+              <MappingFragment StoreEntitySet="VakUrenCollege">
+                <ScalarProperty Name="Vak_Id" ColumnName="Vak_Id" />
+                <ScalarProperty Name="UrenCollege_Id" ColumnName="UrenCollege_Id" />
+                <ScalarProperty Name="Vakduur" ColumnName="Vakduur" />
+                <ScalarProperty Name="VakUrenCollege_Id" ColumnName="VakUrenCollege_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

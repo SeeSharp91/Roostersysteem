@@ -1,0 +1,122 @@
+﻿@model Roostersysteem.Models.Persoon
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Persoongegevens:</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PersoonVoornaam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersoonVoornaam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersoonAchternaam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersoonAchternaam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersoonTelefoonnummer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersoonTelefoonnummer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersoonEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersoonEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersoonStraat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersoonStraat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersoonHuisnummer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersoonHuisnummer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersoonToevoegingHuisnr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersoonToevoegingHuisnr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersoonWoonplaats)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersoonWoonplaats)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersoonPostcode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersoonPostcode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersoonGebruikersnaam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersoonGebruikersnaam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersoonWachtwoord)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersoonWachtwoord)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersoonFunctie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersoonFunctie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersoonContractUren)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersoonContractUren)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PersoonId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

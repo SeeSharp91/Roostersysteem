@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Roostersysteem.Models.VakUrenCollege>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Overzicht vakuren per college</h2>
+
+<p>
+    @Html.ActionLink("Nieuwe toevoegen", "Create")
+</p>
+
+@* header van de tabel*@
+<table class="table">
+    <tr>
+        <th>
+            Aantal uur:
+        </th>
+        <th>
+            Soort college:
+        </th>
+        <th>
+            Vak:
+        </th>
+        <th></th>
+    </tr>
+
+@* Invulling tabel per regel*@
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vakduur)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UrenCollege.CollegeNaam)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vak.VakNaam)
+        </td>
+        <td>
+            @Html.ActionLink("Wijzigen", "Edit", new { id=item.VakUrenCollege_Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.VakUrenCollege_Id }) |
+            @Html.ActionLink("Verwijdern", "Delete", new { id=item.VakUrenCollege_Id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,42 @@
+﻿@model Roostersysteem.Models.VakUrenCollege
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Vakuren per college</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Vakduur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vakduur)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UrenCollege.CollegeNaam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UrenCollege.CollegeNaam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vak.VakNaam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vak.VakNaam)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Wijzigen", "Edit", new { id = Model.VakUrenCollege_Id }) |
+    @Html.ActionLink("Terug naar het overzicht", "Index")
+</p>

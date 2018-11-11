@@ -1,0 +1,39 @@
+﻿@model Roostersysteem.Models.PersoonVak
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<!--Deze pagina weergeeft de details van een vak en een docent.
+    Dit kan eventueel uitgebreid worden naar meer informatie zoals, aantal vakcontacturen, geschikte lokalen, etc.
+    Maar kan ook dienen om meer informatie van een docent te weergeven zoals, een weergave van een persoonId, een foto van de docent etc.-->
+<h2>Details Vak</h2>
+
+<div>
+    <h4>PersoonVak</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <!--Html.DisplayNameFor(model => model.Persoon.PersoonVoornaam)-->
+            Naam
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Persoon.PersoonVoornaam)
+        </dd>
+
+        <dt>
+            <!--Html.DisplayNameFor(model => model.Vak.VakNaam)-->
+            Vak
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vak.VakNaam)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PersoonVak_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

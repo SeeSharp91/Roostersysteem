@@ -1,0 +1,35 @@
+﻿@model Roostersysteem.Models.VakLokaalType
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <!--Html.DisplayNameFor(model => model.LokaalType.LokaalTypeNaam)-->
+            Type lokaal
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LokaalType.LokaalTypeNaam)
+        </dd>
+
+        <dt>
+            <!--Html.DisplayNameFor(model => model.Vak.VakNaam)-->
+            Vak
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vak.VakNaam)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.VakLokaalType_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

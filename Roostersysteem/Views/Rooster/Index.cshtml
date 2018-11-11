@@ -1,0 +1,31 @@
+﻿@model DataSet
+@using System.Data
+
+<div class="Col-lg-12">
+    <table class="table">
+        <tr>
+            <th>Vak Code</th>
+            <th>Vak Naam</th>
+            <th>Docent naam</th>
+            <th>Docent achternaam</th>
+            <th>Type Lokaal</th>
+            <th>Begin les</th>
+            <th>Eind Les</th>
+        </tr>
+        @foreach (DataRow row in Model.Tables[0].Rows)
+        {
+            <tr>
+                <td>@row["VakCode"]</td>
+                <td>@row["VakNaam"]</td>
+                <td>@row["PersoonVoornaam"]</td>
+                <td>@row["PersoonAchternaam"]</td>
+                <td>@row["LokaalTypeNaam"]</td>
+                <td>@row["StartTijd"]</td>
+                <td>@row["EindTijd"]</td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Roostersysteem.Models.UrenBeschikbaarheid>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Overzicht</h2>
+
+<p>
+    @Html.ActionLink("Nieuwe toevoegen", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Datum met tijd
+        </th>
+        <th>
+            Dag
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TijdstipBeschikbaarheid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DagBeschikbaarheid)
+        </td>
+        <td>
+            @Html.ActionLink("Wijzigen", "Edit", new { id=item.UrenBeschikbaarheidId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.UrenBeschikbaarheidId }) |
+            @Html.ActionLink("Verwijderen", "Delete", new { id=item.UrenBeschikbaarheidId })
+        </td>
+    </tr>
+}
+
+</table>

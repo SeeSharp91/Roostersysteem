@@ -1,0 +1,34 @@
+﻿@model Roostersysteem.Models.UrenBeschikbaarheid
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Uren beschikbaarheid</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TijdstipBeschikbaarheid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TijdstipBeschikbaarheid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DagBeschikbaarheid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DagBeschikbaarheid)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Wijzigen", "Edit", new { id = Model.UrenBeschikbaarheidId }) |
+    @Html.ActionLink("Terug naar het overzicht", "Index")
+</p>

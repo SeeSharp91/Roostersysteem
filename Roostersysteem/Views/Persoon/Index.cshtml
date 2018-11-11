@@ -1,0 +1,105 @@
+﻿@model IEnumerable<Roostersysteem.Models.Persoon>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Overzicht</h2>
+
+<p>
+    @Html.ActionLink("Nieuw persoon toevoegen", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Voornaam
+        </th>
+        <th>
+            Achternaam
+        </th>
+        <th>
+            Telefoonnummer:
+        </th>
+        <th>
+            Email:
+        </th>
+        <th>
+            Straat:
+        </th>
+        <th>
+            Huisnummer:
+        </th>
+        <th>
+            Toevoeging huisnummer:
+        </th>
+        <th>
+            Woonplaats:
+        </th>
+        <th>
+            Postcode:
+        </th>
+        <th>
+            Gebruikersnaam:
+        </th>
+        <th>
+            Wachtwoord:
+        </th>
+        <th>
+            Functie:
+        </th>
+        <th>
+            Contacturen
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersoonVoornaam)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersoonAchternaam)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersoonTelefoonnummer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersoonEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersoonStraat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersoonHuisnummer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersoonToevoegingHuisnr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersoonWoonplaats)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersoonPostcode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersoonGebruikersnaam)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersoonWachtwoord)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersoonFunctie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersoonContractUren)
+        </td>
+        <td>
+            @Html.ActionLink("Wijzigen", "Edit", new { id=item.PersoonId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PersoonId }) |
+            @Html.ActionLink("Verwijderen", "Delete", new { id=item.PersoonId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,135 @@
+﻿@model Roostersysteem.Models.Persoon
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Nieuw persoon aanmaken:</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <p class="col-md-2">Voornaam:</p>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PersoonVoornaam, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PersoonVoornaam, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <p class="col-md-2">Achternaam:</p>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PersoonAchternaam, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PersoonAchternaam, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <p class="col-md-2">Telefoonnummer:</p>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PersoonTelefoonnummer, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PersoonTelefoonnummer, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <p class="col-md-2">Email:</p>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PersoonEmail, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PersoonEmail, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <p class="col-md-2">Straatnaam:</p>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PersoonStraat, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PersoonStraat, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <p class="col-md-2">Huisnummer:</p>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PersoonHuisnummer, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PersoonHuisnummer, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <p class="col-md-2">Toevoeging:</p>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PersoonToevoegingHuisnr, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PersoonToevoegingHuisnr, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <p class="col-md-2">Woonplaats:</p>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PersoonWoonplaats, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PersoonWoonplaats, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <p class="col-md-2">Postcode:</p>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PersoonPostcode, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PersoonPostcode, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <p class="col-md-2">Gebruikersnaam:</p>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PersoonGebruikersnaam, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PersoonGebruikersnaam, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <p class="col-md-2">Wachtwoord:</p>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PersoonWachtwoord, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PersoonWachtwoord, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <p class="col-md-2">Functie:</p>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PersoonFunctie, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PersoonFunctie, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <p class="col-md-2">Contacturen:</p>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PersoonContractUren, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PersoonContractUren, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Terug naar het overzicht", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

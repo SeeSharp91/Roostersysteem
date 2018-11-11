@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Roostersysteem.Models.PersoonVak>
+
+@{
+                ViewBag.Title = "Overzicht";
+}
+
+<h2>Vakken Koppelen aan docenten</h2>
+
+<!--Een vak toevoegen aan een docent-->
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<style>
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+<table class="table">
+    <tr>
+        <th>
+            <!--Html.DisplayNameFor(model => model.Persoon.PersoonVoornaam) HTML. DisplayNameFor selecteert een kolomnaam uit de database als weergave-->
+            Naam docent
+        </th>
+        <th>
+            <!--Html.DisplayNameFor(model => model.Vak.VakNaam) HTML. DisplayNameFor selecteert een kolomnaam uit de database als weergave-->
+            Vak
+        </th>
+        <th></th>
+    </tr>
+
+    <!--Gegevens ophalen uit de db om te weergeven welke docenten welke vakken geven.-->
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <!--Weergeeft de naam van de docent, opgehaalt vanuit de db-->
+                @Html.DisplayFor(modelItem => item.Persoon.PersoonVoornaam)
+            </td>
+            <td>
+                <!--Weergeeft de naam van het vak, opgehaalt vanuit de db-->
+                @Html.DisplayFor(modelItem => item.Vak.VakNaam)
+            </td>
+            <td>
+                <!--Genereert de links om te kunnen wijzigen, details weergeven of verwijderen-->
+                @Html.ActionLink("Edit", "Edit", new { id = item.PersoonVak_Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.PersoonVak_Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PersoonVak_Id })
+            </td>
+        </tr>
+    }
+
+</table>

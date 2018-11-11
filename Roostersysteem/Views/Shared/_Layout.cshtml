@@ -18,30 +18,54 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="~/Home/Home">Roostersysteem
+                <a class="navbar-brand" href="#">
+                    Roostersysteem
                     <img src="~/Images/ZuydMiniLogo.png">
                 </a>
             </div>
             <div class="navbar-collapse collapse" id="navbar-collapsible">
                 <ul class="nav navbar-nav navbar-left">
-                    <li>@Html.ActionLink("Rooster", "Rooster", "Rooster")</li>
+
                     <li class=" dropdown">
                         <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Vakgegevens <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li class=" dropdown">
-                                @Html.ActionLink("Contact uren", "ContactUren", "Vakgegevens")
+                                @Html.ActionLink("Vakken", "Index", "Vak")
                             </li>
                             <li>
-                                @Html.ActionLink("Vakken Koppelen", "VakkenKoppelen", "Vakgegevens")
+                                @Html.ActionLink("Contacturen vak wijzigen", "Index", "VakUrenCollege")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Vakken Koppelen aan docenten", "Index", "PersoonVak")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Lokalen Types", "Index", "LokaalType")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Vakken indelen in lokalen", "Index", "VakLokaalType")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Colleges", "Index", "UrenCollege")
                             </li>
                         </ul>
                     </li>
                     <li class=" dropdown">
-                        <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Uren <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Rooster<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Uren Docent", "UrenDocent", "Uren")</li>
-                            <li>@Html.ActionLink("Uren Roosteraar", "UrenRoosteraar", "Uren")</li>
+                            <li class=" dropdown">
+                                @Html.ActionLink("Rooster", "Index", "Rooster")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Persoon Uren", "Index", "Persoonuren")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Beschikbaarheid Opvragen", "Index", "Rooster")
+                            </li>
                         </ul>
+                    </li>
+
+                    <li>
+                        @Html.ActionLink("Beschikbaarheid doorgeven", "Index", "UrenBeschikbaarheid")
                     </li>
                 </ul>
                 <div class="navbar-right">
@@ -51,10 +75,10 @@
                                 <li class=" dropdown">
                                     <a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ingelogd als @Session["gebruikersnaam"] <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li>@Html.ActionLink("Mijn gegevens", "MijnGegevens", "Profiel")</li>
+                                        <li>@Html.ActionLink("Mijn gegevens", "Index", "Persoon")</li>
                                     </ul>
                                 </li>
-                                <li class=""><a href="~/Home/Logout">Uitloggen</a></li>
+                                <li class=""><a href="~/Home/Index">Uitloggen</a></li> @* Max veranderen: link naar je inlogpagina*@
                             </ul>
                         </div>
                     </form>
@@ -69,6 +93,7 @@
                         </div>
                     </form>
                 </div>
+
             </div>
         </div>
     </nav>
@@ -77,7 +102,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Roostersysteem casusgroep 2.1</p>
         </footer>
     </div>
 
